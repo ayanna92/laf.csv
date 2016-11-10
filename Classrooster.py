@@ -21,15 +21,8 @@ class rooster(object):
         self.timeblocks = 4
         self.rooster = []
 
-    def fillIn (self, timeslots):
 
-        if (timeslots) not in self.rooster:
-            self.rooster.append(timeslots)
-
-    def isAvailable(self, days, timeblocks):
+    def isAvailable(self, timeslots):
 
         if timeslots not in rooster:
             return True
-
-# try 1
-## balbal
