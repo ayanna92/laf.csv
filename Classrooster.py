@@ -30,3 +30,5 @@ class rooster(object):
 
         if timeslots not in rooster:
             return True
+            
+# try 1
