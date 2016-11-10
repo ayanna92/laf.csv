@@ -11,4 +11,9 @@ with open('zalen.csv', 'rU') as csvfile:
     zalen = csv.DictReader(csvfile)
     for row in zalen:
         print row['zaalnummer'], row['max_capaciteit']
-hello    
+
+import csv
+with open('vakken.csv', 'rU') as csvfile:
+    vakken = csv.DictReader(csvfile)
+    for row in vakken:
+        print row['Vakken']
