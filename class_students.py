@@ -42,11 +42,14 @@ for col in stud_info[1:]:
             stud_vak.append(vak)
 
     #check
-    print stud_vak
+    #print stud_vak
 
-      # add student object to list
-    student = students(stud_num, stud_vak)
-    stud_list.append(student)
+    # add student object to list
+    stud = students(stud_num, stud_vak)
+    stud_list.append(stud)
+
+    #check
+    #print stud_list
 
 #check
-print stud_info
+#print stud_info
