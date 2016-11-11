@@ -6,13 +6,19 @@
 
 import csv
 
-with open('studentenenvakken.csv') as csvfile:
-    studenten = csv.DictReader(csvfile)
+class students(object):
+    with open('studentenenvakken.csv') as csvfile:
+        studenten = csv.DictReader(csvfile)
+        info = []
 
-    for row in studenten:
+        for row in studenten:
         # door column namen uit csv door te geven als row['naam'] kun je
         # onderdelen die je interesseren uit csv file selecteren
-        print(row['Voornaam'], row['Achternaam'], row['Stud.Nr'])
+            info.append(row)
+        print info
+
+
+
 
 
 
