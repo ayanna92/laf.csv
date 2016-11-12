@@ -4,7 +4,7 @@
 # Ayanna, Lois, Femke
 #
 
-class courses(object):
+class Courses(object):
     """
     Object that will contain course name and course name and activities
     """
@@ -14,7 +14,7 @@ class courses(object):
         Initialize student and corresponding courses
         """
 
-        self.course_name = course_name
+        self.name = name
         self.name_and_activity = name_and_activity
 
 
@@ -23,6 +23,7 @@ fil_2 = open('vakken2.csv')
 file_vakken = csv.reader(fil_2)
 
 courses = []
+courses_list = []
 
 # read csv file in variable courses
 for rows in file_vakken:
@@ -50,3 +51,7 @@ for col in courses[0:]:
     course_activity = ""
 
     #print name_and_activity
+
+    # add course object to list
+    cours = Courses(name, name_and_activity)
+    courses_list.append(cours)
