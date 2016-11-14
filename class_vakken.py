@@ -3,7 +3,7 @@
 #
 # Ayanna, Lois, Femke
 #
-import class_students.py
+import class_students
 
 class Courses(object):
     """
@@ -16,16 +16,17 @@ class Courses(object):
         """
 
         self.name = name
+        self.students = students
         self.name_and_activity = name_and_activity
 
     def studNumber(self):
         """
         return the number of students
         """
-        return len(self.stud_num)
-
+        return len(self.students)
 
 import csv
+
 fil_2 = open('vakken2.csv')
 file_vakken = csv.reader(fil_2)
 
