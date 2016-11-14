@@ -1,6 +1,13 @@
 
 
+<<<<<<< Updated upstream
 # Classe activiteit
+=======
+# het berekenen van het aantal hoorcolleges, werkcolleges en practica per vak.
+# door het gebruik van studenten.py het berekenen van de capaciteit van elk college
+import class_students
+import class_vakken
+>>>>>>> Stashed changes
 
 import class_students
 
@@ -9,8 +16,16 @@ class activiteit (object):
     object that wil contain how many hoorcollege, werkcolleges and practica
     are needed for each course.
     """
-    def __init__(self, stud_vak):
+    def __init__(self, stud_vak, stud_num, name_and_activity):
         self.stud_vak = stud_vak
+        self.stud_num = stud_num
+        self.name_and_activity = name_and_activity # moet dit niet alleen activity zijn?
+
+    def studNumber(self):
+        """
+        return the number of students
+        """
+        return len(self.stud_num) # aantal studenten per activiteit leek me ook handig
 
     def hoorcollege():
         """

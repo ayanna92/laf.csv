@@ -6,16 +6,23 @@ class students(object):
 
     def __init__(self, stud_num, stud_vak):
         """
+<<<<<<< Updated upstream
         Initialize student and corresponding courses
+=======
+        Initialize student and corresponding courses.
+>>>>>>> Stashed changes
         """
         self.stud_num = stud_num
         self.stud_vak = stud_vak
-
+        
     def vakNumber(self):
         """
         Number of courses per student returned
         """
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         return len(self.stud_vak)
 
 ##########################

@@ -3,6 +3,7 @@
 #
 # Ayanna, Lois, Femke
 #
+import class_students.py
 
 class Courses(object):
     """
@@ -16,6 +17,12 @@ class Courses(object):
 
         self.name = name
         self.name_and_activity = name_and_activity
+
+    def studNumber(self):
+        """
+        return the number of students
+        """
+        return len(self.stud_num)
 
 
 import csv
