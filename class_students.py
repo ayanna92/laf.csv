@@ -5,16 +5,16 @@ class students(object):
     """
 
     def __init__(self, stud_num, stud_vak):
-    """
-    Initialize student and corresponding courses
-    """
+        """
+        Initialize student and corresponding courses
+        """
         self.stud_num = stud_num
         self.stud_vak = stud_vak
 
     def vakNumber(self):
-    """
-    Number of courses per student returned
-    """
+        """
+        Number of courses per student returned
+        """
 
         return len(self.stud_vak)
 
