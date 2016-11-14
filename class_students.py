@@ -47,7 +47,7 @@ for col in stud_info[1:]:
             stud_vak.append(vak)
 
     #check
-    print stud_vak
+    #print stud_vak
 
     # add student object to list
     stud = students(stud_num, stud_vak)
