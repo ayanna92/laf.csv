@@ -6,11 +6,7 @@ class students(object):
 
     def __init__(self, stud_num, stud_vak):
         """
-<<<<<<< Updated upstream
         Initialize student and corresponding courses
-=======
-        Initialize student and corresponding courses.
->>>>>>> Stashed changes
         """
         self.stud_num = stud_num
         self.stud_vak = stud_vak
@@ -30,6 +26,7 @@ file_1 = csv.reader(open_1)
 # make empty list for student information, and list which will contain info
 stud_info = []
 stud_list = []
+vak_list = []
 
 # fills empty list with student information
 for row in file_1:
@@ -41,9 +38,9 @@ for col in stud_info[1:]:
     # student number ( in column 2)
     stud_num = col[2]
 
-      # make empty list for courses and fill list with rows from
-      # column 3 - end
-      # don't add if column is empty ("") and fill list
+    # make empty list for courses and fill list with rows from
+    # column 3 - end
+    # don't add if column is empty ("") and fill list
     stud_vak = []
     for vak in col[3:]:
         if vak != "":
@@ -55,6 +52,7 @@ for col in stud_info[1:]:
     # add student object to list
     stud = students(stud_num, stud_vak)
     stud_list.append(stud)
+<<<<<<< HEAD
 
 
     #check
@@ -62,3 +60,5 @@ for col in stud_info[1:]:
 
 #check
 #print stud_info
+=======
+>>>>>>> origin/master
