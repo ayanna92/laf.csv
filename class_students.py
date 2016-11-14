@@ -56,9 +56,6 @@ for col in stud_info[1:]:
     stud = students(stud_num, stud_vak)
     stud_list.append(stud)
 
-from collections import defaultdict, Counter
-for (k,v) in Counter(stud_vak).iteritems():
-    print "%s appears %d studenten" % (k, v)
 
     #check
     #print stud_list
