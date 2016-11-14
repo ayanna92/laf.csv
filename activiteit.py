@@ -10,17 +10,21 @@ class activiteit (object):
     object that wil contain how many hoorcollege, werkcolleges and practica
     are needed for each course.
     """
-    def __init__(self, stud_vak):
-        self.stud_vak = stud_vak
+    def __init__(self, name_course):
+        self.name_course = name_course
         self.stud_num = stud_num
         self.name_and_activity = name_and_activity
 
 
-    def hoorcollege():
+    def hoorcollege(name_course):
         """
         returns how many hoorcollege the course has
         Dit staat in het vakken csv
         """
+
+        for row in file_vakken:
+            if name_course in row:
+                return row[2]
 
     def werkcolleges():
         """
@@ -38,11 +42,8 @@ class activiteit (object):
 ################
 # make courses and calculate their capacity
 
-import csv
-fil_2 = open('vakken2.csv')
-file_vakken = csv.reader(fil_2)
-file_1 = open('studentenenvakken.csv')
-student_vakken = csv.reader(file_1)
+
+
 
 from collections import defaultdict, Counter
 data = defaultdict(list)
@@ -50,17 +51,17 @@ data = defaultdict(list)
 student_vakken.next() #skip header
 
 vak1 = [row[3] for row in student_vakken]
+print len(vak1)
 vak2 = [row[4] for row in student_vakken]
 vak3 = [row[5] for row in student_vakken]
 vak4 = [row[6] for row in student_vakken]
 vak5 = [row[7] for row in student_vakken]
 
-print vak1
 
-print stud_vak
-from collections import defaultdict, Counter
-for (k,v) in Counter(stud_vak).dataitems():
-    print "%s appears %d studenten" % (k, v)
+
+#from collections import defaultdict, Counter
+#for (k,v) in Counter(stud_vak).dataitems():
+#    print "%s appears %d studenten" % (k, v)
 
 
 

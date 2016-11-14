@@ -52,7 +52,7 @@ for col in stud_info[1:]:
     # add student object to list
     stud = students(stud_num, stud_vak)
     stud_list.append(stud)
-<<<<<<< HEAD
+
 
 
     #check
@@ -60,5 +60,3 @@ for col in stud_info[1:]:
 
 #check
 #print stud_info
-=======
->>>>>>> origin/master
