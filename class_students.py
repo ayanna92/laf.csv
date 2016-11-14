@@ -14,15 +14,11 @@ class students(object):
         """
         self.stud_num = stud_num
         self.stud_vak = stud_vak
-        
+
     def vakNumber(self):
         """
         Number of courses per student returned
         """
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         return len(self.stud_vak)
 
 ##########################
@@ -54,11 +50,15 @@ for col in stud_info[1:]:
             stud_vak.append(vak)
 
     #check
-    #print stud_vak
+    print stud_vak
 
     # add student object to list
     stud = students(stud_num, stud_vak)
     stud_list.append(stud)
+
+from collections import defaultdict, Counter
+for (k,v) in Counter(stud_vak).iteritems():
+    print "%s appears %d studenten" % (k, v)
 
     #check
     #print stud_list
