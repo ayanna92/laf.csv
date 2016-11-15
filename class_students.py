@@ -85,9 +85,9 @@ def main():
                 # if vak name and vakken are the same, add student number to existing
                 # vak with append
                 if vak.name == vakken:
-                    print vak.name
+                    #print vak.name
                     vak.students.append(stud_num)
-                    print vak.students
+                    #print vak.students
                     # als je vak.name en vak.student samen print zie je dat iedere
                     # keer als een nieuwe student wordt gevonden met een vak
                     # deze wordt bijgevoegd
