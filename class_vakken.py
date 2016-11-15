@@ -58,7 +58,7 @@ for col in courses[0:]:
     name_and_activity = name + course_activity
     course_activity = ""
 
-    print name_and_activity
+    #print name_and_activity
 
     # add course object to list
     cours = Courses(name, name_and_activity)

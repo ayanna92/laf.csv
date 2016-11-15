@@ -40,6 +40,7 @@ class Courses(object):
 
 def main():
 ##########################
+<<<<<<< HEAD
     import csv
     # open and read csv files
     open_1 = open('studentenenvakken.csv')
@@ -106,3 +107,47 @@ def main():
     return [stud_list, vak_list]
 
 main()
+=======
+import csv
+# open and read csv files
+open_1 = open('studentenenvakken.csv')
+file_1 = csv.reader(open_1)
+
+# make empty list for student information, and list which will contain info
+stud_info = []
+stud_list = []
+vak_list = []
+
+# fills empty list with student information
+for row in file_1:
+    stud_info.append(row)
+
+# for every column in student info
+for col in stud_info[1:]:
+
+    # student number ( in column 2)
+    stud_num = col[2]
+
+    # make empty list for courses and fill list with rows from
+    # column 3 - end
+    # don't add if column is empty ("") and fill list
+    stud_vak = []
+    for vak in col[3:]:
+        if vak != "":
+            stud_vak.append(vak)
+
+    #check
+    print stud_vak
+
+    # add student object to list
+    stud = students(stud_num, stud_vak)
+    stud_list.append(stud)
+
+
+
+    #check
+    #print stud_list
+
+#check
+#print stud_info
+>>>>>>> origin/master
