@@ -17,33 +17,17 @@ class Students(object):
         """
         return len(self.stud_vak)
 
-class Courses(object):
-    """
-    Object that will contain course name and course name and activities
-    """
-
-    def __init__(self, name, students):
-        """
-        Initialize student and corresponding courses
-        """
-
-        self.name = name
-        self.students = students
-        #self.name_and_activity = name_and_activity
-
-    def studNumber(self):
-        """
-        return the number of students
-        """
-        return len(self.students)
-
 
 def main():
 ##########################
     import csv
+    import math
+
     # open and read csv files
     open_1 = open('studentenenvakken.csv')
     file_1 = csv.reader(open_1)
+    fil_2 = open('vakken2.csv')
+    file_vakken = csv.reader(fil_2)
 
     # make empty list for student information, and list which will contain info
     stud_info = []
@@ -84,11 +68,11 @@ def main():
 
                 # if vak name and vakken are the same, add student number to existing
                 # vak with append
-                if vak.name == vakken:
-                    #print vak.name
+                if vak.name_course == vakken:
+                    #print vak.name_course
                     vak.students.append(stud_num)
                     #print vak.students
-                    # als je vak.name en vak.student samen print zie je dat iedere
+                    # als je vak.name_course en vak.student samen print zie je dat iedere
                     # keer als een nieuwe student wordt gevonden met een vak
                     # deze wordt bijgevoegd
                     exist_vak = True
