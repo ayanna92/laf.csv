@@ -1,33 +1,17 @@
-class Students(object):
-    """
-    Object that will contain student number, student courses
-    and number of courses.
-    """
-
-    def __init__(self, stud_num, stud_vak):
-        """
-        Initialize student and corresponding courses
-        """
-        self.stud_num = stud_num
-        self.stud_vak = stud_vak
-
-    def vakNumber(self):
-        """
-        Number of courses per student returned
-        """
-        return len(self.stud_vak)
-
-
 def main():
-##########################
     import csv
     import math
+    from class_courses import *
+    from class_students import *
+    from class_rooms import *
 
     # open and read csv files
     open_1 = open('studentenenvakken.csv')
     file_1 = csv.reader(open_1)
     fil_2 = open('vakken2.csv')
     file_vakken = csv.reader(fil_2)
+    fil = open('classrooms.csv')
+    file_zalen = csv.reader(fil)
 
     # make empty list for student information, and list which will contain info
     stud_info = []
@@ -87,6 +71,22 @@ def main():
                     course.students.append(stud_num)
                     #print course.students
 
-    return [stud_list, vak_list]
+    zalen = []
+    classroom_list = []
+
+    # put csv file in variable zalen
+    for rows in file_zalen:
+        zalen.append(rows)
+
+    # put al the room numbers in room
+    for col in zalen[1:]:
+        room = col[0]
+        capacity = col[1]
+
+        # add classroom object to list
+        classroom = Classrooms(room, capacity)
+        classroom_list.append(classroom)
+
+    return [stud_list, vak_list, classroom_list]
 
 main()
