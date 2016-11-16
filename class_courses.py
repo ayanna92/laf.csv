@@ -30,7 +30,7 @@ class Courses (object):
         returns how many werkcollege the course has
         Er is nooit meer dan 1 werkgroep
         Hier moet rekening gehouden met hoeveel studenten er zijn en daaruit moeten dus het aantal colleges gehaald worden.
-        """"
+        """
         for row in file_vakken:
             if name_course in row and row[2] != 0:
                 capacity = float(row[3])
