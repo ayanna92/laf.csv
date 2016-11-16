@@ -16,8 +16,10 @@ class Classrooms(object):
 
         self.room = room
         self.capacity = capacity
-        self.timesloten = [9.00,11.00,13.00,15.00]
-        self.timeextra = 17.00
+        self.tijdsloten = {'9.00': '', '11.00': '', '13.00': '', '15.00': '', '17.00': ''}
+
+        # example of filling in the timeslots
+        # tijdsloten['9.00'] = activiteit
 
 
 ###################################
