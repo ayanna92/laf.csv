@@ -10,6 +10,9 @@ class Courses (object):
         self.students = students
 
     def studNumber(self):
+        """
+        returns number of students for each course
+        """
         return len(self.students)
 
     def hoorcollege(name_course):
