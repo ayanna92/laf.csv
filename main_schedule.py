@@ -1,4 +1,4 @@
-
+from class_rooster import *
 
 def main(student_list, course_list, zalen_list):
     import random
