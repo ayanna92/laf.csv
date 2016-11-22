@@ -1,12 +1,10 @@
-<<<<<<< Updated upstream
+
 from class_students import *
 from class_courses import *
 from class_rooms import *
 
 def main():
-    import csv
-    import math
-=======
+
 import csv
 import math
 from class_courses import *
@@ -14,7 +12,6 @@ from class_students import *
 from class_rooms import *
 
 def main():
->>>>>>> Stashed changes
 
     # open and read csv files
     open_1 = open('studentenenvakken.csv')
