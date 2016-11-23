@@ -24,3 +24,5 @@ class schedule(object):
             timeblock_empty = True
 
         return timeblock_empty
+
+    def
