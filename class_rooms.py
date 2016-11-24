@@ -16,7 +16,23 @@ class Classrooms(object):
 
         self.room = room
         self.capacity = capacity
-        self.tijdsloten = {'9.00': '', '11.00': '', '13.00': '', '15.00': '', '17.00': ''}
+        self.timeslot = [[]]
+        self.days = [1, 2, 3, 4, 5]
+        self.hours = [1, 2, 3, 4]
 
-        # example of filling in the timeslots
-        # tijdsloten['9.00'] = activiteit
+    # zaal.roomCapacity() gives capacity of room
+    def roomCapacity(self):
+
+        return self.capacity
+
+    def fillTimeslot(self):
+
+        for day in self.days:
+            for hour in self.hours:
+                self.timeslot[day[hour]] = self.days[day] + self.hours[hour]
+
+        return timeslot
+
+A104 = Classrooms("A1.04", 41)
+
+print A104.fillTimeslot()

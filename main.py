@@ -7,10 +7,6 @@ def main():
 
     import csv
     import math
-    from class_courses import *
-    from class_students import *
-    from class_rooms import *
-
 
     # open and read csv files
     open_1 = open('studentenenvakken.csv')
@@ -130,5 +126,8 @@ def main():
         # add course object to list
         cours = Courses(name, name_and_activity)
         courses_list.append(cours)
+
+        A104 = Classrooms('A1.04', 41)
+        A104.roomCapacity()
 
 main()
