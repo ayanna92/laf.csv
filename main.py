@@ -7,9 +7,6 @@ def main():
 
     import csv
     import math
-    from class_courses import *
-    from class_students import *
-    from class_rooms import *
 
 
     # open and read csv files
@@ -125,10 +122,11 @@ def main():
         name_and_activity = name + course_activity
         course_activity = ""
 
-        print name_and_activity
+        # print name_and_activity
 
         # add course object to list
         cours = Courses(name, name_and_activity)
         courses_list.append(cours)
+
 
 main()
