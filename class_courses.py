@@ -15,7 +15,7 @@ class Courses (object):
         """
         return len(self.students)
 
-    def hoorcollege(name_course):
+    def hoorcollege(self, name_course):
         """
         returns how many hoorcollege the course has
         Dit staat in het vakken csv

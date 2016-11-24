@@ -16,3 +16,5 @@ class Students(object):
         Number of courses per student returned
         """
         return len(self.stud_vak)
+
+        

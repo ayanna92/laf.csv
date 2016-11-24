@@ -128,6 +128,7 @@ def main():
         courses_list.append(cours)
 
         A104 = Classrooms('A1.04', 41)
+
         A104.roomCapacity()
 
 main()

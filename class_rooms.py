@@ -25,6 +25,8 @@ class Classrooms(object):
 
         return self.capacity
 
+    def emptyTimeSlot(self, )
+
     def fillTimeslot(self):
 
         for day in self.days:

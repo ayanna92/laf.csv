@@ -7,15 +7,16 @@ class TijdSlot(object):
     """
     def __init__(self):
 
-        self.course = Courses.name_course
-        self.student = Students.stud_num
-
+        self.days = [0:4]
+        self.hours = [0:3]
 
     def emptyTijdslotRoom(self):
         """
         om te checken of er in het tijdslot al een classroom is ingecheckt
         returns true or false
         """
+
+
 
 
 
@@ -30,5 +31,5 @@ class TijdSlot(object):
     def fillSlot(self):
         """
         Vult tijdslot
-        
+
         """
