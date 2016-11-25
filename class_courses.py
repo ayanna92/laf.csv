@@ -5,6 +5,7 @@ class Courses (object):
     object that wil contain how many hoorcollege, werkcolleges and practica
     are needed for each course.
     """
+
     def __init__(self, name_course, students):
         self.name_course = name_course
         self.students = students
