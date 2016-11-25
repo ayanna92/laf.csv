@@ -34,7 +34,6 @@ class Classrooms(object):
         week = [[0 for i in range(4)] for j in range(5)]
         return week
 
-
     def emptyTimeSlot(self, day, hour, week):
         self.day = day
         self.hour = hour
@@ -53,8 +52,12 @@ class Classrooms(object):
         random_day = random.randint(0,4)
         random_hour = random.randint(0,3)
 
+        #hier nog een check op doen dat als week vol zit die niet oneindig door blijft gaan
         if self.emptyTimeSlot(random_day, random_hour, week) == True:
             week[random_day][random_hour] = (self.course)
+
+        else:
+            fillInWeek(course, week)
 
         return week
 
@@ -65,9 +68,9 @@ A104 = Classrooms("A1.04", 41)
 A104.week = A104.createEmptyWeek()
 
 # for loop maken waar die de vakken in het rooster vult en opslaat in week
-A104.week1 = A104.fillInWeek("heuristieken", A104.week)
-A104.week2 = A104.fillInWeek("Programmeren 1", A104.week1)
-A104.week3 = A104.fillInWeek("Programmeren 2", A104.week2)
+A104.week = A104.fillInWeek("heuristieken", A104.week)
+A104.week = A104.fillInWeek("Programmeren 1", A104.week)
+A104.week = A104.fillInWeek("Programmeren 2", A104.week)
 
 # test of die goed checkt wann zaal leeg is 1 staat voor dag(dinsdag) 2 voor tijdslot 11-13
 print A104.emptyTimeSlot(1, 2, A104.week)

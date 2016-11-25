@@ -1,6 +1,6 @@
 
 
-
+# DEZE CLASS HOEFT WSS NIET MEER GEBRUIKT TE WORDEN, ZIT IN ROOMS
 class TijdSlot(object):
     """
     representeerd een tijdsblok
