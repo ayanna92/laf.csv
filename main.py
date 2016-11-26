@@ -59,10 +59,10 @@ def main():
                     #print vak.name_course
                     vak.students.append(stud_num)
                     #print vak.students
-                    # als je vak.name_course en vak.student samen print zie je dat iedere
-                    # keer als een nieuwe student wordt gevonden met een vak
-                    # deze wordt bijgevoegd
+                    # vak.students is nu een lijst waar elke studenten nummer gelinkt is aan elk vak
+                    # dat ze volgen
                     exist_vak = True
+
 
             # if vakken doesn't exist yet, create a new course and add student
             # number
@@ -71,8 +71,9 @@ def main():
                     students = []
                     course = Courses(vakken, students)
                     vak_list.append(course)
+                    #print vak_list
                     course.students.append(stud_num)
-                    #print course.students
+            #print course.students
 
     zalen = []
     classroom_list = []
