@@ -19,15 +19,36 @@ for row in file_vakken:
 
 rooster = main()
 vakrooster = {}
+dag = 0
+tijdsblok = 0
+
+tijdsblokken = []
 
 for vak in vakken:
+    print vak
     for rooms in rooster.values():
-        print "rooom is"
-        for room in rooms:
-            for vak2 in room:
-                if vak  ==  vak2:
-                    print "jeej"
-        
+        #print rooms
+        for zaal_per_dag in rooms:
+            #print zaal_per_dag
+            #print "dag is"
+            #print dag
+
+            for tijdsblok_per_zaal in zaal_per_dag:
+
+                #print "tijdsblok = "
+                #print tijdsblok
+                #print tijdsblok_per_zaal
+
+                if vak == tijdsblok_per_zaal:
+                    tijdsblokken.append((dag,tijdsblok))
+                tijdsblok += 1
+
+            tijdsblok = 0
+            dag = dag +1
+        dag = 0
+    vakrooster[vak] = tijdsblokken
+print vakrooster
+
 
 def scoringsfunctie(schedulerooms_list, vakken):
     # als alle acitiviteiten een zaal toegewezen hebben gekregen
