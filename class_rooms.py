@@ -62,16 +62,16 @@ class Classrooms(object):
         return week
 
 # testing for the class
-A104 = Classrooms("A1.04", 41)
+#A104 = Classrooms("A1.04", 41)
 
 #maak een lege week voor object (zaal) A1.04
-A104.week = A104.createEmptyWeek()
+#A104.week = A104.createEmptyWeek()
 
 # for loop maken waar die de vakken in het rooster vult en opslaat in week
-A104.week = A104.fillInWeek("heuristieken", A104.week)
-A104.week = A104.fillInWeek("Programmeren 1", A104.week)
-A104.week = A104.fillInWeek("Programmeren 2", A104.week)
+#A104.week = A104.fillInWeek("heuristieken", A104.week)
+#A104.week = A104.fillInWeek("Programmeren 1", A104.week)
+#A104.week = A104.fillInWeek("Programmeren 2", A104.week)
 
 # test of die goed checkt wann zaal leeg is 1 staat voor dag(dinsdag) 2 voor tijdslot 11-13
-print A104.emptyTimeSlot(1, 2, A104.week)
-print A104.week
+#print A104.emptyTimeSlot(1, 2, A104.week)
+#print A104.week
