@@ -57,7 +57,7 @@ class Classrooms(object):
             week[random_day][random_hour] = (self.course)
 
         else:
-            fillInWeek(course, week)
+            self.fillInWeek(course, week)
 
         return week
 

@@ -37,23 +37,25 @@ def main ():
         week = room.createEmptyWeek()
 
         #voor twintig tijdbokken per zaal
-        for weeks in range(0, 19, 1):
+        for weeks in range(0, 20, 1):
             random_course = random.randint(0,28)
             course = name_course[random_course]
 
             # OM DEZE VROLIJKE VRIEND GAAT HET
-            room.fillInWeek(course, week)
-
-            #even om te laten zien dat de andere functie van Classrooms hier wel werkt
-            print room.emptyTimeSlot(1, 2, week)
+            #rooster = room.fillInWeek(course, week)
 
             #dit is wanneer we echt per werkgroep en student gaan kijken
             for students in course_and_student:
                 if students[0] == course:
-                    student_list = students[1:]
-                    courses = Courses(course, student_list)
+                   student_list = students[1:]
+                   courses = Courses(course, student_list)
+
+                   #if courses.hoorcollege(course) != 0:
+                     #  course_act = course + ' hoorcollege'
+                     #  rooster = room.fillInWeek(course_act, week)
+
                     #print course
                     #print student_list
                     #print courses.hoorcollege(course)
-
+        print rooster
 main()
