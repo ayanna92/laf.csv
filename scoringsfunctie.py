@@ -13,9 +13,18 @@ from class_courses import *
 fil_2 = open('vakken2.csv')
 file_vakken = csv.reader(fil_2)
 vakken = []
+fil_3 = open("classrooms.csv")
+file_zalen = csv.reader(fil_3)
+zalen = []
+
+for row in file_zalen:
+    zalen.append(row)
+print zalen
 
 for row in file_vakken:
     vakken.append(row[0])
+
+
 
 rooster = main()
 vakrooster = {}
@@ -23,14 +32,15 @@ dag = 0
 tijdsblok = 0
 
 tijdsblokken = []
-
+count  = 0
 for vak in vakken:
-    print vak
+    #print "vak is"
+    #print vak
     for rooms in rooster.values():
-        #print rooms
+        zaal = 0
         for zaal_per_dag in rooms:
             #print zaal_per_dag
-            #print "dag is"
+
             #print dag
 
             for tijdsblok_per_zaal in zaal_per_dag:
@@ -39,15 +49,38 @@ for vak in vakken:
                 #print tijdsblok
                 #print tijdsblok_per_zaal
 
-                if vak == tijdsblok_per_zaal:
-                    tijdsblokken.append((dag,tijdsblok))
-                tijdsblok += 1
+                # heb je een zaal, zoek de capaciteit van de zaal
+                # zoek capaciteit van vak
 
+                if vak == tijdsblok_per_zaal:
+                    #print "true"
+                    tijdsblokken.append((dag,tijdsblok))
+                    #print tijdsblokken
+                tijdsblok += 1
             tijdsblok = 0
             dag = dag +1
         dag = 0
+
     vakrooster[vak] = tijdsblokken
-print vakrooster
+    tijdsblokken = []
+
+#print vakrooster
+
+# als een vak op eenzelfde uur wordt gegeven:
+#for vak in vakrooster.keys():
+maluspunten = 0
+for vak in vakrooster.values():
+    print vak
+    for tijdsblok in vak:
+        # nog wel te maken met als ze hetzelfde zijn, dan
+        if vak.count(tijdsblok) == 2 :
+            maluspunten += 10
+        if vak.count(tijdsblok) == 3:
+            maluspunten += (20/3)
+print maluspunten
+
+
+
 
 
 def scoringsfunctie(schedulerooms_list, vakken):
