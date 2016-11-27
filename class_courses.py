@@ -22,6 +22,12 @@ class Courses (object):
         Dit staat in het vakken csv
         """
 
+        import csv
+
+        # Moest ik er bij zetten omdat anders die bij mij niet laade, haal ik hierna weer weg!!
+        fil_2 = open('vakken2.csv')
+        file_vakken = csv.reader(fil_2)
+
         for row in file_vakken:
             if name_course in row:
                 return row[1]
@@ -32,6 +38,12 @@ class Courses (object):
         Er is nooit meer dan 1 werkgroep
         Hier moet rekening gehouden met hoeveel studenten er zijn en daaruit moeten dus het aantal colleges gehaald worden.
         """
+        import csv
+
+        # Moest ik er bij zetten omdat anders die bij mij niet laade, haal ik hierna weer weg!!
+        fil_2 = open('vakken2.csv')
+        file_vakken = csv.reader(fil_2)
+
         for row in file_vakken:
             if name_course in row and row[2] != 0:
                 capacity = float(row[3])
@@ -44,7 +56,10 @@ class Courses (object):
         returns how many practica the course has ER is ook altijd maar 1 practica per week
         Hier moet rekening gehouden met hoeveel studenten er zijn en daaruit moeten dus het aantal pracica gehaald worden.
         """
-
+        import csv
+        # Moest ik er bij zetten omdat anders die bij mij niet laade, haal ik hierna weer weg!!
+        fil_2 = open('vakken2.csv')
+        file_vakken = csv.reader(fil_2)
         for row in file_vakken:
             if name_course in row and row[5] != 0:
                 capacity = float(row[6])
