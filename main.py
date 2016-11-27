@@ -39,6 +39,7 @@ def main():
             if vak != "":
                 stud_vak.append(vak)
 
+
         #check
         #print stud_vak
 

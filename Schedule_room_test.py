@@ -3,10 +3,10 @@
 #
 # Ayanna, Lois, Femke
 #
-
+import csv
 from class_rooms import *
 from class_courses import *
-
+zaalrooster = {}
 def main ():
 
     import csv
@@ -42,8 +42,8 @@ def main ():
             course = name_course[random_course]
 
             # OM DEZE VROLIJKE VRIEND GAAT HET
-            #rooster = room.fillInWeek(course, week)
-
+            rooster = room.fillInWeek(course, week)
+            zaalrooster[room.room] = rooster
             #dit is wanneer we echt per werkgroep en student gaan kijken
             for students in course_and_student:
                 if students[0] == course:
@@ -57,5 +57,6 @@ def main ():
                     #print course
                     #print student_list
                     #print courses.hoorcollege(course)
-        print rooster
+        #print rooster
+    return zaalrooster
 main()

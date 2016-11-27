@@ -4,22 +4,44 @@
 
 # functie die het aantal punten returned
 
-points = 0
+from Schedule_room_test import *
+from class_rooms import *
+from class_courses import *
 
 
-def scoringsfunctie(schedulerooms_list, courses_list, students_list):
+
+fil_2 = open('vakken2.csv')
+file_vakken = csv.reader(fil_2)
+vakken = []
+
+for row in file_vakken:
+    vakken.append(row[0])
+
+rooster = main()
+vakrooster = {}
+
+for vak in vakken:
+    for rooms in rooster.values():
+        print "rooom is"
+        for room in rooms:
+            for vak2 in room:
+                if vak  ==  vak2:
+                    print "jeej"
+        
+
+def scoringsfunctie(schedulerooms_list, vakken):
     # als alle acitiviteiten een zaal toegewezen hebben gekregen
         # points += 1000
     # else
         # print("error")
 
-
+    rooster = main()
     vakrooster = {}
     # maak een lijst voor elke vak wanneer ze gegeven worden
 
-    for course in courses_list:
-
-        for room in schedulerooms_list:
+    for vak in vakken:
+        for room in rooster.keys():
+            print vak
 
             # kijk voor elk vak in welke zalen hij zit op welke tijden en sla dit op
             # als de capaciteit van de zaal groter is dan het aantal studenten
@@ -27,7 +49,7 @@ def scoringsfunctie(schedulerooms_list, courses_list, students_list):
 
 
     # hier uiteindelijk een lijst met alle vakken en zijn tijden wanneer er les hebben
-    for vak in vakrooster:
+    #for vak in vakrooster:
         # (vak: heuristieken, tijd :[(dag,tijdvak), (1,2), (2,2), (2,3)]
 
 # bonuspunten:
@@ -42,10 +64,10 @@ def scoringsfunctie(schedulerooms_list, courses_list, students_list):
     # points -= 30
 
 
-    for student in student_list:
+    #for student in student_list:
         #print (student)
         # voor elke student zoek het vak op in vakrooster, pak de tijden van elk vak erbij en kijk of er vakken tegelijkertijd worden gegeven
-        for vak in student
+    #    for vak in student
             # zoek het vak op in het vakrooster
             # kijk welke tijden er zijn
             # als een student een vak heeft op hetzelfde tijdstip
@@ -54,3 +76,7 @@ def scoringsfunctie(schedulerooms_list, courses_list, students_list):
 
 
     return points
+
+
+
+#print scoringsfunctie(, vakken)
