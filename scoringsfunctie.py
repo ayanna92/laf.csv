@@ -33,25 +33,23 @@ tijdsblok = 0
 
 tijdsblokken = []
 count  = 0
+
+
+print rooster.keys()
+for zaal in rooster.keys():
+    for meerzalen in zalen:
+        if zaal == meerzalen[0]:
+            capaciteit_zaal = meerzalen[1]
+
+
 for vak in vakken:
-    #print "vak is"
-    #print vak
     for rooms in rooster.values():
         zaal = 0
         for zaal_per_dag in rooms:
-            #print zaal_per_dag
-
-            #print dag
-
             for tijdsblok_per_zaal in zaal_per_dag:
-
-                #print "tijdsblok = "
-                #print tijdsblok
-                #print tijdsblok_per_zaal
 
                 # heb je een zaal, zoek de capaciteit van de zaal
                 # zoek capaciteit van vak
-
                 if vak == tijdsblok_per_zaal:
                     #print "true"
                     tijdsblokken.append((dag,tijdsblok))
@@ -70,7 +68,6 @@ for vak in vakken:
 #for vak in vakrooster.keys():
 maluspunten = 0
 for vak in vakrooster.values():
-    print vak
     for tijdsblok in vak:
         # nog wel te maken met als ze hetzelfde zijn, dan
         if vak.count(tijdsblok) == 2 :
