@@ -43,11 +43,8 @@ def main ():
 
             # OM DEZE VROLIJKE VRIEND GAAT HET
             rooster = room.fillInWeek(course, week)
-<<<<<<< HEAD
-
-=======
             zaalrooster[room.room] = rooster
->>>>>>> origin/master
+
             #dit is wanneer we echt per werkgroep en student gaan kijken
             for students in course_and_student:
                 if students[0] == course:

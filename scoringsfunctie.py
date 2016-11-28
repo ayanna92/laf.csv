@@ -8,14 +8,14 @@ from Schedule_room_test import *
 from class_rooms import *
 from class_courses import *
 
-
-
 fil_2 = open('vakken2.csv')
 file_vakken = csv.reader(fil_2)
 vakken = []
 fil_3 = open("classrooms.csv")
 file_zalen = csv.reader(fil_3)
 zalen = []
+
+
 
 for row in file_zalen:
     zalen.append(row)
@@ -93,9 +93,6 @@ def scoringsfunctie(schedulerooms_list, vakken):
     vakrooster = {}
     # maak een lijst voor elke vak wanneer ze gegeven worden
 
-    for vak in vakken:
-        for room in rooster.keys():
-            print vak
 
             # kijk voor elk vak in welke zalen hij zit op welke tijden en sla dit op
             # als de capaciteit van de zaal groter is dan het aantal studenten
