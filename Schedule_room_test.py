@@ -42,7 +42,7 @@ def main ():
             course = name_course[random_course]
 
             # OM DEZE VROLIJKE VRIEND GAAT HET
-            #rooster = room.fillInWeek(course, week)
+            rooster = room.fillInWeek(course, week)
 
             #dit is wanneer we echt per werkgroep en student gaan kijken
             for students in course_and_student:
