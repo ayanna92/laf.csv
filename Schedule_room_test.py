@@ -51,13 +51,13 @@ def main ():
                    student_list = students[1:]
                    courses = Courses(course, student_list)
 
-                   #if courses.hoorcollege(course) != 0:
-                     #  course_act = course + ' hoorcollege'
+                  # if courses.hoorcollege(course) != 0:
+                    #   course_act = course + ' hoorcollege'
                      #  rooster = room.fillInWeek(course_act, week)
 
                     #print course
                     #print student_list
                     #print courses.hoorcollege(course)
-        #print rooster
+        print rooster
     return zaalrooster
 main()
