@@ -49,6 +49,7 @@ class Classrooms(object):
         self.week = week
 
         import random
+        
         random_day = random.randint(0,4)
         random_hour = random.randint(0,3)
 

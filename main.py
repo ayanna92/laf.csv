@@ -84,7 +84,7 @@ def main():
         zalen.append(rows)
 
     # put al the room numbers in room
-    for col in zalen[1:]:
+    for col in zalen:
         room = col[0]
         capacity = col[1]
 
@@ -92,15 +92,16 @@ def main():
         classroom = Classrooms(room, capacity)
         classroom_list.append(classroom)
 
-    return [stud_list, vak_list, classroom_list]
+
+
 
     # add new list for type of activity
     courses = []
     courses_list = []
 
     # read csv file in variable courses
-    for rows in file_vakken:
-        courses.append(rows)
+    for row in file_vakken:
+        courses.append(row)
 
         # put al the courses names in variable names
     for col in courses[0:]:
@@ -132,5 +133,6 @@ def main():
         A104 = Classrooms('A1.04', 41)
 
         A104.roomCapacity()
+        return [stud_list, vak_list, classroom_list]
 
 main()
