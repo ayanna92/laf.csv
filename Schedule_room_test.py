@@ -52,8 +52,6 @@ def main ():
             random_course = random.randint(0,28)
             course = name_course[random_course]
 
-            random_activity = random.randint(0,6)
-            #course_activity = course_and_activity[random_activity]
 
             # OM DEZE VROLIJKE VRIEND GAAT HET
             rooster = room.fillInWeek(course, week)
@@ -65,7 +63,6 @@ def main ():
                    student_list = students[1:]
                    courses = Courses(course, student_list)
 
-
-        #print rooster
+        print rooster
     return zaalrooster
 main()

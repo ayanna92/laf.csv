@@ -150,64 +150,57 @@ def main():
                     student_list_courses = students[1:]
                     courses = Courses(course, student_list_courses)
 
+            print course
+            print int(courses.hoorcollege(course))
+            print int(courses.hoorcollege(course)) > 1
 
-            import csv
-            resultFile = open("course_and_activity.csv",'wb')
-            wr = csv.writer(resultFile, dialect='excel')
-
-            if courses.hoorcollege(course) > 0:
+            if int(courses.hoorcollege(course)) > 0:
                    course_and_activity.append(courses.name_course + " hoorcollege 1")
-                   wr.writerow(course_and_activity)
 
-            if courses.hoorcollege(course) > 1:
+            if int(courses.hoorcollege(course)) > 1:
                    course_and_activity.append(course + " hoorcollege 2")
-                   wr.writerow(course_and_activity)
 
-            if courses.hoorcollege(course) > 2:
+            if int(courses.hoorcollege(course)) > 2:
                    course_and_activity.append(course + " hoorcollege 3")
-                   wr.writerow(course_and_activity)
 
-            if courses.hoorcollege(course) > 3:
+            if int(courses.hoorcollege(course)) > 3:
                    course_and_activity.append(course + " hoorcollege 4")
-                   wr.writerow(course_and_activity)
 
-            if courses.werkcolleges(course) > 0:
+
+
+            if int(courses.werkcolleges(course)) > 0:
                    course_and_activity.append(course + " Werkgroep 1")
-                   wr.writerow(course_and_activity)
 
-            if courses.werkcolleges(course) > 1:
+            if int(courses.werkcolleges(course)) > 1:
                    course_and_activity.append(course + " werkgroep 2")
-                   wr.writerow(course_and_activity)
 
-            if courses.werkcolleges(course) > 2:
+            if int(courses.werkcolleges(course)) > 2:
                    course_and_activity.append(course + " werkgroep 3")
-                   wr.writerow(course_and_activity)
 
-            if courses.werkcolleges(course) > 3:
+            if int(courses.werkcolleges(course)) > 3:
                    course_and_activity.append(course + " werkgroep 4")
-                   wr.writerow(course_and_activity)
 
-            if courses.practica(course) > 0:
+
+
+            if int(courses.practica(course)) > 0:
                    course_and_activity.append(course + " practica 1")
-                   wr.writerow(course_and_activity)
 
-            if courses.practica(course) > 1:
+            if int(courses.practica(course)) > 1:
                    course_and_activity.append(course + " practica 2")
 
-            if courses.practica(course) > 2:
+            if int(courses.practica(course)) > 2:
                    course_and_activity.append(course + " practica 3")
-                   wr.writerow(course_and_activity)
 
-            if courses.practica(course) > 3:
+            if int(courses.practica(course)) > 3:
                    course_and_activity.append(course + " practica 4")
-                   wr.writerow(course_and_activity)
 
-
-
+            #print course
+            #print courses.hoorcollege(course)
 
             #print course
 
 
+        print course_and_activity
         return [stud_list, vak_list, classroom_list]
 
 main()
