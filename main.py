@@ -15,11 +15,14 @@ def main():
     file_vakken = csv.reader(fil_2)
     fil = open('classrooms.csv')
     file_zalen = csv.reader(fil)
+    courses_and_students = csv.reader(open('course_stud_num.csv'))
 
     # make empty list for student information, and list which will contain info
     stud_info = []
     stud_list = []
     vak_list = []
+    cours_student = []
+    course_and_activity = []
 
     # fills empty list with student information
     for row in file_1:
@@ -133,6 +136,59 @@ def main():
         A104 = Classrooms('A1.04', 41)
 
         A104.roomCapacity()
+
+        for row in courses_and_students:
+            cours_student.append(row)
+
+
+        for col in courses[0:]:
+            course = col[0]
+
+
+            for students in cours_student:
+                if students[0] == course:
+                    student_list_courses = students[1:]
+                    courses = Courses(course, student_list_courses)
+                    print courses.name_course
+
+
+            if courses.hoorcollege(course) > 0:
+                   course_and_activity.append(courses.name_course + " hoorcollege 1")
+                   print course_and_activity
+
+            if courses.hoorcollege(course) > 1:
+                   course_and_activity.append(course + " hoorcollege 2")
+
+            if courses.hoorcollege(course) > 2:
+                   course_and_activity.append(course + " hoorcollege 3")
+            if courses.hoorcollege(course) > 3:
+                   course_and_activity.append(course + " hoorcollege 4")
+
+            if courses.werkcolleges(course) > 0:
+                   course_and_activity.append(course + " Werkgroep 1")
+            if courses.werkcolleges(course) > 1:
+                   course_and_activity.append(course + " werkgroep 2")
+            if courses.werkcolleges(course) > 2:
+                   course_and_activity.append(course + " werkgroep 3")
+            if courses.werkcolleges(course) > 3:
+                   course_and_activity.append(course + " werkgroep 4")
+
+            if courses.practica(course) > 0:
+                   course_and_activity.append(course + " practica 1")
+            if courses.practica(course) > 1:
+                   course_and_activity.append(course + " practica 2")
+            if courses.practica(course) > 2:
+                   course_and_activity.append(course + " practica 3")
+            if courses.practica(course) > 3:
+                   course_and_activity.append(course + " practica 4")
+
+            print courses.hoorcollege(course)
+
+            #print course
+
+
+
+
         return [stud_list, vak_list, classroom_list]
 
 main()

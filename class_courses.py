@@ -31,6 +31,8 @@ class Courses (object):
         for row in file_vakken:
             if name_course in row:
                 return row[1]
+            else:
+                return 0
 
     def werkcolleges(self, name_course):
         """
@@ -39,6 +41,7 @@ class Courses (object):
         Hier moet rekening gehouden met hoeveel studenten er zijn en daaruit moeten dus het aantal colleges gehaald worden.
         """
         import csv
+        import math
 
         # Moest ik er bij zetten omdat anders die bij mij niet laade, haal ik hierna weer weg!!
         fil_2 = open('vakken2.csv')
@@ -46,9 +49,9 @@ class Courses (object):
 
         for row in file_vakken:
             if name_course in row and row[2] != 0:
-                capacity = float(row[3])
-        return math.ceil(len(self.students)/ capacity)  # klopt nog niet helemaal want geeft nog een verkeerd afgerond getal terug.
-
+                return math.ceil(len(self.students))#/ capacity)  # klopt nog niet helemaal want geeft nog een verkeerd afgerond getal terug.
+            else:
+                return 0
 
     def practica(self, name_course):
         """
@@ -57,10 +60,14 @@ class Courses (object):
         Hier moet rekening gehouden met hoeveel studenten er zijn en daaruit moeten dus het aantal pracica gehaald worden.
         """
         import csv
+        import math
+
         # Moest ik er bij zetten omdat anders die bij mij niet laade, haal ik hierna weer weg!!
         fil_2 = open('vakken2.csv')
         file_vakken = csv.reader(fil_2)
         for row in file_vakken:
-            if name_course in row and row[5] != 0:
-                capacity = float(row[6])
-        return math.ceil(len(self.students) / capacity)
+            if name_course in row and row[4] != 0:
+                return math.ceil(len(self.students))
+            else:
+                return 0
+         #/ capacity)

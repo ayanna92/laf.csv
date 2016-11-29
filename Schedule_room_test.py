@@ -19,6 +19,7 @@ def main ():
     courses = []
     name_course = []
     course_and_student = []
+    course_and_activity = []
 
     for row in course_student_list:
         course_and_student.append(row)
@@ -29,10 +30,12 @@ def main ():
     for row in courses:
         name_course.append(row[0])
 
+    #making a list for each activity
     for row in class_rooms_list:
         name = row[0]
         capacity = row[1]
         room = Classrooms(name, capacity)
+
         #print name
         week = room.createEmptyWeek()
 
@@ -43,7 +46,7 @@ def main ():
 
             # OM DEZE VROLIJKE VRIEND GAAT HET
             rooster = room.fillInWeek(course, week)
-            zaalrooster[room.room] = rooster
+            #zaalrooster[room.room] = rooster
 
             #dit is wanneer we echt per werkgroep en student gaan kijken
             for students in course_and_student:
