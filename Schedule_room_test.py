@@ -16,19 +16,27 @@ def main ():
     course_student_list = csv.reader(open('course_stud_num.csv'))
     class_rooms_list = csv.reader(open('classrooms.csv'))
     courses_list = csv.reader(open('vakken2.csv'))
+    courses_activity_list = csv.reader(open('course_and_activity.csv'))
+
     courses = []
     name_course = []
     course_and_student = []
     course_and_activity = []
 
+    for row in courses_activity_list:
+        course_and_activity.append(row)
+        print course_and_activity
+
     for row in course_student_list:
         course_and_student.append(row)
+
 
     for row in courses_list:
         courses.append(row)
 
     for row in courses:
         name_course.append(row[0])
+
 
     #making a list for each activity
     for row in class_rooms_list:
@@ -44,27 +52,20 @@ def main ():
             random_course = random.randint(0,28)
             course = name_course[random_course]
 
+            random_activity = random.randint(0,6)
+            #course_activity = course_and_activity[random_activity]
+
             # OM DEZE VROLIJKE VRIEND GAAT HET
             rooster = room.fillInWeek(course, week)
-            #zaalrooster[room.room] = rooster
+            zaalrooster[room.room] = rooster
 
             #dit is wanneer we echt per werkgroep en student gaan kijken
             for students in course_and_student:
                 if students[0] == course:
                    student_list = students[1:]
                    courses = Courses(course, student_list)
-                   print course
-                   print courses.hoorcollege(course)
-                   print courses.werkcolleges(course)
-                   print courses.practica(course)
 
-                  # if courses.hoorcollege(course) != 0:
-                    #   course_act = course + ' hoorcollege'
-                     #  rooster = room.fillInWeek(course_act, week)
 
-                    #print course
-                    #print student_list
-                    #print courses.hoorcollege(course)
         #print rooster
     return zaalrooster
 main()

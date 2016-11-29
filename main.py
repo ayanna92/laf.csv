@@ -149,44 +149,63 @@ def main():
                 if students[0] == course:
                     student_list_courses = students[1:]
                     courses = Courses(course, student_list_courses)
-                    print courses.name_course
 
+
+            import csv
+            resultFile = open("course_and_activity.csv",'wb')
+            wr = csv.writer(resultFile, dialect='excel')
 
             if courses.hoorcollege(course) > 0:
                    course_and_activity.append(courses.name_course + " hoorcollege 1")
-                   print course_and_activity
+                   wr.writerow(course_and_activity)
 
             if courses.hoorcollege(course) > 1:
                    course_and_activity.append(course + " hoorcollege 2")
+                   wr.writerow(course_and_activity)
 
             if courses.hoorcollege(course) > 2:
                    course_and_activity.append(course + " hoorcollege 3")
+                   wr.writerow(course_and_activity)
+
             if courses.hoorcollege(course) > 3:
                    course_and_activity.append(course + " hoorcollege 4")
+                   wr.writerow(course_and_activity)
 
             if courses.werkcolleges(course) > 0:
                    course_and_activity.append(course + " Werkgroep 1")
+                   wr.writerow(course_and_activity)
+
             if courses.werkcolleges(course) > 1:
                    course_and_activity.append(course + " werkgroep 2")
+                   wr.writerow(course_and_activity)
+
             if courses.werkcolleges(course) > 2:
                    course_and_activity.append(course + " werkgroep 3")
+                   wr.writerow(course_and_activity)
+
             if courses.werkcolleges(course) > 3:
                    course_and_activity.append(course + " werkgroep 4")
+                   wr.writerow(course_and_activity)
 
             if courses.practica(course) > 0:
                    course_and_activity.append(course + " practica 1")
+                   wr.writerow(course_and_activity)
+
             if courses.practica(course) > 1:
                    course_and_activity.append(course + " practica 2")
+
             if courses.practica(course) > 2:
                    course_and_activity.append(course + " practica 3")
+                   wr.writerow(course_and_activity)
+
             if courses.practica(course) > 3:
                    course_and_activity.append(course + " practica 4")
+                   wr.writerow(course_and_activity)
 
-            print courses.hoorcollege(course)
+
+
 
             #print course
-
-
 
 
         return [stud_list, vak_list, classroom_list]
