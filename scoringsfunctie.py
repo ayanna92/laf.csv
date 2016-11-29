@@ -73,6 +73,7 @@ for vak in vakken:
                     # dan zit het vak dus in deze specifieke zaal
                     print capacity_vak
                     print capaciteit_zaal
+
                     if capacity_vak > capaciteit_zaal:
                         print "vak past niet in de zaal"
                         minpunten += capacity_vak - capaciteit_zaal
