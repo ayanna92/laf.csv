@@ -14,46 +14,42 @@ vakken = []
 fil_3 = open("classrooms.csv")
 file_zalen = csv.reader(fil_3)
 zalen = []
-
-
+course_student_list = csv.reader(open('course_stud_num.csv'))
+course_and_student = []
 
 for row in file_zalen:
     zalen.append(row)
-print zalen
 
 for row in file_vakken:
     vakken.append(row[0])
 
-
+for row in course_student_list:
+    course_and_student.append(row)
 
 rooster = main()
 vakrooster = {}
+
 dag = 0
 tijdsblok = 0
 
 tijdsblokken = []
 count  = 0
-
-
-print rooster.keys()
-for zaal in rooster.keys():
-    for meerzalen in zalen:
-        if zaal == meerzalen[0]:
-            capaciteit_zaal = meerzalen[1]
-
+capaciteit_zaal = []
+minpunten = 0
 
 for vak in vakken:
     for rooms in rooster.values():
         zaal = 0
         for zaal_per_dag in rooms:
             for tijdsblok_per_zaal in zaal_per_dag:
-
+                print tijdsblok_per_zaal
                 # heb je een zaal, zoek de capaciteit van de zaal
                 # zoek capaciteit van vak
+
                 if vak == tijdsblok_per_zaal:
                     #print "true"
                     tijdsblokken.append((dag,tijdsblok))
-                    #print tijdsblokken
+                    print tijdsblokken
                 tijdsblok += 1
             tijdsblok = 0
             dag = dag +1
@@ -61,6 +57,30 @@ for vak in vakken:
 
     vakrooster[vak] = tijdsblokken
     tijdsblokken = []
+
+    # bereken hoeveel studenten er in het vak zit
+    for students in course_and_student:
+        if students[0] == vak:
+           student_list = students[1:]
+           vak_name = Courses(vak, student_list)
+           capacity_vak = vak_name.studNumber()
+           print capacity_vak
+
+
+    # hoeveel studenten passen er in de zaal?
+    # werkt nog niet.
+        for zaal in rooster.keys():
+                for meerzalen in zalen:
+                    if zaal == meerzalen[0]:
+                        capaciteit_zaal = meerzalen[1]
+                        print capaciteit_zaal
+                        #print capacity_vak
+
+    # als aantal studenten in het vak groter is dan de capaciteit die in de zaal passen.
+                if capacity_vak > capaciteit_zaal:
+                    minpunten += capacity_vak - capaciteit_zaal
+print minpunten
+
 
 #print vakrooster
 
