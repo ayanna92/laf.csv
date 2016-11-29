@@ -53,6 +53,10 @@ def main ():
                 if students[0] == course:
                    student_list = students[1:]
                    courses = Courses(course, student_list)
+                   print course
+                   print courses.hoorcollege(course)
+                   print courses.werkcolleges(course)
+                   print courses.practica(course)
 
                   # if courses.hoorcollege(course) != 0:
                     #   course_act = course + ' hoorcollege'
@@ -61,6 +65,6 @@ def main ():
                     #print course
                     #print student_list
                     #print courses.hoorcollege(course)
-        print rooster
+        #print rooster
     return zaalrooster
 main()
