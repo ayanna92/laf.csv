@@ -29,10 +29,8 @@ class Courses (object):
         file_vakken = csv.reader(fil_2)
 
         for row in file_vakken:
-            if name_course in row:
+            if name_course == row[0]:
                 return row[1]
-            else:
-                return 0
 
     def werkcolleges(self, name_course):
         """
@@ -48,10 +46,11 @@ class Courses (object):
         file_vakken = csv.reader(fil_2)
 
         for row in file_vakken:
-            if name_course in row and row[2] != 0:
-                return math.ceil(len(self.students))#/ capacity)  # klopt nog niet helemaal want geeft nog een verkeerd afgerond getal terug.
+            if name_course == row[0] and row[2] != "0":
+                return math.ceil(99/ float(row[3]))
             else:
                 return 0
+
 
     def practica(self, name_course):
         """
@@ -66,8 +65,7 @@ class Courses (object):
         fil_2 = open('vakken2.csv')
         file_vakken = csv.reader(fil_2)
         for row in file_vakken:
-            if name_course in row and row[4] != 0:
-                return math.ceil(len(self.students))
+            if name_course == row[0] and row[4] != "0":
+                return math.ceil(len(self.students) / float(row[5]))
             else:
                 return 0
-         #/ capacity)
