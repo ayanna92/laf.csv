@@ -150,10 +150,6 @@ def main():
                     student_list_courses = students[1:]
                     courses = Courses(course, student_list_courses)
 
-            print course
-            print int(courses.hoorcollege(course))
-            print int(courses.hoorcollege(course)) > 1
-
             if int(courses.hoorcollege(course)) > 0:
                    course_and_activity.append(courses.name_course + " hoorcollege 1")
 
