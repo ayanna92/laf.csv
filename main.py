@@ -150,8 +150,13 @@ def main():
                     student_list_courses = students[1:]
                     courses = Courses(course, student_list_courses)
 
+            #print course
+            print int(courses.werkcolleges(course))
+            #print int(courses.hoorcollege(course)) > 0
+            #print int(courses.hoorcollege(course))
+
             if int(courses.hoorcollege(course)) > 0:
-                   course_and_activity.append(courses.name_course + " hoorcollege 1")
+                   course_and_activity.append(course + " hoorcollege 1")
 
             if int(courses.hoorcollege(course)) > 1:
                    course_and_activity.append(course + " hoorcollege 2")
@@ -164,7 +169,7 @@ def main():
 
 
 
-            if int(courses.werkcolleges(course)) > 0:
+            if float(courses.werkcolleges(course)) > 0:
                    course_and_activity.append(course + " Werkgroep 1")
 
             if int(courses.werkcolleges(course)) > 1:
@@ -197,6 +202,6 @@ def main():
 
 
         print course_and_activity
-        return [stud_list, vak_list, classroom_list]
+        return [stud_list, vak_list, classroom_list, course]
 
 main()

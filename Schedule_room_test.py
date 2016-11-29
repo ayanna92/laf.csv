@@ -63,6 +63,8 @@ def main ():
                    student_list = students[1:]
                    courses = Courses(course, student_list)
 
-        print rooster
+
+        #print rooster
+    print zaalrooster
     return zaalrooster
 main()
