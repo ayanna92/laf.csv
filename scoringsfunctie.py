@@ -56,7 +56,7 @@ for vak in vakken:
         # wat is de capaciteit van de zaal:
         for meerzalen in zalen:
             if rooms == meerzalen[0]:
-                capaciteit_zaal = meerzalen[1]
+                capaciteit_zaal = int(meerzalen[1])
                 #print "capaciteit_zaal:"
                 #print capaciteit_zaal
 
@@ -77,7 +77,7 @@ for vak in vakken:
                     if capacity_vak > capaciteit_zaal:
                         print "vak past niet in de zaal"
                         minpunten += capacity_vak - capaciteit_zaal
-                    elif capacity_vak < capaciteit_zaal:
+                    elif (capacity_vak) < (capaciteit_zaal):
                         print "vak past er in"
 
 

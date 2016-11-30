@@ -3,7 +3,7 @@ from class_students import *
 from class_courses import *
 from class_rooms import *
 
-def main():
+def hoofd_main():
 
     import csv
     import math
@@ -127,15 +127,7 @@ def main():
         name_and_activity = name + course_activity
         course_activity = ""
 
-        print name_and_activity
 
-        # add course object to list
-        cours = Courses(name, name_and_activity)
-        courses_list.append(cours)
-
-        A104 = Classrooms('A1.04', 41)
-
-        A104.roomCapacity()
 
         for row in courses_and_students:
             cours_student.append(row)
@@ -151,7 +143,7 @@ def main():
                     courses = Courses(course, student_list_courses)
 
             if int(courses.hoorcollege(course)) > 0:
-                   course_and_activity.append(courses.name_course + " hoorcollege 1")
+                   course_and_activity.append(course + " hoorcollege 1")
 
             if int(courses.hoorcollege(course)) > 1:
                    course_and_activity.append(course + " hoorcollege 2")
@@ -164,7 +156,7 @@ def main():
 
 
 
-            if int(courses.werkcolleges(course)) > 0:
+            if float(courses.werkcolleges(course)) > 0:
                    course_and_activity.append(course + " Werkgroep 1")
 
             if int(courses.werkcolleges(course)) > 1:
@@ -195,8 +187,6 @@ def main():
 
             #print course
 
+        return [course_and_activity, classroom_list]
 
-        print course_and_activity
-        return [stud_list, vak_list, classroom_list]
-
-main()
+hoofd_main()

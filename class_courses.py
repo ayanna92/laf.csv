@@ -32,6 +32,7 @@ class Courses (object):
             if name_course == row[0]:
                 return row[1]
 
+
     def werkcolleges(self, name_course):
         """
         returns how many werkcollege the course has
@@ -47,9 +48,8 @@ class Courses (object):
 
         for row in file_vakken:
             if name_course == row[0] and row[2] != "0":
-                return math.ceil(99/ float(row[3]))
-            else:
-                return 0
+                return math.ceil(len(self.students)/ float(row[3]))
+        return 0
 
 
     def practica(self, name_course):
@@ -67,5 +67,4 @@ class Courses (object):
         for row in file_vakken:
             if name_course == row[0] and row[4] != "0":
                 return math.ceil(len(self.students) / float(row[5]))
-            else:
-                return 0
+        return 0

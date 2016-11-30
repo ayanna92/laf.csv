@@ -6,6 +6,8 @@
 import csv
 from class_rooms import *
 from class_courses import *
+from main import *
+
 zaalrooster = {}
 def main ():
 
@@ -16,16 +18,24 @@ def main ():
     course_student_list = csv.reader(open('course_stud_num.csv'))
     class_rooms_list = csv.reader(open('classrooms.csv'))
     courses_list = csv.reader(open('vakken2.csv'))
-    courses_activity_list = csv.reader(open('course_and_activity.csv'))
+
 
     courses = []
     name_course = []
     course_and_student = []
-    course_and_activity = []
 
+<<<<<<< HEAD
     for row in courses_activity_list:
         course_and_activity.append(row)
         #print course_and_activity
+=======
+    lists2 = hoofd_main()
+    course_and_activity = lists2[0]
+    class_rooms_list = lists2[1]
+    random.shuffle(course_and_activity)
+    print "random shuffle"
+    print course_and_activity
+>>>>>>> origin/master
 
     for row in course_student_list:
         course_and_student.append(row)
@@ -40,6 +50,8 @@ def main ():
 
     #making a list for each activity
     for row in class_rooms_list:
+
+
         name = row[0]
         capacity = row[1]
         room = Classrooms(name, capacity)
@@ -47,23 +59,25 @@ def main ():
         #print name
         week = room.createEmptyWeek()
 
-        #voor twintig tijdbokken per zaal
-        for weeks in range(0, 20, 1):
-            random_course = random.randint(0,28)
-            course = name_course[random_course]
+        #voor twintig tijdsbokken per zaal
+        for weeks in range(20):
 
+            # print empty string when list is empty
+            if len(course_and_activity) == 0:
+                course = ''
+            else:
+                course = course_and_activity[0]
+                course_and_activity.pop(0)
 
-            # OM DEZE VROLIJKE VRIEND GAAT HET
             rooster = room.fillInWeek(course, week)
             zaalrooster[room.room] = rooster
 
-            #dit is wanneer we echt per werkgroep en student gaan kijken
-            for students in course_and_student:
-                if students[0] == course:
-                   student_list = students[1:]
-                   courses = Courses(course, student_list)
 
+<<<<<<< HEAD
         #print rooster
+=======
+        print rooster
+>>>>>>> origin/master
     #print zaalrooster
     return zaalrooster
 main()
