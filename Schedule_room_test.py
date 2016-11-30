@@ -25,7 +25,7 @@ def main ():
 
     for row in courses_activity_list:
         course_and_activity.append(row)
-        print course_and_activity
+        #print course_and_activity
 
     for row in course_student_list:
         course_and_student.append(row)
@@ -63,6 +63,7 @@ def main ():
                    student_list = students[1:]
                    courses = Courses(course, student_list)
 
-        print rooster
+        #print rooster
+    #print zaalrooster
     return zaalrooster
 main()

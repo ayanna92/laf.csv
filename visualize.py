@@ -1,6 +1,6 @@
 import math
 import time
-import 
+from Schedule_room_test import *
 
 from Tkinter import *
 
@@ -32,10 +32,28 @@ class Visualization:
         self.thursday = self.w.create_text((675, 50), text = "Thursday", font = ("Arial", 25))
         self.friday = self.w.create_text((875, 50), text = "Friday", font = ("Arial", 25))
 
-    def fillSchedule(self, course_and_activity):
+    def fillSchedule(self):
+        self.rooster = main()
+        XBASE, YBASE, DISTANCE = 200, 100, 100
+        #for value, key in self.rooster.iteritems():
+            #if key == 'B0.201':
+                #print value
+        B0201 = self.rooster['B0.201']
+        for course in B0201:
+            self.w.create_text((XBASE, YBASE + i * DISTANCE), text = course)
+
+        #for i, zaal in self.rooster.items:
+        #    zaal = i[0]
+        #    course = i[1:]
+        #    self.w.create_text((XBASE, YBASE + i * DISTANCE), text = course)
+            #print zaal
+            #for j, course in self.rooster.iteritems():
+            #    print course
+
 
 
     def done(self):
         mainloop()
 
+Visualization().fillSchedule()
 Visualization().done()
