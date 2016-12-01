@@ -15,43 +15,12 @@ def main ():
     import math
     import random
 
-    course_student_list = csv.reader(open('course_stud_num.csv'))
     class_rooms_list = csv.reader(open('classrooms.csv'))
-    courses_list = csv.reader(open('vakken2.csv'))
-
-
-    courses = []
-    name_course = []
-    course_and_student = []
-
-<<<<<<< HEAD
-    for row in courses_activity_list:
-        course_and_activity.append(row)
-        #print course_and_activity
-=======
-    lists2 = hoofd_main()
-    course_and_activity = lists2[0]
-    class_rooms_list = lists2[1]
+    course_and_activity = hoofd_main()
     random.shuffle(course_and_activity)
-    print "random shuffle"
-    print course_and_activity
->>>>>>> origin/master
-
-    for row in course_student_list:
-        course_and_student.append(row)
-
-
-    for row in courses_list:
-        courses.append(row)
-
-    for row in courses:
-        name_course.append(row[0])
-
 
     #making a list for each activity
     for row in class_rooms_list:
-
-
         name = row[0]
         capacity = row[1]
         room = Classrooms(name, capacity)
@@ -73,11 +42,9 @@ def main ():
             zaalrooster[room.room] = rooster
 
 
-<<<<<<< HEAD
         #print rooster
-=======
+
         print rooster
->>>>>>> origin/master
     #print zaalrooster
     return zaalrooster
 main()

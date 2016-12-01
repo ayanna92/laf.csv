@@ -186,7 +186,6 @@ def hoofd_main():
             #print courses.hoorcollege(course)
 
             #print course
-
-        return [course_and_activity, classroom_list]
+        return course_and_activity
 
 hoofd_main()
