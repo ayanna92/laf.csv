@@ -34,13 +34,30 @@ class Visualization:
 
     def fillSchedule(self):
         self.rooster = main()
+
+        #key = self.rooster["B0.201", "A1.05", "A1.06", "A1.08","A1.10","C0.110","C1.112"]
+        #print "hello", key
+        # zo print ik de vakken uit zalen
+        #print self.rooster["B0.201"]
+        #print self.rooster["A1.04"]
+
         XBASE, YBASE, DISTANCE = 200, 100, 100
+
+        for zalen, values in zaalrooster.items():
+            #print zalen, values
+            for value in values:
+                print "hello", value
+                for i, course in enumerate(values):
+                    self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
+                    #print self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
+                    #mainloop()
+
         #for value, key in self.rooster.iteritems():
             #if key == 'B0.201':
                 #print value
-        B0201 = self.rooster['B0.201']
-        for course in B0201:
-            self.w.create_text((XBASE, YBASE + i * DISTANCE), text = course)
+        #B0201 = self.rooster['B0.201']
+        #for course in B0201:
+        #    self.w.create_text((XBASE, YBASE + i * DISTANCE), text = course)
 
         #for i, zaal in self.rooster.items:
         #    zaal = i[0]
@@ -52,8 +69,6 @@ class Visualization:
 
 
 
-    def done(self):
-        mainloop()
+
 
 Visualization().fillSchedule()
-Visualization().done()
