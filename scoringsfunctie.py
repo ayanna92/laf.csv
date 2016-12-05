@@ -18,6 +18,7 @@ course_student_list = csv.reader(open('course_stud_num.csv'))
 course_and_student = []
 student_course_list = csv.reader(open('studentenenvakken.csv'))
 student_en_hun_vakken = []
+vakken_volledig = []
 
 next(student_course_list)
 for row in student_course_list:
@@ -28,6 +29,8 @@ for row in file_zalen:
 
 for row in file_vakken:
     vakken.append(row[0])
+    vakken_volledig.append(row)
+
 
 for row in course_student_list:
     course_and_student.append(row)
@@ -113,19 +116,49 @@ print "minpunten vanwege dat het vak niet in de zaal past:" ,minpunten
 
 
 #print vakrooster
-
+#print vakrooster
 # als een vak op eenzelfde uur wordt gegeven:
 #for vak in vakrooster.keys():
 #print vakrooster
 maluspunten = 0
-for vak in vakrooster.values():
-    for tijdsblok in vak:
+for vak, dagdelen  in vakrooster.items():
+    for vak_activiteit in vakken_volledig:
+        if vak == vak_activiteit[0]:
+            number_of_activities = int(vak_activiteit[1]) + int(vak_activiteit[2]) + int(vak_activiteit[4])
+            print number_of_activities
+
+            if number_of_activities == 1:
+                # dan is hij altijd goed ingeroosterd
+                bonuspunten += 20
+            if number_of_activities == 2:
+                #
+            if number_of_activities == 3:
+            if number_of_activities == 4:
+            if number_of_activities == 5:
+
+
+
+    #for tijdsblok in dagdelen:
+        #print tijdsblok
+        # als aantal activiteiten gelijk zijn aan 2
+            # 3 punten tussen zitten,
+            # bonuspunten
+        # else minpunten
+        # als aantal activiteiten gelijk zijn aan 3
+            # (maandag, woensdag, vrijdag)
+            # bonus punten
+        # else: minpunten
+
+        # als aantal activiteiten gelijk zijn aan 4
+
+
+        # als aantal activiteiten gelijk is aan 3
+
         # nog wel te maken met als ze hetzelfde zijn, dan
-        if vak.count(tijdsblok) == 2 :
-            maluspunten += 10
-        if vak.count(tijdsblok) == 3:
-            maluspunten += (20/3)
-print "punten vanwege vakken tegelijkertijd ingeroosterd:",maluspunten
+        #if vak.count(tijdsblok) == 2 :
+        #    maluspunten += 10
+        #if vak.count(tijdsblok) == 3:
+        #    maluspunten += (20/3)print "punten vanwege vakken tegelijkertijd ingeroosterd:",maluspunten
 
 
 
