@@ -106,6 +106,7 @@ def main ():
             zaalrooster[name] = rooster
 
     print course_activity_student
+    print zaalrooster
     return zaalrooster
 
 main()
