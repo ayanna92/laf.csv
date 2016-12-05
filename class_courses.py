@@ -49,7 +49,6 @@ class Courses (object):
         for row in file_vakken:
             if name_course == row[0] and row[2] != "0":
                 return math.ceil(len(self.students)/ float(row[3]))
-
         return 0
 
 
@@ -67,5 +66,5 @@ class Courses (object):
         file_vakken = csv.reader(fil_2)
         for row in file_vakken:
             if name_course == row[0] and row[4] != "0":
-                number_of_werkcolleges = math.ceil(len(self.students) / float(row[5]))
+                return math.ceil(len(self.students) / float(row[5]))
         return 0
