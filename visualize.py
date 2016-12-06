@@ -44,11 +44,12 @@ class Visualization:
         XBASE, YBASE, DISTANCE = 200, 100, 100
 
         for zalen, values in zaalrooster.items():
-            #print zalen, values
+            print zalen, values
             for value in values:
                 print "hello", value
-                for i, course in enumerate(values):
-                    self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
+
+                #for i, course in enumerate(values):
+                    #self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
                     #print self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
                     #mainloop()
 
