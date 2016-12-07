@@ -11,6 +11,8 @@ from main import *
 
 zaalrooster = {}
 course_activity_student = {}
+rooster = []
+
 
 def main ():
 
@@ -105,8 +107,10 @@ def main ():
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
 
-    print course_activity_student
-    print zaalrooster
-    return zaalrooster
+    #print course_activity_student
+    #print zaalrooster
+
+    print rooster
+    return rooster
 
 main()

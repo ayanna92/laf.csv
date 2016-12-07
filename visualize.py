@@ -6,7 +6,7 @@ from Tkinter import *
 
 class Visualization:
 
-    def __init__(self):
+    def __init__(self, room):
 
         # initialize drawing surface
         self.master = Tk()
@@ -14,6 +14,8 @@ class Visualization:
         self.w.pack()
         self.days = 1000
         self.hours = 600
+        self.room = room
+        self.master.wm_title(self.room)
         self.master.update()
 
         # make loop for rectangles
@@ -32,44 +34,61 @@ class Visualization:
         self.thursday = self.w.create_text((675, 50), text = "Thursday", font = ("Arial", 25))
         self.friday = self.w.create_text((875, 50), text = "Friday", font = ("Arial", 25))
 
+
     def fillSchedule(self):
         self.rooster = main()
 
-        #key = self.rooster["B0.201", "A1.05", "A1.06", "A1.08","A1.10","C0.110","C1.112"]
-        #print "hello", key
-        # zo print ik de vakken uit zalen
-        #print self.rooster["B0.201"]
-        #print self.rooster["A1.04"]
+        courses2 = []
+        for key, value in zaalrooster.items():
+            if key == self.room:
+                value = value #str(value).strip('[]')
+                #print 'hello', ''.join(map(str, value))
+                for courses in value:
+                    #print "hi", courses
+                    #courses2.append(courses)
+                    for course in courses:
+                        course = str(course)
+                        print "what", course
+                        courses2.append(course)
+        print courses2
 
-        XBASE, YBASE, DISTANCE = 200, 100, 100
+        for i in range(5):
+            for j in range(5):
+                self.w.create_text(100 + i, 150 + j, text = courses2[i], width = 80)
+                self.w.create_text(100 + i, 250 + j, text = courses2[i+1], width = 80)
+                self.w.create_text(100 + i, 350 + j, text = courses2[i+2], width = 80)
+                self.w.create_text(100 + i, 450 + j, text = courses2[i+3], width = 80)
+                self.w.create_text(300 + i, 150 + j, text = courses2[i+4], width = 80)
+                self.w.create_text(300 + i, 250 + j, text = courses2[i+5], width = 80)
+                self.w.create_text(300 + i, 350 + j, text = courses2[i+6], width = 80)
+                self.w.create_text(300 + i, 450 + j, text = courses2[i+7], width = 80)
+                self.w.create_text(500 + i, 150 + j, text = courses2[i+8], width = 80)
+                self.w.create_text(500 + i, 250 + j, text = courses2[i+9], width = 80)
+                self.w.create_text(500 + i, 350 + j, text = courses2[i+10], width = 80)
+                self.w.create_text(500 + i, 450 + j, text = courses2[i+11], width = 80)
+                self.w.create_text(700 + i, 150 + j, text = courses2[i+12], width = 80)
+                self.w.create_text(700 + i, 250 + j, text = courses2[i+13], width = 80)
+                self.w.create_text(700 + i, 350 + j, text = courses2[i+14], width = 80)
+                self.w.create_text(700 + i, 450 + j, text = courses2[i+15], width = 80)
+                self.w.create_text(900 + i, 150 + j, text = courses2[i+16], width = 80)
+                self.w.create_text(900 + i, 250 + j, text = courses2[i+17], width = 80)
+                self.w.create_text(900 + i, 350 + j, text = courses2[i+18], width = 80)
+                self.w.create_text(900 + i, 450 + j, text = courses2[i+19], width = 80)
 
-        for zalen, values in zaalrooster.items():
-            print zalen, values
-            for value in values:
-                print "hello", value
 
-                #for i, course in enumerate(values):
-                    #self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
-                    #print self.w.create_text((XBASE, YBASE + i * DISTANCE), text = value)
+                mainloop()
+
+Visualization('A1.04').fillSchedule()
+Visualization('A1.06').fillSchedule()
+Visualization('A1.08').fillSchedule()
+Visualization('A1.10').fillSchedule()
+Visualization('B0.201').fillSchedule()
+Visualization('C0.110').fillSchedule()
+Visualization('C1.112').fillSchedule()
+
+
+
+            #for i in range(5):
+                #for j in range(5):
+                    #self.w.create_text((XBASE + i * DISTANCE, YBASE + j * DISTANCE), text = stuff)
                     #mainloop()
-
-        #for value, key in self.rooster.iteritems():
-            #if key == 'B0.201':
-                #print value
-        #B0201 = self.rooster['B0.201']
-        #for course in B0201:
-        #    self.w.create_text((XBASE, YBASE + i * DISTANCE), text = course)
-
-        #for i, zaal in self.rooster.items:
-        #    zaal = i[0]
-        #    course = i[1:]
-        #    self.w.create_text((XBASE, YBASE + i * DISTANCE), text = course)
-            #print zaal
-            #for j, course in self.rooster.iteritems():
-            #    print course
-
-
-
-
-
-Visualization().fillSchedule()
