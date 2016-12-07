@@ -5,6 +5,9 @@ from Schedule_room_test import *
 from Tkinter import *
 
 class Visualization:
+    """
+    Visualization of class schedules for seperate classrooms.
+    """
 
     def __init__(self, room):
 
@@ -36,22 +39,22 @@ class Visualization:
 
 
     def fillSchedule(self):
+        """
+        Fill class schedules with courses returned in main.
+        """
         self.rooster = main()
 
+        # select courses from zaalrooster
         courses2 = []
         for key, value in zaalrooster.items():
             if key == self.room:
-                value = value #str(value).strip('[]')
-                #print 'hello', ''.join(map(str, value))
+                value = value
                 for courses in value:
-                    #print "hi", courses
-                    #courses2.append(courses)
                     for course in courses:
                         course = str(course)
-                        print "what", course
                         courses2.append(course)
-        print courses2
 
+        # fill schedule with courses from zaalrooster
         for i in range(5):
             for j in range(5):
                 self.w.create_text(100 + i, 150 + j, text = courses2[i], width = 80)
@@ -78,9 +81,7 @@ class Visualization:
 
                 mainloop()
 
-"""
-unhash the below to see class schedule for that room
-"""
+
 #Visualization('A1.04').fillSchedule()
 #Visualization('A1.06').fillSchedule()
 #Visualization('A1.08').fillSchedule()
