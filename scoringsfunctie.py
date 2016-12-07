@@ -4,7 +4,7 @@
 
 # functie die het aantal punten returned
 
-from Schedule_room_test import *
+from Schedule_room import *
 from class_rooms import *
 from class_courses import *
 
@@ -36,13 +36,14 @@ for row in course_student_list:
 
 
 
-
 def scoringsfunctie():
 
-    rooster = main()
+    trial = main()
+    rooster = trial[0]
     vakroosterhoorcolleges = {}
     vakroosterwerkcolleges = {}
     vakroosterpractica = {}
+    vakkenpakketrooster = {}
 
     dag = 0
     tijdsblok = 0
@@ -100,6 +101,7 @@ def scoringsfunctie():
                                     capacity_vak = float(row[5])
                                     tijdsblokkenpractica.append((dag,tijdsblok))
 
+                        vakkenpakketrooster[vak_per_zaal] = ((dag,tijdsblok))
                         if capacity_vak > capaciteit_zaal:
                             #print "vak past niet in de zaal"
                             minpunt += capacity_vak - capaciteit_zaal
@@ -120,6 +122,7 @@ def scoringsfunctie():
     points -= minpunt
     print "minpunten vanwege dat het vak niet in de zaal past:" ,minpunt
 
+    print " dit is het vakkenpakketrooster: ", vakkenpakketrooster
 
 
     bonuspunten = 0
@@ -300,62 +303,37 @@ def scoringsfunctie():
     print " het aantal minpunten van dit rooster:", minpunten
 
 
-    total = points + bonuspunten - minpunt + minpunten
+    # conflicten van de studenten berekenen:
+
+    studentrooster = {}
+    studierooster = trial[1]
+
+    for student in student_en_hun_vakken:
+        studentenlijst = []
+        studnumber = int(student[2])
+        for vak, studenten in studierooster.items():
+            for stud in studenten:
+                #print studnumber, stud
+                if int(stud) == studnumber:
+                    studentenlijst.append( vakkenpakketrooster[vak])
+        studentrooster[studnumber] = studentenlijst
+
+    from collections import Counter
+    print studentrooster
+    minpuntstudent = 0
+    for student in studentrooster.values():
+          waarde = Counter(student).values()
+          if len(waarde)!= len(student):
+              minpuntstudent += (len(student) - len(waarde))
+    print " het aantal conflicten bij studenten:" ,minpuntstudent
+
+
+    total = points + bonuspunten - minpunt + minpunten - minpuntstudent
     print "total points is:", total
-
-
-    # als alle acitiviteiten een zaal toegewezen hebben gekregen
-        # points += 1000
-    # else
-        # print("error")
-
-
-
-
-
-
-    #studentrooster = {}
-
-    ## aanpassingen zijn nodig!
-    #for student in student_en_hun_vakken:
-    #    vak_rooster_student = []
-    #    for vakken in student[3:7]:
-    #        if vakken != "":
-    #            rooster_vak = vakrooster[vakken]
-    #            #print rooster_vak
-    #            vak_rooster_student.append(rooster_vak)
-    #            #print vak_rooster_student
-
-    #            studentrooster[student[2]] = vak_rooster_student
-
-#print studentrooster
-    #minpuntstudent = 0
-    #for student in studentrooster.values():
-        #studentpunt = 0
-    #    for vakblok in student:
-    #        for tijdsblok in vakblok:
-    #            amount = 0
-    #            for andere_vakblok in student:
-    #                amount += andere_vakblok.count(tijdsblok)
-                    #print tijdsblok, "   in    ", andere_vakblok ,  amount, "keer   "
-    #                if amount >= 2:
-                        #studentpunt += float(1.0/amount)
-                        #print studentpunt
-                        #print "true"
-    #                    minpuntstudent += float(1.0/amount)
-                        # hij gaat amount aantal keer een bepaalde waarde checken.
-
-
-
-
-    #    print "punten voor studenten die conflicten hebben:", minpuntstudent
-                #print amount
-
-
 
 
     return total
 
 
 
-print scoringsfunctie()
+scoringsfunctie()
