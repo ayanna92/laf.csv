@@ -27,12 +27,12 @@ class RoomSchedule(object):
         """
         return a list where each day and each hour is represented
         """
-        schedulelist[]
+        schedulelist = []
         day_hour = []
-            for time.slot in self.timeslot:
-                day_hour.append(self.day)
-                day_hour.append(self.hour)
-                schedulelist.append(day_hour)
+        for time.slot in self.timeslot:
+            day_hour.append(self.day)
+            day_hour.append(self.hour)
+            schedulelist.append(day_hour)
 
         return schedulelist
 
@@ -58,3 +58,4 @@ class StudentSchedule(object):
             schedule_list.append(day_hour)
 
         return schedule_list
+RoomSchedule.classificationStudent()
