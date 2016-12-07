@@ -157,7 +157,7 @@ def hoofd_main():
 
 
             if float(courses.werkcolleges(course)) > 0:
-                   course_and_activity.append(course + " Werkgroep 1")
+                   course_and_activity.append(course + " werkgroep 1")
 
             if int(courses.werkcolleges(course)) > 1:
                    course_and_activity.append(course + " werkgroep 2")
