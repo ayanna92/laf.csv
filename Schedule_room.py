@@ -68,6 +68,7 @@ def main ():
                         amount_werkcolleges = object_course.werkcolleges(row[0])
                         amount_practica = object_course.practica(row[0])
 
+                        # checken of ik op deze manier indexeren niet studenten vergeet
                         if 'werkgroep 1' in course:
                             index = len(student_list)/int(amount_werkcolleges)
                             student_list = student_list[0:index]
@@ -107,10 +108,20 @@ def main ():
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
 
+<<<<<<< HEAD:Schedule_room.py
+        print rooster
+    #print course_activity_student
+    return zaalrooster
+=======
     #print course_activity_student
     #print zaalrooster
 
     print rooster
+<<<<<<< HEAD:Schedule_room_test.py
     return zaalrooster
+=======
+    return rooster
+>>>>>>> origin/master:Schedule_room_test.py
+>>>>>>> origin/master:Schedule_room.py
 
 main()
