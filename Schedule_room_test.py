@@ -111,6 +111,6 @@ def main ():
     #print zaalrooster
 
     print rooster
-    return rooster
+    return zaalrooster
 
 main()
