@@ -11,8 +11,6 @@ from main import *
 
 zaalrooster = {}
 course_activity_student = {}
-rooster = []
-
 
 def main ():
 
@@ -29,7 +27,7 @@ def main ():
     course_and_student = []
     student_list = []
 
-    # ipmortthe right students to the right course
+    # ipmort the right students to the right course
     for row in course_stud_num:
         course_and_student.append(row)
 
@@ -54,6 +52,7 @@ def main ():
             # print empty string when list is empty
             if len(course_and_activity) == 0:
                 course = ''
+
             # fill in a random course and activity and pop it from the list
             else:
                 course = course_and_activity[0]
@@ -68,7 +67,7 @@ def main ():
                         amount_werkcolleges = object_course.werkcolleges(row[0])
                         amount_practica = object_course.practica(row[0])
 
-                        # checken of ik op deze manier indexeren niet studenten vergeet
+                        # if there are more than 1 activity per course (hoorcolleges excluded), devide the students, first half in activity 1, second half in activity 2
                         if 'werkgroep 1' in course:
                             index = len(student_list)/int(amount_werkcolleges)
                             student_list = student_list[0:index]
@@ -108,6 +107,11 @@ def main ():
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
 
+<<<<<<< HEAD
+        print rooster
+    #print course_activity_student
+    return zaalrooster
+=======
 
     #print course_activity_student
     print zaalrooster
@@ -115,5 +119,6 @@ def main ():
     print rooster
     return (zaalrooster, course_activity_student)
 
+>>>>>>> origin/master
 
 main()

@@ -42,10 +42,6 @@ def hoofd_main():
             if vak != "":
                 stud_vak.append(vak)
 
-
-        #check
-        #print stud_vak
-
         # add student object to list
         stud = Students(stud_num, stud_vak)
         stud_list.append(stud)
@@ -95,14 +91,12 @@ def hoofd_main():
         classroom = Classrooms(room, capacity)
         classroom_list.append(classroom)
 
-
-
-
     # add new list for type of activity
     courses = []
     courses_list = []
 
     # read csv file in variable courses
+<<<<<<< HEAD
     for row in file_vakken:
         courses.append(row)
 
@@ -111,21 +105,31 @@ def hoofd_main():
         name = col[0]
 
         
+=======
 
+>>>>>>> origin/master
 
+    ## CODE FOR READING IN COURSES AND ACTIVITY
+    # for all the 29 courses
+    for row in file_vakken:
+        courses.append(row)
+
+        # and for each student for that course
         for row in courses_and_students:
             cours_student.append(row)
 
-
+        # remember the name of the course
         for col in courses[0:]:
             course = col[0]
 
-
+            # take all the students of that course
             for students in cours_student:
                 if students[0] == course:
                     student_list_courses = students[1:]
                     courses = Courses(course, student_list_courses)
 
+            # find through class courses how many hoorcollege, werkcollege and practia activities there are.
+            # and make a list 'course and activity' containing name of course and the activity
             if int(courses.hoorcollege(course)) > 0:
                    course_and_activity.append(course + " hoorcollege 1")
 
