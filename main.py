@@ -110,23 +110,7 @@ def hoofd_main():
     for col in courses[0:]:
         name = col[0]
 
-        # combine the names and the activities of the courses
-        if col[1] != '0':
-            course_activity= ': hoorcollege '
-
-        if col[2] == '1':
-            course_activity += 'werkgroep '
-
-        if col[4] == '1':
-            course_activity += 'practicum'
-
-        # add new line to make it readable
-        course_activity + '\n'
-
-        # combine names and activities
-        name_and_activity = name + course_activity
-        course_activity = ""
-
+        
 
 
         for row in courses_and_students:
@@ -167,7 +151,6 @@ def hoofd_main():
 
             if int(courses.werkcolleges(course)) > 3:
                    course_and_activity.append(course + " werkgroep 4")
-
 
 
             if int(courses.practica(course)) > 0:
