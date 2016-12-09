@@ -121,12 +121,12 @@ def scoringsfunctie():
         tijdsblokkenpractica = []
         tijdsblokkenhoorcollege = []
     points -= minpunt
-    print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,minpunt
+    #print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,minpunt
 
 
-    print vakroosterpractica
-    print vakroosterhoorcolleges
-    print vakroosterwerkcolleges
+    #print vakroosterpractica
+    #print vakroosterhoorcolleges
+    #print vakroosterwerkcolleges
     #print " dit is het vakkenpakketrooster: ", vakkenpakketrooster
 
 
@@ -152,49 +152,49 @@ def scoringsfunctie():
          # alles uitschrijven op basis van het aantal activiteiten
          # bij 1 activiteit hoeft er niks gedaan te worden.
          # bij twee activiteiten:
-         print vak_activiteit[0]
+         #print vak_activiteit[0]
          if number_of_activities == 2:
-             print "    heeft twee activiteite"
+             #print "    heeft twee activiteite"
              if len(daglijsthoor) == 2:
-                 print "           2 hoorcolleges"
+                # print "           2 hoorcolleges"
                  verschil = abs(daglijsthoor[0]- daglijsthoor[1])
                  if verschil == 3:
                      bonuspunten += 20
-                     print "                    goed ingeroosterd"
+                #     print "                    goed ingeroosterd"
                  elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
                      minpunt -= 10
-                     print "                    2 colleges op 1 dag"
+                #     print "                    2 colleges op 1 dag"
 
             # als er 1 hoorcollege en 1 werkgroep per week is
              if len(daglijsthoor) == 1 and daglijstwerk != []:
-                print "        1 hoorcollege en 1 werkcollege"
+                #print "        1 hoorcollege en 1 werkcollege"
                 for dag in daglijstwerk:
-                    print  daglijsthoor, dag
+                    #print  daglijsthoor, dag
                     verschil = abs(daglijsthoor[0] - dag)
                     if verschil == 3:
                         bonuspunten += 20
-                        print "             goed ingeroosterd"
+                #        print "             goed ingeroosterd"
                     elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
                         minpunt -= 10
-                        print "               2 colleges in 1 dag"
+                        #print "               2 colleges in 1 dag"
 
             # als er 1 hoorcollege en 1 practicum per week is:
              if len(daglijsthoor) == 1 and daglijstprac != []:
-                 print "        1 hoorcollege en 1 practica"
+                # print "        1 hoorcollege en 1 practica"
                  for dag in daglijstprac:
-                   print daglijsthoor, dag
+                  # print daglijsthoor, dag
                    verschil = abs(daglijsthoor[0] - dag)
                    if verschil == 3:
                        bonuspunten += 20
-                       print    "           goed ingeroosterd"
+                    #   print    "           goed ingeroosterd"
                    elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
                        minpunt -= 10
-                       print "             2 colleges in 1 dag ingeroosterd"
+                     #  print "             2 colleges in 1 dag ingeroosterd"
 
          if number_of_activities == 3:
-            print "   er zijn 3 colleges"
+            #print "   er zijn 3 colleges"
             if len(daglijsthoor) == 2 and daglijstwerk != []:
-                print "         2 hoocolleges en 1 werkcollges"
+                #print "         2 hoocolleges en 1 werkcollges"
 
                 lijst = []
                 for dag in daglijstwerk:
@@ -202,21 +202,21 @@ def scoringsfunctie():
                         lijst.append(dagen)
                     lijst.append(dag)
                     list.sort(lijst)
-                    print lijst
+                    #print lijst
                     if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
                         bonuspunten += 20
-                        print "                 Goed ingeroosterd"
+                    #    print "                 Goed ingeroosterd"
                     elif lijst[0] == lijst[1] == lijst[2]:
                         minpunten -= 20
-                        print "                     3 colleges in 1 dag"
+                    #    print "                     3 colleges in 1 dag"
                     elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
                         minpunten -= 10
-                        print "                     3 colleges in 2 dagen"
+                    #    print "                     3 colleges in 2 dagen"
 
                     lijst = []
 
             if len(daglijsthoor) == 1 and daglijstwerk != [] and daglijstprac != []:
-                print "             van alles 1 college "
+                #print "             van alles 1 college "
                 lijst = []
                 #daglijstwerk, daglijstprac
                 for dag in daglijstwerk:
@@ -225,24 +225,24 @@ def scoringsfunctie():
                         lijst.append(dag)
                         lijst.append(dagen)
                         list.sort(lijst)
-                        print lijst
+                        #print lijst
                         if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
                             bonuspunten += 20
-                            print "                     goed gedaan"
+                        #    print "                     goed gedaan"
                         elif lijst[0] == lijst[1] == lijst[2]:
                             minpunten -= 20
-                            print "                       3 colleges in 1 dag"
+                        #    print "                       3 colleges in 1 dag"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
                             minpunten -= 10
-                            print "                     3 colleges in 2 dagen"
+                    #        print "                     3 colleges in 2 dagen"
 
                         lijst = []
 
 
          if number_of_activities == 4:
-            print "     er zijn vier activiteiten "
+            #print "     er zijn vier activiteiten "
             if len(daglijsthoor) == 2 and daglijstwerk != [] and daglijstprac != []:
-                print  "        2 hoorcolleges, 1 werkcollege and 1 practica"
+                #print  "        2 hoorcolleges, 1 werkcollege and 1 practica"
                 lijst = []
 
                 for dag in daglijstwerk:
@@ -252,27 +252,27 @@ def scoringsfunctie():
                         lijst.append(dag)
                         lijst.append(dagen)
                         list.sort(lijst)
-                        print lijst
+                        #print lijst
                         if lijst[0] == 0 and lijst[1] == 1 and lijst[2] == 3 and lijst[3] == 4:
                             bonuspunten += 20
-                            print "                         extra goed "
+                            #print "                         extra goed "
                         elif lijst[0] == lijst[1] == lijst[2]==lijst[3]:
                             minpunten -= 30
-                            print "                            4 colleges in 1 dag"
+                            #print "                            4 colleges in 1 dag"
                         elif lijst[0] == lijst[1] == lijst[2] or lijst[1] == lijst[2] == lijst[3]:
                             minpunten -= 20
-                            print "                           4 colleges in 2 dagen"
+                            #print "                           4 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] and lijst[2]== lijst[3]:
                             minpunten -= 20
-                            print "                             4 colleges in 2 dagen"
+                            #print "                             4 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2] or lijst[2] == lijst[3]:
                             minpunten -= 10
-                            print "                         4 colleges in 3 dagen"
+                            #print "                         4 colleges in 3 dagen"
                         lijst = []
          if number_of_activities == 5:
-            print "     er zijn 5 acitviteiten"
+            #print "     er zijn 5 acitviteiten"
             if len(daglijsthoor) == 3 and daglijstwerk != [] and daglijstprac != []:
-                print "            3 hoorcolleges, 1 werkcollege and 1 practica"
+                #print "            3 hoorcolleges, 1 werkcollege and 1 practica"
                 for dag in daglijstwerk:
                     for dagen in daglijstprac:
                         for hoor in daglijsthoor:
@@ -280,33 +280,33 @@ def scoringsfunctie():
                         lijst.append(dag)
                         lijst.append(dagen)
                         list.sort(lijst)
-                        print lijst
+                        #print lijst
                         if lijst[0] == 0 and lijst[1] == 1 and lijst[2] == 2 and lijst[3] == 3 and lijst[4] == 4:
                             bonuspunten += 20
-                            print  "                    goed ingeoorsterd"
+                            #print  "                    goed ingeoorsterd"
                         elif lijst[0] == lijst[1] == lijst[2] == lijst[3] == lijst [4]:
                             minpunten -= 40
-                            print "                         5 colleges in 1 dag"
+                            #print "                         5 colleges in 1 dag"
                         elif lijst[0] == lijst[1] == lijst[2] == lijst[3] or lijst[1] == lijst[2] == lijst[3] == lijst[4]:
                             minpunten -= 30
-                            print "                         5 colleges in 2 dagen"
+                            #print "                         5 colleges in 2 dagen"
                         elif (lijst[0]== lijst[1] and lijst[2]== lijst[3] == lijst[4]) or (lijst[0] == lijst[1] == lijst[2] and lijst[3] == lijst[4]):
                             minpunten -= 30
-                            print "                         5 colleges in 2 dagen"
+                            #print "                         5 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] == lijst[2]  or lijst[1] == lijst[2] == lijst[3] or lijst[2]== lijst[3] == lijst[4]:
                             minpunten -= 20
-                            print "                         5 colleges in 3 dagen"
+                            #print "                         5 colleges in 3 dagen"
                         elif (lijst[0]== lijst[1] and lijst[2]== lijst[3]) or (lijst[0] == lijst[1] and lijst[3] == lijst[4]) or (lijst[1] == lijst[2] and lijst[3] == lijst[4]):
                             minpunten -= 20
-                            print "                         5 colleges in 3 dagen"
+                            #print "                         5 colleges in 3 dagen"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2] or lijst[2] == lijst[3] or lijst[3] == lijst[4]:
                             minpunten -= 10
-                            print "                         5 colleges in 4 dagen"
+                            #print "                         5 colleges in 4 dagen"
 
                         lijst = []
 
-    print " het aantal bonuspunten van dit rooster:", bonuspunten
-    print " het aantal minpunten van dit rooster:", minpunten
+    #print " het aantal bonuspunten van dit rooster:", bonuspunten
+    #print " het aantal minpunten van dit rooster:", minpunten
 
 
     # conflicten van de studenten berekenen:
@@ -325,14 +325,14 @@ def scoringsfunctie():
         studentrooster[studnumber] = studentenlijst
 
     from collections import Counter
-    print studentrooster
+    #print studentrooster
     minpuntstudent = 0
     for student in studentrooster.values():
           waarde = Counter(student).values()
-          print waarde
+          #print waarde
           if len(waarde)!= len(student):
               minpuntstudent += (len(student) - len(waarde))
-    print " het aantal conflicten bij studenten:" ,minpuntstudent
+    #print " het aantal conflicten bij studenten:" ,minpuntstudent
 
 
     total = points + bonuspunten - minpunt + minpunten - minpuntstudent

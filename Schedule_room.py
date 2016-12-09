@@ -9,8 +9,10 @@ from class_rooms import *
 from class_courses import *
 from main import *
 
+
 zaalrooster = {}
 course_activity_student = {}
+rooster=[]
 
 def main ():
 
@@ -107,18 +109,9 @@ def main ():
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
 
-<<<<<<< HEAD
-        print rooster
-    #print course_activity_student
-    return zaalrooster
-=======
 
+        #print rooster
     #print course_activity_student
-    print zaalrooster
 
-    print rooster
+
     return (zaalrooster, course_activity_student)
-
->>>>>>> origin/master
-
-main()
