@@ -49,11 +49,12 @@ class Classrooms(object):
         self.week = week
 
         import random
-        
+
         random_day = random.randint(0,4)
         random_hour = random.randint(0,3)
 
         #hier nog een check op doen dat als week vol zit die niet oneindig door blijft gaan
+
         if self.emptyTimeSlot(random_day, random_hour, week) == True:
             week[random_day][random_hour] = (self.course)
 

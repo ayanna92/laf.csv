@@ -31,7 +31,4 @@ print random_algoritme()
 #print score_beste_rooster
 #print zaalrooster_beste
 
-
-
-
 # the histogram of the data

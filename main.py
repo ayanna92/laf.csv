@@ -21,6 +21,7 @@ def hoofd_main():
     stud_info = []
     stud_list = []
     vak_list = []
+    classroom_name = []
     cours_student = []
     course_and_activity = []
 
@@ -90,6 +91,7 @@ def hoofd_main():
         # add classroom object to list
         classroom = Classrooms(room, capacity)
         classroom_list.append(classroom)
+        classroom_name.append(col[0])
 
     # add new list for type of activity
     courses = []
@@ -105,9 +107,11 @@ def hoofd_main():
         name = col[0]
 
 
-
     ## CODE FOR READING IN COURSES AND ACTIVITY
     # for all the 29 courses
+
+    for col in courses[0:]:
+        name = col[0]
 
         # and for each student for that course
         for row in courses_and_students:
@@ -167,5 +171,8 @@ def hoofd_main():
             #print course
             #print courses.hoorcollege(course)
 
-            #print course
-        return course_and_activity
+        for x in range(12):
+            course_and_activity.append('')
+
+        return course_and_activity, classroom_name
+hoofd_main()

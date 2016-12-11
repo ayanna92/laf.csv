@@ -36,10 +36,21 @@ for row in course_student_list:
 
 
 
-def scoringsfunctie():
+def scoringsfunctie(schedule, students):
+
+    # Nu nog omslachtige manier
+    # idee is dat als alles straks klopt, je het schedule en de bij behorende lijst met welke studenten welk volgen mee geeft
+    # en dan wordt score berekend
+    # default is nu scoringsfunctie(0,0)
 
     trial = main()
-    rooster = trial[0]
+
+    if schedule == 0:
+        rooster = trial[0]
+        student_import_list = trial[1]
+    else:
+        rooster = schedule
+        student_import_list = trial[1]
 
     vakroosterhoorcolleges = {}
     vakroosterwerkcolleges = {}
@@ -312,11 +323,12 @@ def scoringsfunctie():
     # conflicten van de studenten berekenen:
     #print "iets"
     studentrooster = {}
-    studierooster = trial[1]
+    studierooster = student_import_list
 
     for student in student_en_hun_vakken:
         studentenlijst = []
         studnumber = int(student[2])
+<<<<<<< HEAD
         #print student
         for vak in student[3:7]:
             if vak != "":
@@ -331,6 +343,15 @@ def scoringsfunctie():
                                     #print vak
                                     #print vak1
                                     studentenlijst.append( vakkenpakketrooster[vak1[0]])
+=======
+        for vak, studenten in studierooster.items():
+            for stud in studenten:
+                #print studnumber, stud
+                if int(stud) == studnumber:
+                        studentenlijst.append( vakkenpakketrooster[vak])
+                        studentrooster[studnumber] = studentenlijst
+
+>>>>>>> origin/master
 
         studentrooster[studnumber] = studentenlijst
     #print studentrooster
@@ -347,10 +368,8 @@ def scoringsfunctie():
 
     total = points + bonuspunten - minpunt + minpunten - minpuntstudent
     print "total points is:", total
-
+    #print studentrooster
 
     return total
 
-
-
-scoringsfunctie()
+#scoringsfunctie(0,0)
