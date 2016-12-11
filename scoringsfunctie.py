@@ -328,7 +328,7 @@ def scoringsfunctie(schedule, students):
     for student in student_en_hun_vakken:
         studentenlijst = []
         studnumber = int(student[2])
-<<<<<<< HEAD
+
         #print student
         for vak in student[3:7]:
             if vak != "":
@@ -343,15 +343,6 @@ def scoringsfunctie(schedule, students):
                                     #print vak
                                     #print vak1
                                     studentenlijst.append( vakkenpakketrooster[vak1[0]])
-=======
-        for vak, studenten in studierooster.items():
-            for stud in studenten:
-                #print studnumber, stud
-                if int(stud) == studnumber:
-                        studentenlijst.append( vakkenpakketrooster[vak])
-                        studentrooster[studnumber] = studentenlijst
-
->>>>>>> origin/master
 
         studentrooster[studnumber] = studentenlijst
     #print studentrooster
@@ -372,4 +363,4 @@ def scoringsfunctie(schedule, students):
 
     return total
 
-#scoringsfunctie(0,0)
+scoringsfunctie(0,0)
