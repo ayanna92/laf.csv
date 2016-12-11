@@ -40,6 +40,7 @@ def scoringsfunctie():
 
     trial = main()
     rooster = trial[0]
+
     vakroosterhoorcolleges = {}
     vakroosterwerkcolleges = {}
     vakroosterpractica = {}
@@ -120,9 +121,13 @@ def scoringsfunctie():
         tijdsblokkenpractica = []
         tijdsblokkenhoorcollege = []
     points -= minpunt
-    print "minpunten vanwege dat het vak niet in de zaal past:" ,minpunt
+    #print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,minpunt
 
-    print " dit is het vakkenpakketrooster: ", vakkenpakketrooster
+
+    #print vakroosterpractica
+    #print vakroosterhoorcolleges
+    #print vakroosterwerkcolleges
+    #print " dit is het vakkenpakketrooster: ", vakkenpakketrooster
 
 
     bonuspunten = 0
@@ -147,17 +152,18 @@ def scoringsfunctie():
          # alles uitschrijven op basis van het aantal activiteiten
          # bij 1 activiteit hoeft er niks gedaan te worden.
          # bij twee activiteiten:
+         #print vak_activiteit[0]
          if number_of_activities == 2:
              #print "    heeft twee activiteite"
              if len(daglijsthoor) == 2:
-                 #print "           2 hoorcolleges"
+                # print "           2 hoorcolleges"
                  verschil = abs(daglijsthoor[0]- daglijsthoor[1])
                  if verschil == 3:
                      bonuspunten += 20
-                     #print "                    goed ingeroosterd"
+                #     print "                    goed ingeroosterd"
                  elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
                      minpunt -= 10
-                     #print "                    2 colleges op 1 dag"
+                #     print "                    2 colleges op 1 dag"
 
             # als er 1 hoorcollege en 1 werkgroep per week is
              if len(daglijsthoor) == 1 and daglijstwerk != []:
@@ -167,23 +173,23 @@ def scoringsfunctie():
                     verschil = abs(daglijsthoor[0] - dag)
                     if verschil == 3:
                         bonuspunten += 20
-                        #print "             goed ingeroosterd"
+                #        print "             goed ingeroosterd"
                     elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
                         minpunt -= 10
                         #print "               2 colleges in 1 dag"
 
             # als er 1 hoorcollege en 1 practicum per week is:
              if len(daglijsthoor) == 1 and daglijstprac != []:
-                 #print "        1 hoorcollege en 1 practica"
+                # print "        1 hoorcollege en 1 practica"
                  for dag in daglijstprac:
-                   #print daglijsthoor, dag
+                  # print daglijsthoor, dag
                    verschil = abs(daglijsthoor[0] - dag)
                    if verschil == 3:
                        bonuspunten += 20
-                       #print    "           goed ingeroosterd"
+                    #   print    "           goed ingeroosterd"
                    elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
                        minpunt -= 10
-                       #print "             2 colleges in 1 dag ingeroosterd"
+                     #  print "             2 colleges in 1 dag ingeroosterd"
 
          if number_of_activities == 3:
             #print "   er zijn 3 colleges"
@@ -199,13 +205,13 @@ def scoringsfunctie():
                     #print lijst
                     if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
                         bonuspunten += 20
-                        #print "                 Goed ingeroosterd"
+                    #    print "                 Goed ingeroosterd"
                     elif lijst[0] == lijst[1] == lijst[2]:
                         minpunten -= 20
-                        #print "                     3 colleges in 1 dag"
+                    #    print "                     3 colleges in 1 dag"
                     elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
                         minpunten -= 10
-                        #print "                     3 colleges in 2 dagen"
+                    #    print "                     3 colleges in 2 dagen"
 
                     lijst = []
 
@@ -222,13 +228,13 @@ def scoringsfunctie():
                         #print lijst
                         if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
                             bonuspunten += 20
-                            #print "                     goed gedaan"
+                        #    print "                     goed gedaan"
                         elif lijst[0] == lijst[1] == lijst[2]:
                             minpunten -= 20
-                            #print "                       3 colleges in 1 dag"
+                        #    print "                       3 colleges in 1 dag"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
                             minpunten -= 10
-                            #print "                     3 colleges in 2 dagen"
+                    #        print "                     3 colleges in 2 dagen"
 
                         lijst = []
 
@@ -299,8 +305,8 @@ def scoringsfunctie():
 
                         lijst = []
 
-    print " het aantal bonuspunten van dit rooster:", bonuspunten
-    print " het aantal minpunten van dit rooster:", minpunten
+    #print " het aantal bonuspunten van dit rooster:", bonuspunten
+    #print " het aantal minpunten van dit rooster:", minpunten
 
 
     # conflicten van de studenten berekenen:
@@ -319,13 +325,14 @@ def scoringsfunctie():
         studentrooster[studnumber] = studentenlijst
 
     from collections import Counter
-    print studentrooster
+    #print studentrooster
     minpuntstudent = 0
     for student in studentrooster.values():
           waarde = Counter(student).values()
+          #print waarde
           if len(waarde)!= len(student):
               minpuntstudent += (len(student) - len(waarde))
-    print " het aantal conflicten bij studenten:" ,minpuntstudent
+    #print " het aantal conflicten bij studenten:" ,minpuntstudent
 
 
     total = points + bonuspunten - minpunt + minpunten - minpuntstudent

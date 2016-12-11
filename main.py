@@ -97,10 +97,20 @@ def hoofd_main():
 
     # read csv file in variable courses
 
-    ## CODE FOR READING IN COURSES AND ACTIVITY
-    # for all the 29 courses
+<<<<<<< HEAD
+=======
     for row in file_vakken:
         courses.append(row)
+
+        # put al the courses names in variable names
+    for col in courses[0:]:
+        name = col[0]
+
+
+
+>>>>>>> origin/master
+    ## CODE FOR READING IN COURSES AND ACTIVITY
+    # for all the 29 courses
 
     for col in courses[0:]:
         name = col[0]
@@ -148,7 +158,6 @@ def hoofd_main():
                    course_and_activity.append(course + " werkgroep 4")
 
 
-
             if int(courses.practica(course)) > 0:
                    course_and_activity.append(course + " practica 1")
 
@@ -166,5 +175,3 @@ def hoofd_main():
 
         print course_and_activity
         return course_and_activity
-
-hoofd_main()
