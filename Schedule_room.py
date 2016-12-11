@@ -117,4 +117,4 @@ def main ():
     #print course_activity_student
     return (zaalrooster, course_activity_student)
 
-main()
+#main()
