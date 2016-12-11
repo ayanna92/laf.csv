@@ -103,6 +103,7 @@ def main ():
                     student_list = []
                 #dictionary; key is the activity, value is the list of students for that specific activity
             course_activity_student[course] = student_list
+            #print course_activity_student
 
             # fill the schedule with the course
 

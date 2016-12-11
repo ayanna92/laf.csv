@@ -170,9 +170,9 @@ def hoofd_main():
 
             #print course
             #print courses.hoorcollege(course)
+
         for x in range(12):
             course_and_activity.append('')
 
-        #print course_and_activity
         return course_and_activity, classroom_name
 hoofd_main()
