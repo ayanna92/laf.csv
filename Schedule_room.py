@@ -107,19 +107,10 @@ def main ():
             # fill the schedule with the course
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
-
-<<<<<<< HEAD
-    print rooster
-    #print course_activity_student
-    print zaalrooster
-    return (zaalrooster, course_activity_student)
-
-main()
-=======
-
         #print rooster
     #print course_activity_student
 
 
     return (zaalrooster, course_activity_student)
->>>>>>> origin/master
+
+main()

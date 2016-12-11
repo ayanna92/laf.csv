@@ -82,7 +82,7 @@ class Visualization:
                 mainloop()
 
 
-#Visualization('A1.04').fillSchedule()
+Visualization('A1.04').fillSchedule()
 #Visualization('A1.06').fillSchedule()
 #Visualization('A1.08').fillSchedule()
 #Visualization('A1.10').fillSchedule()

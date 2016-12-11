@@ -97,8 +97,6 @@ def hoofd_main():
 
     # read csv file in variable courses
 
-<<<<<<< HEAD
-=======
     for row in file_vakken:
         courses.append(row)
 
@@ -107,8 +105,6 @@ def hoofd_main():
         name = col[0]
 
 
-
->>>>>>> origin/master
     ## CODE FOR READING IN COURSES AND ACTIVITY
     # for all the 29 courses
 
