@@ -4,7 +4,6 @@
 # Ayanna, Lois, Femke
 #
 import csv
-import numpy as np
 from class_rooms import *
 from class_courses import *
 from main import *
@@ -107,18 +106,9 @@ def main ():
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
 
-<<<<<<< HEAD
-        print rooster
-    #print course_activity_student
-    return zaalrooster
-=======
-
-    print course_activity_student
-    #print zaalrooster
-
     print rooster
+    #print course_activity_student
+    print zaalrooster
     return (zaalrooster, course_activity_student)
-
->>>>>>> origin/master
 
 main()

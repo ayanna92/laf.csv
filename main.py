@@ -97,11 +97,13 @@ def hoofd_main():
 
     # read csv file in variable courses
 
-
     ## CODE FOR READING IN COURSES AND ACTIVITY
     # for all the 29 courses
     for row in file_vakken:
         courses.append(row)
+
+    for col in courses[0:]:
+        name = col[0]
 
         # and for each student for that course
         for row in courses_and_students:
@@ -162,7 +164,7 @@ def hoofd_main():
             #print course
             #print courses.hoorcollege(course)
 
-            #print course
+        print course_and_activity
         return course_and_activity
 
 hoofd_main()
