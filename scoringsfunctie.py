@@ -310,20 +310,30 @@ def scoringsfunctie():
 
 
     # conflicten van de studenten berekenen:
-
+    #print "iets"
     studentrooster = {}
     studierooster = trial[1]
 
     for student in student_en_hun_vakken:
         studentenlijst = []
         studnumber = int(student[2])
-        for vak, studenten in studierooster.items():
-            for stud in studenten:
-                #print studnumber, stud
-                if int(stud) == studnumber:
-                    studentenlijst.append( vakkenpakketrooster[vak])
-        studentrooster[studnumber] = studentenlijst
+        #print student
+        for vak in student[3:7]:
+            if vak != "":
+                for vak1 in studierooster.items():
+                    if vak in vak1[0]:
+                        #print "hij zit er in"
+                        #print vak
+                        for studenten in vak1[1:]:
+                            for stud in studenten:
+                                if studnumber == int(stud):
+                                    #print "true"
+                                    #print vak
+                                    #print vak1
+                                    studentenlijst.append( vakkenpakketrooster[vak1[0]])
 
+        studentrooster[studnumber] = studentenlijst
+    #print studentrooster
     from collections import Counter
     #print studentrooster
     minpuntstudent = 0
