@@ -3,6 +3,7 @@ import time
 from Schedule_room_test import *
 
 from Tkinter import *
+from hill_climbing import *
 
 class Visualization:
     """
@@ -42,7 +43,7 @@ class Visualization:
         """
         Fill class schedules with courses returned in main.
         """
-        self.rooster = main()
+        self.rooster = hill_climbing()
 
         # select courses from zaalrooster
         courses2 = []
@@ -82,10 +83,10 @@ class Visualization:
                 mainloop()
 
 
-Visualization('A1.04').fillSchedule()
-#Visualization('A1.06').fillSchedule()
-#Visualization('A1.08').fillSchedule()
-#Visualization('A1.10').fillSchedule()
-#Visualization('B0.201').fillSchedule()
-#Visualization('C0.110').fillSchedule()
-#Visualization('C1.112').fillSchedule()
+visualization('A1.04').fillSchedule()
+Visualization('A1.06').fillSchedule()
+Visualization('A1.08').fillSchedule()
+Visualization('A1.10').fillSchedule()
+Visualization('B0.201').fillSchedule()
+Visualization('C0.110').fillSchedule()
+Visualization('C1.112').fillSchedule()
