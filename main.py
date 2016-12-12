@@ -168,11 +168,13 @@ def hoofd_main():
             if int(courses.practica(course)) > 3:
                    course_and_activity.append(course + " practica 4")
 
+
             #print course
             #print courses.hoorcollege(course)
 
         for x in range(12):
             course_and_activity.append('')
+
 
         return course_and_activity, classroom_name
 

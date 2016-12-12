@@ -99,6 +99,7 @@ def main ():
                         index = len(student_list)/int(amount_practica)
                         student_list = student_list[index+index+index:index+index+index+index]
 
+
                 if course == '':
                     student_list = []
                 #dictionary; key is the activity, value is the list of students for that specific activity
@@ -106,8 +107,6 @@ def main ():
             #print course_activity_student
 
             # fill the schedule with the course
-
-
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
         #print rooster

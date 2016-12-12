@@ -49,32 +49,37 @@ def hill_climbing():
 
                     for row in course_and_activity:
                         course = row
-                        old_course = schedule[key][day][hour]
+
+                        current_course = schedule[key][day][hour]
+
+                        if current_course in course_and_activity:
+                            current_course = current_course
+                        else:
+                            current_course = row[0]
+
                         schedule[key][day][hour] = course
 
                         scoring_schedule = scoringsfunctie(schedule, courses)
+
+                        keep_track_new_course = current_course
 
                         if high_score < scoring_schedule:
                             high_score = scoring_schedule
                             print 'current highscore', high_score
                             keep_track_new_course = course
-                        else:
-                            keep_track_new_course = old_course
 
                     schedule[key][day][hour] = keep_track_new_course
+
                     print 'current schedule'
                     print schedule
-                    print keep_track_new_course
-                    print "hihgscore:", high_score
 
+                    print "hihgscore:", high_score
+                    print 'key is: ', key
                     print 'current day', day
                     print 'current hour', hour
+                    print 'course that has been placed:', keep_track_new_course
 
-                    print course_and_activity
-
-                    if keep_track_new_course in course_and_activity:
-                        # do nothing
-                        course_and_activity.remove(keep_track_new_course)
+                    course_and_activity.remove(keep_track_new_course)
 
                     hour = hour + 1
                 hour = 0
@@ -84,6 +89,5 @@ def hill_climbing():
 
     print high_score
     print schedule
-    return schedule 
 
 hill_climbing()
