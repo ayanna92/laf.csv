@@ -363,7 +363,7 @@ def scoringsfunctie(schedule, students):
 
 
     total = points + bonuspunten - minpuntcapaciteit - minpunten - minpuntstudent
-    print "total points is:", total
+    #print "total points is:", total
     #print studentrooster
 
     return total
