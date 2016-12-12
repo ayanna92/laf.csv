@@ -26,6 +26,7 @@ def hill_climbing():
     course_and_activity = lists[0]
     course_loop = []
     keep_track_new_course = ()
+    print schedule
 
     for row in course_and_activity:
         course_loop.append(row)
@@ -41,15 +42,17 @@ def hill_climbing():
 
         day = 0
         hour = 0
-
+        #print schedule
         for key, week in list(schedule.items()):
-
+            print "key':",  key
+            print "week:", week
             for days in week:
-
+                print days
                 for hours in days:
-
+                    print hours
                     for row in course_and_activity:
                         course = row
+<<<<<<< Updated upstream
 
                         # remember current course in schedule
                         current_course = schedule[key][day][hour]
@@ -57,6 +60,18 @@ def hill_climbing():
 
                         #remember the score of the schedule without new value
                         scoring_schedule_previous = scoringsfunctie(schedule, courses)
+=======
+                        print "course:", course
+                        current_course = schedule[key][day][hour]
+                        print "schedule" ,schedule[key][day][hour]
+                        if current_course in course_and_activity:
+                            current_course = current_course
+                        else:
+                            current_course = row[0]
+
+                        schedule[key][day][hour] = course
+                        print " new schedule:", schedule
+>>>>>>> Stashed changes
 
                         # only remember current course when it is still in course_and_activity list
 
@@ -74,6 +89,7 @@ def hill_climbing():
                             print 'met course', course
                             keep_track_new_course = course
 
+<<<<<<< Updated upstream
                         if scoring_schedule_previous < scoring_schedule_current:
                             keep_track_secondbest_score = course
 
@@ -112,8 +128,22 @@ def hill_climbing():
                     keep_track_secondbest_score = 'empty'
                     previous_best_score = 'empty'
                     schedule = schedule
+=======
+                        schedule[key][day][hour] = keep_track_new_course
 
-                    hour = hour + 1
+                        print 'current schedule'
+                        print schedule
+
+                        print "hihgscore:", high_score
+                        print 'key is: ', key
+                        print 'current day', day
+                        print 'current hour', hour
+                        print 'course that has been placed:', keep_track_new_course
+
+                        course_and_activity.remove(keep_track_new_course)
+>>>>>>> Stashed changes
+
+                        hour = hour + 1
                 hour = 0
                 day = day + 1
             hour = 0
