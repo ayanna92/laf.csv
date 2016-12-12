@@ -363,4 +363,4 @@ def scoringsfunctie(schedule, students):
 
     return total
 
-scoringsfunctie(0,0)
+#scoringsfunctie(0,0)
