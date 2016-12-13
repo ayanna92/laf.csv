@@ -52,15 +52,13 @@ def hill_climbing():
                     print hours
                     for row in course_and_activity:
                         course = row
-<<<<<<< Updated upstream
-
                         # remember current course in schedule
                         current_course = schedule[key][day][hour]
 
 
                         #remember the score of the schedule without new value
                         scoring_schedule_previous = scoringsfunctie(schedule, courses)
-=======
+
                         print "course:", course
                         current_course = schedule[key][day][hour]
                         print "schedule" ,schedule[key][day][hour]
@@ -71,7 +69,6 @@ def hill_climbing():
 
                         schedule[key][day][hour] = course
                         print " new schedule:", schedule
->>>>>>> Stashed changes
 
                         # only remember current course when it is still in course_and_activity list
 
@@ -89,7 +86,6 @@ def hill_climbing():
                             print 'met course', course
                             keep_track_new_course = course
 
-<<<<<<< Updated upstream
                         if scoring_schedule_previous < scoring_schedule_current:
                             keep_track_secondbest_score = course
 
@@ -123,25 +119,25 @@ def hill_climbing():
                         course_and_activity.remove(course)
                         print 'geen van de opties', course
 
-                    print schedule 
+                    print schedule
                     keep_track_new_course = 'empty'
                     keep_track_secondbest_score = 'empty'
                     previous_best_score = 'empty'
                     schedule = schedule
-=======
+
                         schedule[key][day][hour] = keep_track_new_course
 
-                        print 'current schedule'
-                        print schedule
+                    print 'current schedule'
+                    print schedule
 
-                        print "hihgscore:", high_score
-                        print 'key is: ', key
-                        print 'current day', day
-                        print 'current hour', hour
-                        print 'course that has been placed:', keep_track_new_course
+                    print "hihgscore:", high_score
+                    print 'key is: ', key
+                    print 'current day', day
+                    print 'current hour', hour
+                    print 'course that has been placed:', keep_track_new_course
 
-                        course_and_activity.remove(keep_track_new_course)
->>>>>>> Stashed changes
+                    course_and_activity.remove(keep_track_new_course)
+
 
                         hour = hour + 1
                 hour = 0
