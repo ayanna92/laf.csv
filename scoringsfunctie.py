@@ -33,6 +33,11 @@ for row in file_vakken:
 
 for row in course_student_list:
     course_and_student.append(row)
+trial = main()
+
+
+roosterproef = trial[0]
+student_import_list = trial[1]
 
 
 
@@ -42,15 +47,8 @@ def scoringsfunctie(schedule, students):
     # idee is dat als alles straks klopt, je het schedule en de bij behorende lijst met welke studenten welk volgen mee geeft
     # en dan wordt score berekend
     # default is nu scoringsfunctie(0,0)
+    rooster = schedule
 
-    trial = main()
-
-    if schedule == 0:
-        rooster = trial[0]
-        student_import_list = trial[1]
-    else:
-        rooster = schedule
-        student_import_list = trial[1]
 
     vakroosterhoorcolleges = {}
     vakroosterwerkcolleges = {}
@@ -365,7 +363,7 @@ def scoringsfunctie(schedule, students):
     total = points + bonuspunten - minpuntcapaciteit - minpunten - minpuntstudent
     #print "total points is:", total
     #print studentrooster
-
+    print total
     return total
 
-#scoringsfunctie(0,0)
+scoringsfunctie(roosterproef,student_import_list)
