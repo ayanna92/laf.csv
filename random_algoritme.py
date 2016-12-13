@@ -10,9 +10,9 @@ zaalrooster_beste = {}
 
 def random_algoritme():
     score_beste_rooster = -20000
-    for i in range(0,2000):
+    for i in range(0,500):
         rooster, courses = main()
-        score_rooster = scoringsfunctie(0,0)
+        score_rooster = scoringsfunctie(rooster,courses)
 
         if score_rooster > score_beste_rooster:
             zaalrooster_beste = rooster
