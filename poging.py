@@ -65,14 +65,13 @@ if int(high_score) < int(scoring_schedule):
 
                         for dag in week:
                             for uur in dag:
+                                #print "zaal", zaal
+                                #print "DAY, HOUR", index_zero, index_second
                                 if course == uur:
                                     #print uur
                                     #print new_schedule[zaal][index_zero][index_second]
                                     new_schedule[zaal][index_zero][index_second] = current_course
                                     #print new_schedule[zaal][index_zero][index_second]
-                                    #print zaal
-                                    #print index_zero
-                                    #print index_second
                                 else:
                                     index_second = index_second + 1
                             index_second = 0
@@ -97,6 +96,7 @@ if int(high_score) < int(scoring_schedule):
 
                     if high_score < scoring_schedule_new:
                         high_score = scoring_schedule_new
+                        print starting_schedule
                         keep_track_new_course = course
                         starting_schedule = new_schedule
                         print "new high score found: "
