@@ -21,6 +21,7 @@ def hoofd_main():
     stud_info = []
     stud_list = []
     vak_list = []
+    classroom_name = []
     cours_student = []
     course_and_activity = []
 
@@ -41,10 +42,6 @@ def hoofd_main():
         for vak in col[3:]:
             if vak != "":
                 stud_vak.append(vak)
-
-
-        #check
-        #print stud_vak
 
         # add student object to list
         stud = Students(stud_num, stud_vak)
@@ -94,15 +91,14 @@ def hoofd_main():
         # add classroom object to list
         classroom = Classrooms(room, capacity)
         classroom_list.append(classroom)
-
-
-
+        classroom_name.append(col[0])
 
     # add new list for type of activity
     courses = []
     courses_list = []
 
     # read csv file in variable courses
+
     for row in file_vakken:
         courses.append(row)
 
@@ -110,38 +106,29 @@ def hoofd_main():
     for col in courses[0:]:
         name = col[0]
 
-        # combine the names and the activities of the courses
-        if col[1] != '0':
-            course_activity= ': hoorcollege '
 
-        if col[2] == '1':
-            course_activity += 'werkgroep '
+    ## CODE FOR READING IN COURSES AND ACTIVITY
+    # for all the 29 courses
 
-        if col[4] == '1':
-            course_activity += 'practicum'
+    for col in courses[0:]:
+        name = col[0]
 
-        # add new line to make it readable
-        course_activity + '\n'
-
-        # combine names and activities
-        name_and_activity = name + course_activity
-        course_activity = ""
-
-
-
+        # and for each student for that course
         for row in courses_and_students:
             cours_student.append(row)
 
-
+        # remember the name of the course
         for col in courses[0:]:
             course = col[0]
 
-
+            # take all the students of that course
             for students in cours_student:
                 if students[0] == course:
                     student_list_courses = students[1:]
                     courses = Courses(course, student_list_courses)
 
+            # find through class courses how many hoorcollege, werkcollege and practia activities there are.
+            # and make a list 'course and activity' containing name of course and the activity
             if int(courses.hoorcollege(course)) > 0:
                    course_and_activity.append(course + " hoorcollege 1")
 
@@ -169,7 +156,6 @@ def hoofd_main():
                    course_and_activity.append(course + " werkgroep 4")
 
 
-
             if int(courses.practica(course)) > 0:
                    course_and_activity.append(course + " practica 1")
 
@@ -182,10 +168,14 @@ def hoofd_main():
             if int(courses.practica(course)) > 3:
                    course_and_activity.append(course + " practica 4")
 
+
             #print course
             #print courses.hoorcollege(course)
 
-            #print course
-        return course_and_activity
+        for x in range(12):
+            course_and_activity.append('')
 
-hoofd_main()
+
+        return course_and_activity, classroom_name
+
+#hoofd_main()
