@@ -23,7 +23,7 @@ for row in course_and_activity:
 classroom_name = lists[1]
 random.shuffle(classroom_name)
 
-
+print "starting schedule", starting_schedule
 high_score = -20000
 previsou_score = scoring_schedule
 
@@ -34,6 +34,7 @@ if int(high_score) < int(scoring_schedule):
     hour = 0
     #print schedule
     for key, week in list(starting_schedule.items()):
+
         for days in week:
             #print days
             for hours in days:
@@ -43,62 +44,85 @@ if int(high_score) < int(scoring_schedule):
 
                     # remember current course in schedule
                     current_course = starting_schedule[key][day][hour]
+                    keep_track_new_course = starting_schedule[key][day][hour]
                     new_schedule = starting_schedule
 
                     #remember the score of the schedule without new value
                     #scoring_schedule_previous = scoringsfunctie(starting_schedule, courses)
-                    print "current course:", current_course
-                    print "course:", course
-                    print "old schedule", starting_schedule
-                    print "new schedule" ,new_schedule
+                    #print "current course:", current_course
+                    #print "course:", course
+                    #print "old schedule", starting_schedule
 
 
                     #if current_course in course_and_activity:
                     #    current_course = current_course
                     #else:
                     #    current_course = row[0]
+                    index_zero = 0
+                    index_second = 0
+                    #print new_schedule
+                    for zaal,week in new_schedule.items():
 
-                    for zaal,week in starting_schedule.items():
-                        dagje = 0
                         for dag in week:
-                            #print dag
-                            if course in dag:
-                                i = dag.index(course)
-                                print i, dagje
-                                dag[i] = current_course
-                            dagje += 1
+                            for uur in dag:
+                                if course == uur:
+                                    #print uur
+                                    #print new_schedule[zaal][index_zero][index_second]
+                                    new_schedule[zaal][index_zero][index_second] = current_course
+                                    #print new_schedule[zaal][index_zero][index_second]
+                                    #print zaal
+                                    #print index_zero
+                                    #print index_second
+                                else:
+                                    index_second = index_second + 1
+                            index_second = 0
+                            index_zero = index_zero + 1
+                        index_second = 0
+                        index_zero = 0
 
-                    print "new start:", starting_schedule
-                    starting_schedule[key][day][hour] = course
-                    print" nog een keer:", starting_schedule
+                                    #new_schedule[key][dag][uur] = current_course
 
-
+                    #print "new start:", starting_schedule
+                    new_schedule[key][day][hour] = course
+                    #print" nog een keer:", starting_schedule
 
                     # score the new value
-                    print " changed new schedule:", new_schedule
-                    scoring_schedule_current = scoringsfunctie(new_schedule, courses)
-                    print " changed new schedule:", new_schedule
+                    #print " changed new schedule:", new_schedule
+                    scoring_schedule_new = scoringsfunctie(new_schedule, courses)
+                    #print scoring_schedule_new
+                    #print " changed new schedule:", new_schedule
                     #print 'high score nu', high_score
                     #print 'gewone score nu', scoring_schedule_current
 
 
-                    if high_score < scoring_schedule_current:
-                        high_score = scoring_schedule_current
+                    if high_score < scoring_schedule_new:
+                        high_score = scoring_schedule_new
+                        keep_track_new_course = course
                         starting_schedule = new_schedule
-                        print "meer punten"
+                        print "new high score found: "
                         print high_score
-                        print starting_schedule
+                        print "IN ZAAL, DAY, HOUR:"
+                        print key, day, hour
+                        print new_schedule
+                        print "current course:", current_course
+                        print "is now", course
+                        print "DONE"
+
+                    keep_track_new_course = current_course
 
                 course_and_activity.remove(keep_track_new_course)
+                print "schedule start is now:", starting_schedule
 
+                hour = hour + 1
+            hour = 0
+            day = day + 1
+            print "zaal:  ",key
+            print "day:   ",day
 
-            hour = hour + 1
         hour = 0
-        day = day + 1
-    hour = 0
-    day = 0
+        day = 0
 
-print high_score
-print schedule
+print "END", high_score
+print "END", starting_schedule
 
 hill_climbing()

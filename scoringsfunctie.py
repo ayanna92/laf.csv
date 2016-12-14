@@ -326,6 +326,7 @@ def scoringsfunctie(schedule, students):
     studentrooster = {}
     studierooster = student_import_list
     #print studierooster
+    #print vakkenpakketrooster
 
     for student in student_en_hun_vakken:
         studentenlijst = []
@@ -345,6 +346,7 @@ def scoringsfunctie(schedule, students):
                                     #print "true"
                                     #print vak
                                     #print vak1
+
                                     studentenlijst.append( vakkenpakketrooster[vak1[0]])
 
         studentrooster[studnumber] = studentenlijst
@@ -363,7 +365,7 @@ def scoringsfunctie(schedule, students):
     total = points + bonuspunten - minpuntcapaciteit - minpunten - minpuntstudent
     #print "total points is:", total
     #print studentrooster
-    print total
+    #print total
     return total
 
 scoringsfunctie(roosterproef,student_import_list)
