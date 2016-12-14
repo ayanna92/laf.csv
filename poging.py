@@ -41,11 +41,16 @@ if int(high_score) < int(scoring_schedule):
                 #print hours
                 for row in course_and_activity:
                     course = row
+                    print "Course die we willen plaatsen:", course
+                    print "plek: "
+                    print "DAY", day
+                    print "hour", hour
+
 
                     # remember current course in schedule
                     current_course = starting_schedule[key][day][hour]
-                    keep_track_new_course = starting_schedule[key][day][hour]
                     new_schedule = starting_schedule
+                    print "course die er staat:", current_course
 
                     #remember the score of the schedule without new value
                     #scoring_schedule_previous = scoringsfunctie(starting_schedule, courses)
@@ -70,7 +75,11 @@ if int(high_score) < int(scoring_schedule):
                                 if course == uur:
                                     #print uur
                                     #print new_schedule[zaal][index_zero][index_second]
+                                    print "Course gevonden op: "
+                                    print index_zero, index_second
+                                    print "course was: ", new_schedule[zaal][index_zero][index_second]
                                     new_schedule[zaal][index_zero][index_second] = current_course
+                                    print "course is: ", new_schedule[zaal][index_zero][index_second]
                                     #print new_schedule[zaal][index_zero][index_second]
                                 else:
                                     index_second = index_second + 1
@@ -84,7 +93,6 @@ if int(high_score) < int(scoring_schedule):
                     #print "new start:", starting_schedule
                     new_schedule[key][day][hour] = course
                     #print" nog een keer:", starting_schedule
-
                     # score the new value
                     #print " changed new schedule:", new_schedule
                     scoring_schedule_new = scoringsfunctie(new_schedule, courses)
