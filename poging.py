@@ -4,7 +4,7 @@ from scoringsfunctie import *
 from Schedule_room import *
 from main import *
 
-
+import copy
 import random
 
 # at this moment we start with a random schedule
@@ -41,18 +41,21 @@ if int(high_score) < int(scoring_schedule):
                 #print hours
                 for row in course_and_activity:
                     course = row
-
+                    if course == "":
+                        print "course is empty"
+                    print " uit proberen:",course
+                    print "hallllooooooo starting_schedule"
                     # remember current course in schedule
                     current_course = starting_schedule[key][day][hour]
                     keep_track_new_course = starting_schedule[key][day][hour]
-                    new_schedule = starting_schedule
-
+                    new_schedule = copy.deepcopy(starting_schedule)
+                    print " wat er nu staat:", current_course
                     #remember the score of the schedule without new value
                     #scoring_schedule_previous = scoringsfunctie(starting_schedule, courses)
                     #print "current course:", current_course
                     #print "course:", course
                     #print "old schedule", starting_schedule
-
+                    print "eerste rooster:", starting_schedule
 
                     #if current_course in course_and_activity:
                     #    current_course = current_course
@@ -65,6 +68,7 @@ if int(high_score) < int(scoring_schedule):
 
                         for dag in week:
                             for uur in dag:
+
                                 #print "zaal", zaal
                                 #print "DAY, HOUR", index_zero, index_second
                                 if course == uur:
@@ -79,41 +83,26 @@ if int(high_score) < int(scoring_schedule):
                         index_second = 0
                         index_zero = 0
 
-                                    #new_schedule[key][dag][uur] = current_course
-
-                    #print "new start:", starting_schedule
                     new_schedule[key][day][hour] = course
-                    #print" nog een keer:", starting_schedule
+                    print" nog een keer:", new_schedule
+                    print " beter blijft dee hetzelfde", starting_schedule
 
-                    # score the new value
-                    #print " changed new schedule:", new_schedule
                     scoring_schedule_new = scoringsfunctie(new_schedule, courses)
-                    #print scoring_schedule_new
-                    #print " changed new schedule:", new_schedule
-                    #print 'high score nu', high_score
-                    #print 'gewone score nu', scoring_schedule_current
 
-
+                    print "high_score:", high_score
+                    print "score niewe rooster: ", scoring_schedule_new
                     if high_score < scoring_schedule_new:
                         high_score = scoring_schedule_new
-                        print starting_schedule
+                        #print starting_schedule
                         keep_track_new_course = course
                         starting_schedule = new_schedule
-                        print "new high score found: "
-                        print high_score
-                        print "IN ZAAL, DAY, HOUR:"
-                        print key, day, hour
-                        print new_schedule
-                        print "current course:", current_course
-                        print "is now", course
-                        print "DONE"
+                    else:
+                        starting_schedule = starting_schedule
 
-                    keep_track_new_course = current_course
-
-                course_and_activity.remove(keep_track_new_course)
-                print "schedule start is now:", starting_schedule
+                    print "schedule start is now:", starting_schedule
 
                 hour = hour + 1
+                course_and_activity.remove(keep_track_new_course)
             hour = 0
             day = day + 1
             print "zaal:  ",key
