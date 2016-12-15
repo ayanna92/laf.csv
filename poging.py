@@ -41,7 +41,7 @@ if int(high_score) < int(scoring_schedule):
                 #print hours
                 for row in course_and_activity:
                     course = row
-<<<<<<< HEAD
+
                     if course == "":
                         print "course is empty"
                     print " uit proberen:",course
@@ -51,7 +51,7 @@ if int(high_score) < int(scoring_schedule):
                     keep_track_new_course = starting_schedule[key][day][hour]
                     new_schedule = copy.deepcopy(starting_schedule)
                     print " wat er nu staat:", current_course
-=======
+
                     print "Course die we willen plaatsen:", course
                     print "plek: "
                     print "DAY", day
@@ -63,7 +63,7 @@ if int(high_score) < int(scoring_schedule):
                     new_schedule = starting_schedule
                     print "course die er staat:", current_course
 
->>>>>>> origin/master
+
                     #remember the score of the schedule without new value
                     #scoring_schedule_previous = scoringsfunctie(starting_schedule, courses)
                     #print "current course:", current_course
@@ -102,15 +102,15 @@ if int(high_score) < int(scoring_schedule):
                         index_zero = 0
 
                     new_schedule[key][day][hour] = course
-<<<<<<< HEAD
+
                     print" nog een keer:", new_schedule
                     print " beter blijft dee hetzelfde", starting_schedule
 
-=======
+
                     #print" nog een keer:", starting_schedule
                     # score the new value
                     #print " changed new schedule:", new_schedule
->>>>>>> origin/master
+
                     scoring_schedule_new = scoringsfunctie(new_schedule, courses)
 
                     print "high_score:", high_score

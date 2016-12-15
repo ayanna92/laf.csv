@@ -133,7 +133,6 @@ def scoringsfunctie(schedule, students):
 
     #print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,minpuntcapaciteit
 
-
     #vakroosterpractica
     #vakroosterhoorcolleges
     #vakroosterwerkcolleges
@@ -168,7 +167,7 @@ def scoringsfunctie(schedule, students):
          if number_of_activities == 2:
              #print "    heeft twee activiteite"
              if len(daglijsthoor) == 2:
-                # print "           2 hoorcolleges"
+                 #print "           2 hoorcolleges"
                  verschil = abs(daglijsthoor[0]- daglijsthoor[1])
                  if verschil == 3:
                      bonuspunten += 20
@@ -180,6 +179,7 @@ def scoringsfunctie(schedule, students):
             # als er 1 hoorcollege en 1 werkgroep per week is
              if len(daglijsthoor) == 1 and daglijstwerk != []:
                 #print "        1 hoorcollege en 1 werkcollege"
+                #print "             verschillende werkgroepen:",len(daglijstwerk)
                 for dag in daglijstwerk:
                     #print  daglijsthoor, dag
                     verschil = abs(daglijsthoor[0] - dag)
@@ -192,7 +192,8 @@ def scoringsfunctie(schedule, students):
 
             # als er 1 hoorcollege en 1 practicum per week is:
              if len(daglijsthoor) == 1 and daglijstprac != []:
-                # print "        1 hoorcollege en 1 practica"
+                 #print "        1 hoorcollege en 1 practica"
+                 #print "                verschillende werkgroepen:",len(daglijstprac)
                  for dag in daglijstprac:
                   # print daglijsthoor, dag
                    verschil = abs(daglijsthoor[0] - dag)
@@ -207,7 +208,7 @@ def scoringsfunctie(schedule, students):
             #print "   er zijn 3 colleges"
             if len(daglijsthoor) == 2 and daglijstwerk != []:
                 #print "         2 hoocolleges en 1 werkcollges"
-
+                #print "             verschillende werkgroepen:",len(daglijstwerk)
                 lijst = []
                 for dag in daglijstwerk:
                     for dagen in daglijsthoor:
@@ -230,7 +231,8 @@ def scoringsfunctie(schedule, students):
             if len(daglijsthoor) == 1 and daglijstwerk != [] and daglijstprac != []:
                 #print "             van alles 1 college "
                 lijst = []
-                #daglijstwerk, daglijstprac
+                #print "         verschillende werkgroepen:",len(daglijstwerk)
+                #print "         verschillende practica:",len(daglijstprac)
                 for dag in daglijstwerk:
                     for dagen in daglijstprac:
                         lijst.append(daglijsthoor[0])
@@ -256,7 +258,8 @@ def scoringsfunctie(schedule, students):
             if len(daglijsthoor) == 2 and daglijstwerk != [] and daglijstprac != []:
                 #print  "        2 hoorcolleges, 1 werkcollege and 1 practica"
                 lijst = []
-
+                #print "verschillende werkgroepen:",len(daglijstwerk)
+                #print "verschillende practica:",len(daglijstprac)
                 for dag in daglijstwerk:
                     for dagen in daglijstprac:
                         for hoor in daglijsthoor:
@@ -285,6 +288,8 @@ def scoringsfunctie(schedule, students):
             #print "     er zijn 5 acitviteiten"
             if len(daglijsthoor) == 3 and daglijstwerk != [] and daglijstprac != []:
                 #print "            3 hoorcolleges, 1 werkcollege and 1 practica"
+                #print "         verschillende werkgroepen:",len(daglijstwerk)
+                #print "         verschillende practica:",len(daglijstprac)
                 for dag in daglijstwerk:
                     for dagen in daglijstprac:
                         for hoor in daglijsthoor:
