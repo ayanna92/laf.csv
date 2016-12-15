@@ -41,125 +41,38 @@ if int(high_score) < int(scoring_schedule):
                 for row in course_and_activity:
                     course = row
 
-<<<<<<< HEAD
-                    if course == "":
-                        print "course is empty"
-                    print " uit proberen:",course
-                    print "hallllooooooo starting_schedule"
-                    # remember current course in schedule
-                    current_course = starting_schedule[key][day][hour]
-                    keep_track_new_course = starting_schedule[key][day][hour]
-                    new_schedule = copy.deepcopy(starting_schedule)
-                    print " wat er nu staat:", current_course
+                    if course != "":
+                        # remember current course in schedule
+                        current_course = starting_schedule[key][day][hour]
+                        new_schedule = copy.deepcopy(starting_schedule)
 
-                    print "Course die we willen plaatsen:", course
-                    print "plek: "
-                    print "DAY", day
-                    print "hour", hour
-
-
-                    # remember current course in schedule
-                    current_course = starting_schedule[key][day][hour]
-                    new_schedule = starting_schedule
-                    print "course die er staat:", current_course
-
-
-                    #remember the score of the schedule without new value
-                    #scoring_schedule_previous = scoringsfunctie(starting_schedule, courses)
-                    #print "current course:", current_course
-                    #print "course:", course
-                    #print "old schedule", starting_schedule
-                    print "eerste rooster:", starting_schedule
 
                     #if current_course in course_and_activity:
                     #    current_course = current_course
                     #else:
                     #    current_course = row[0]
-                    index_zero = 0
-                    index_second = 0
-                    #print new_schedule
-                    for zaal,week in new_schedule.items():
-
-                        for dag in week:
-                            for uur in dag:
-
-                                #print "zaal", zaal
-                                #print "DAY, HOUR", index_zero, index_second
-                                if course == uur:
-                                    #print uur
-                                    #print new_schedule[zaal][index_zero][index_second]
-                                    print "Course gevonden op: "
-                                    print index_zero, index_second
-                                    print "course was: ", new_schedule[zaal][index_zero][index_second]
-                                    new_schedule[zaal][index_zero][index_second] = current_course
-                                    print "course is: ", new_schedule[zaal][index_zero][index_second]
-                                    #print new_schedule[zaal][index_zero][index_second]
-                                else:
-                                    index_second = index_second + 1
-                            index_second = 0
-                            index_zero = index_zero + 1
-                        index_second = 0
-=======
-                    if course != "":
-
-
-                        #if course == "":
-                            #print "course is empty"
-                        #print " uit proberen:",course
-                        #print "hallllooooooo starting_schedule"
-                        # remember current course in schedule
-                        current_course = starting_schedule[key][day][hour]
-                        keep_track_new_course = starting_schedule[key][day][hour]
-                        new_schedule = copy.deepcopy(starting_schedule)
-                        #print " wat er nu staat:", current_course
-
-                        #print "Course die we willen plaatsen:", course
-                        #print "plek: "
-                        #print "DAY", day
-                        #print "hour", hour
-
-
-                        # remember current course in schedule
-                        #new_schedule = starting_schedule
-                        #print "course die er staat:", current_course
-
-                        #remember the score of the schedule without new value
-                        #scoring_schedule_previous = scoringsfunctie(starting_schedule, courses)
-                        #print "current course:", current_course
-                        #print "course:", course
-                        #print "old schedule", starting_schedule
-                        #print "eerste rooster:", starting_schedule
-
-                        #if current_course in course_and_activity:
-                        #    current_course = current_course
-                        #else:
-                        #    current_course = row[0]
->>>>>>> origin/master
                         index_zero = 0
                         index_second = 0
-                        #print new_schedule
+                    #print new_schedule
                         for zaal,week in new_schedule.items():
 
                             for dag in week:
                                 for uur in dag:
 
-                                    #print "zaal", zaal
-                                    #print "DAY, HOUR", index_zero, index_second
+                                #print "zaal", zaal
+                                #print "DAY, HOUR", index_zero, index_second
                                     if course == uur:
-                                        #print uur
-                                        #print new_schedule[zaal][index_zero][index_second]
-                                        #print "Course gevonden op: "
-                                        #print index_zero, index_second
-                                        #print "course was: ", new_schedule[zaal][index_zero][index_second]
+                                    #print uur
+                                    #print new_schedule[zaal][index_zero][index_second]
                                         new_schedule[zaal][index_zero][index_second] = current_course
-                                        #print "course is: ", new_schedule[zaal][index_zero][index_second]
-                                        #print new_schedule[zaal][index_zero][index_second]
+                                    #print new_schedule[zaal][index_zero][index_second]
                                     else:
                                         index_second = index_second + 1
                                 index_second = 0
                                 index_zero = index_zero + 1
                             index_second = 0
                             index_zero = 0
+
 
                         new_schedule[key][day][hour] = course
 
@@ -172,33 +85,6 @@ if int(high_score) < int(scoring_schedule):
 
                         scoring_schedule_new = scoringsfunctie(new_schedule, courses)
 
-<<<<<<< HEAD
-                    new_schedule[key][day][hour] = course
-
-                    print" nog een keer:", new_schedule
-                    print " beter blijft dee hetzelfde", starting_schedule
-
-
-                    #print" nog een keer:", starting_schedule
-                    # score the new value
-                    #print " changed new schedule:", new_schedule
-
-                    scoring_schedule_new = scoringsfunctie(new_schedule, courses)
-
-                    print "high_score:", high_score
-                    print "score niewe rooster: ", scoring_schedule_new
-                    if high_score < scoring_schedule_new:
-                        high_score = scoring_schedule_new
-                        #print starting_schedule
-                        keep_track_new_course = course
-                        starting_schedule = new_schedule
-                    else:
-                        starting_schedule = starting_schedule
-
-                    print "schedule start is now:", starting_schedule
-=======
-                        #print "high_score:", high_score
-                        #print "score niewe rooster: ", scoring_schedule_new
                         if high_score < scoring_schedule_new:
                             high_score = scoring_schedule_new
                             print "NEW HIGHSCORE"
@@ -214,17 +100,15 @@ if int(high_score) < int(scoring_schedule):
                             starting_schedule = new_schedule
                         else:
                             starting_schedule = starting_schedule
->>>>>>> origin/master
+                            keep_track_new_course = current_course
+
 
                         #print "schedule start is now:", starting_schedule
                 print "zaal, day, hour", key, day, hour
-                hour = hour + 1
                 course_and_activity.remove(keep_track_new_course)
+                hour = hour + 1
             hour = 0
             day = day + 1
-            print "zaal:  ",key
-            print "day:   ",day
-
         hour = 0
         day = 0
 
