@@ -105,7 +105,8 @@ if int(high_score) < int(scoring_schedule):
 
                         #print "schedule start is now:", starting_schedule
                 print "zaal, day, hour", key, day, hour
-                course_and_activity.remove(keep_track_new_course)
+                if keep_track_new_course != "":
+                    course_and_activity.remove(keep_track_new_course)
                 hour = hour + 1
             hour = 0
             day = day + 1
