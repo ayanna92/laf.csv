@@ -8,7 +8,17 @@ Heuristieken UvA
 * Download [Atom](https://atom.io/)
 * Download the laf.csv folder from this GitHub
 * In atom: add project folder and choose laf.csv 
-  * ### Random Algorithm:
+
+  - Random Algorithm:
    * open the file random_algorithm.py in atom 
    * run the file 
-   * the results of the random algorthm will be printed 
+   * the results of the random algorthm will be printed
+  - Hill Cliber algortihm: 
+   * open the file hill_cliber.py in atom 
+   * run the file 
+   * the results of the hillcliber algorthm will be printed
+  - Simulated Annealing algortihm: 
+   * open the file simulated_annealing.py in atom 
+   * run the file 
+   * the results of the hillcliber algorthm will be printed 
+  
