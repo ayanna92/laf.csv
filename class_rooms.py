@@ -5,7 +5,6 @@
 #
 
 from class_courses import *
-import numpy as np
 
 class Classrooms(object):
     """
@@ -23,14 +22,12 @@ class Classrooms(object):
         self.days = [1, 2, 3, 4, 5]
         self.hours = [1, 2, 3, 4]
 
-    # zaal.roomCapacity() gives capacity of room
     def roomCapacity(self):
 
         return self.capacity
 
     def createEmptyWeek(self):
 
-        # week2 = np.empty(shape=[0, self.days])
         week = [[0 for i in range(4)] for j in range(5)]
         return week
 
@@ -53,8 +50,6 @@ class Classrooms(object):
         random_day = random.randint(0,4)
         random_hour = random.randint(0,3)
 
-        #hier nog een check op doen dat als week vol zit die niet oneindig door blijft gaan
-
         if self.emptyTimeSlot(random_day, random_hour, week) == True:
             week[random_day][random_hour] = (self.course)
 
@@ -62,18 +57,3 @@ class Classrooms(object):
             self.fillInWeek(course, week)
 
         return week
-
-# testing for the class
-#A104 = Classrooms("A1.04", 41)
-
-#maak een lege week voor object (zaal) A1.04
-#A104.week = A104.createEmptyWeek()
-
-# for loop maken waar die de vakken in het rooster vult en opslaat in week
-#A104.week = A104.fillInWeek("heuristieken", A104.week)
-#A104.week = A104.fillInWeek("Programmeren 1", A104.week)
-#A104.week = A104.fillInWeek("Programmeren 2", A104.week)
-
-# test of die goed checkt wann zaal leeg is 1 staat voor dag(dinsdag) 2 voor tijdslot 11-13
-#print A104.emptyTimeSlot(1, 2, A104.week)
-#print A104.week
