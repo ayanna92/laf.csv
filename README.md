@@ -9,7 +9,7 @@ Heuristieken UvA
 * Download the laf.csv folder from this GitHub
 * In atom: add project folder and choose laf.csv 
 
-  - <B> Random Algorithm:<\b>
+  - <B> Random Algorithm:<\B>
    * open the file random_algorithm.py in atom 
    * run the file 
    * the results of the random algorthm will be printed
