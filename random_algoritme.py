@@ -3,6 +3,7 @@ from scoringsfunctie import *
 from Schedule_room import *
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import plot, title, xlabel, ylabel, savefig, legend
 
 lijst_rooster_score = []
 zaalrooster_beste = {}
@@ -10,7 +11,7 @@ print "laten we starten"
 plt.ion()
 def random_algoritme():
     score_beste_rooster = -20000
-    for i in range(0,1000):
+    for i in range(0,50):
         rooster, courses = main()
         score_rooster = scoringsfunctie(rooster,courses)
 
@@ -20,18 +21,17 @@ def random_algoritme():
             #print "hij is beter"
 
         lijst_rooster_score.append(score_rooster)
-        print "hij werkt"
-        print len(lijst_rooster_score)
+    print "hij werkt"
+    print len(lijst_rooster_score)
+    print lijst_rooster_score
 
-        for i in range(len(lijst_rooster_score)):
-            y = lijst_rooster_score
-            plt.scatter(i, y)
-            plt.pause(0.01)
-        while True:
-            plt.pause(0.01)
+    x = np.arange(0,len(lijst_rooster_score),1)
 
-    plt.hist(lijst_rooster_score)
+    plt.scatter(x, lijst_rooster_score)
+    xlabel('Trials')
+    ylabel('Score')
     plt.show()
+    plt.savefig("verschillende roosters")
 
     print lijst_rooster_score
     return score_beste_rooster, zaalrooster_beste
