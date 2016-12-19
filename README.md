@@ -1,6 +1,6 @@
 ### Lectures & Roosters 
 ## Ayanna Colden, Lois van Vliet, Femke van Son 
-Heuristieken UvA 
+Heuristieken UvA \n
 '' tekst wat we hebben gedaan afgelopen weken' 
 
 # Installation 
