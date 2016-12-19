@@ -1,7 +1,14 @@
-### Lectures & Roosters 
+# Lectures & Roosters 
 ## Ayanna Colden, Lois van Vliet, Femke van Son 
-Heuristieken UvA \n
+
+Heuristieken UvA 
 '' tekst wat we hebben gedaan afgelopen weken' 
 
-# Installation 
+## Installation 
 * Download [Atom](https://atom.io/)
+* Download the laf.csv folder from this GitHub
+* In atom: add project folder and choose laf.csv 
+  * ### Random Algorithm:
+   * open the file random_algorithm.py in atom 
+   * run the file 
+   * the results of the random algorthm will be printed 
