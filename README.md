@@ -16,7 +16,8 @@ tekst wat we hebben gedaan afgelopen weken
    * remove # from line 123
    * run the file 
    * the results of the random algorthm will be printed
-      - ###visualize a certain room of the random schedule: 
+   
+      - *visualize a certain room of the random schedule:* 
         * make sure to install [python](https://www.python.org/downloads/) 
         * in random_algorithm remove # in line 119 
         * insert in ''fill in classroom'' the classroom to visualize 
@@ -30,10 +31,24 @@ tekst wat we hebben gedaan afgelopen weken
    * run the file 
    * the results of the hillcliber algorthm will be printed
    
+      - *visualize a certain room of the random schedule:* 
+        * make sure to install [python](https://www.python.org/downloads/) 
+        * in random_algorithm remove # in line 119 
+        * insert in ''fill in classroom'' the classroom to visualize 
+        * run the file 
+        
+   
    
    
   - **Simulated Annealing algortihm:**
    * open the file simulated_annealing.py in atom 
    * run the file 
    * the results of the hillcliber algorthm will be printed 
+   
+      - *visualize a certain room of the random schedule:* 
+        * make sure to install [python](https://www.python.org/downloads/) 
+        * in random_algorithm remove # in line 119 
+        * insert in ''fill in classroom'' the classroom to visualize 
+        * run the file 
+        
   
