@@ -40,14 +40,20 @@ tekst wat we hebben gedaan afgelopen weken
    
   - **Simulated Annealing algortihm:**
    * open the file simulated_annealing.py in atom 
-   * remove # from line 87
+   * remove # from line 102
    * run the file 
    * the results of the simulated annealing algorithm will be printed 
    
       - *extra setup to visualize a certain room of the random schedule:* 
         * make sure to install [python](https://www.python.org/downloads/) 
-        * in simulated_annealing remove # in line 88
+        * in simulated_annealing remove # in line 99
         * insert in ''fill in classroom'' the classroom to visualize 
         * run the file 
+        
+      - *extra setup to visualize the results of the simulated annealing algorithm:* 
+        * make sure to install [python](https://www.python.org/downloads/) 
+        * in simulated_annealing remove # from line 82 - 87 & 91 
+        * run the file 
+        * the results will be printed 
         
   
