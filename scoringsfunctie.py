@@ -3,6 +3,11 @@
 # Ayanne, Femke en Lois
 
 # functie die het aantal punten returned
+<<<<<<< HEAD
+=======
+
+#from random_algorithm import *
+>>>>>>> origin/master
 import csv
 from class_rooms import *
 from class_courses import *

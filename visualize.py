@@ -1,9 +1,8 @@
 import math
 import time
-from Schedule_room_test import zaalrooster
 
 from Tkinter import *
-from hill_climbing import *
+
 
 class Visualization:
     """
@@ -39,19 +38,16 @@ class Visualization:
         self.friday = self.w.create_text((875, 50), text = "Friday", font = ("Arial", 25))
 
 
-    def fillSchedule(self):
+    def fillSchedule(self, schedule):
         """
         Fill class schedules with courses returned in main.
         """
-<<<<<<< HEAD
-        self.rooster = zaalrooster
-=======
-        self.rooster = hill_climbing()
->>>>>>> origin/master
+
+        self.rooster = schedule
 
         # select courses from zaalrooster
         courses2 = []
-        for key, value in zaalrooster.items():
+        for key, value in self.rooster.items():
             if key == self.room:
                 value = value
                 for courses in value:
@@ -86,18 +82,4 @@ class Visualization:
 
                 mainloop()
 
-
-<<<<<<< HEAD
-#Visualization('A1.04').fillSchedule()
-#Visualization('A1.06').fillSchedule()
-#Visualization('A1.08').fillSchedule()
-#Visualization('A1.10').fillSchedule()
-=======
-visualization('A1.04').fillSchedule()
-Visualization('A1.06').fillSchedule()
-Visualization('A1.08').fillSchedule()
-Visualization('A1.10').fillSchedule()
->>>>>>> origin/master
-Visualization('B0.201').fillSchedule()
-Visualization('C0.110').fillSchedule()
-Visualization('C1.112').fillSchedule()
+#Visualization('fill in classroom').fillSchedule(fill in schdule)
