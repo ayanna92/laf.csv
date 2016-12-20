@@ -11,30 +11,31 @@ from class_courses import *
 
 fil_2 = open('vakken2.csv')
 file_vakken = csv.reader(fil_2)
-vakken = []
+courses = []
 fil_3 = open("classrooms.csv")
-file_zalen = csv.reader(fil_3)
-zalen = []
+file_classrooms = csv.reader(fil_3)
+classrooms = []
 course_student_list = csv.reader(open('course_stud_num.csv'))
 course_and_student = []
 student_course_list = csv.reader(open('studentenenvakken.csv'))
-student_en_hun_vakken = []
-vakken_volledig = []
+Student_and_their_courses = []
+all_information_courses = []
 
 next(student_course_list)
 for row in student_course_list:
-    student_en_hun_vakken.append(row)
+    Student_and_their_courses.append(row)
 
-for row in file_zalen:
-    zalen.append(row)
+for row in file_classrooms:
+    classrooms.append(row)
 
 for row in file_vakken:
-    vakken.append(row[0])
-    vakken_volledig.append(row)
+    courses.append(row[0])
+    all_information_courses.append(row)
 
 for row in course_student_list:
     course_and_student.append(row)
 
+<<<<<<< HEAD
 
 def scoringsfunctie(schedule, students):
 
@@ -44,73 +45,84 @@ def scoringsfunctie(schedule, students):
     # default is nu scoringsfunctie(0,0)
     rooster = schedule
     student_import_list = students
+=======
+trial = main()
+roosterproef = trial[0]
+student_import_list = trial[1]
 
-    vakroosterhoorcolleges = {}
-    vakroosterwerkcolleges = {}
-    vakroosterpractica = {}
-    vakkenpakketrooster = {}
+# snap niet waarom students?
+
+def scoringsfunctie(schedule, students):
+
+
+    schedule = schedule
+>>>>>>> origin/master
+
+    #dict
+    course_schedule_lecture_dict = {}
+    course_schedule_seminars_dict = {}
+    course_schedule_practicals_dict = {}
+    course_schedule_dict = {}
 
     dag = 0
     tijdsblok = 0
 
-    tijdsblokkenwerkgroep = []
-    tijdsblokkenpractica = []
-    tijdsblokkenhoorcollege = []
+    timeslot_seminar_list = []
+    timeslot_practicals_list = []
+    timeslot_lectures_list = []
     count  = 0
 
-    capaciteit_zaal = []
+    #capacity_classroom_list = []
     points = 1000
-    minpuntcapaciteit = 0
+    lost_point_capacity = 0
 
-    # voor elk vak een rooster maken wanneer ze voorkomen.
-    for vak in vakken:
-        #print vak
+    # Make for each course a schedule when they are present in the schedule.
+    # Lectures, seminars and practicals will be saved both seperately als together.
+    for course in courses:
         capacity_vak = 0
-        # bereken hoeveel studenten er in het vak zit
-        for rooms, rooster_per_room in rooster.items():
+
+        # for each classroom in the schedule calculate the capactity of the classrooom
+        for rooms, schedule_each_room in schedule.items():
             zaal = 0
-            #print rooms
-            capaciteit_zaal = 0
-            # wat is de capaciteit van de zaal:
-            for meerzalen in zalen:
-                if rooms == meerzalen[0]:
-                    capaciteit_zaal = int(meerzalen[1])
+            capacity_classroom_list = 0
+            for multiple_classrooms in classrooms:
+                if rooms == multiple_classrooms[0]:
+                    capacity_classroom_list = int(multiple_classrooms[1])
 
-            # selecteer voor elke zaal een dag.
-            for zaal_per_dag in rooster_per_room:
+            # Check each timeslot if the course in timeslot equals the course that were looking for
+            for zaal_per_dag in schedule_each_room:
                 for vak_per_zaal in zaal_per_dag:
-                    if vak in vak_per_zaal:
+                    if course in vak_per_zaal:
 
-
-                        # bereken capaciteit werkcollege
+                        # check which kind of activity the course is
+                        # seminar:
                         if "werkgroep" in vak_per_zaal:
-                            for row in vakken_volledig:
-                                if vak == row[0]:
+                            for row in all_information_courses:
+                                if course == row[0]:
                                     capacity_vak = float(row[3])
-                                    tijdsblokkenwerkgroep.append((dag,tijdsblok))
-                                    #print capacity_vak, "werkcollege"
+                                    timeslot_seminar_list.append((dag,tijdsblok))
 
-                        # bereken capaciteit van hoorcollege:
+                        # lecture:
                         if "hoorcollege" in vak_per_zaal:
                             for students in course_and_student:
-                                if students[0] == vak:
+                                if students[0] == course:
                                    student_list = students[1:]
-                                   vak_name = Courses(vak, student_list)
+                                   vak_name = Courses(course, student_list)
                                    capacity_vak = vak_name.studNumber()
-                                   tijdsblokkenhoorcollege.append((dag,tijdsblok))
+                                   timeslot_lectures_list.append((dag,tijdsblok))
                                    #print capacity_vak, "hoorcollege"
 
-                        # bereken capaciteit van practicum
+                        # practicals:
                         if "practica" in vak_per_zaal:
-                            for row in vakken_volledig:
-                                if vak == row[0]:
+                            for row in all_information_courses:
+                                if course== row[0]:
                                     capacity_vak = float(row[5])
-                                    tijdsblokkenpractica.append((dag,tijdsblok))
+                                    timeslot_practicals_list.append((dag,tijdsblok))
 
-                        vakkenpakketrooster[vak_per_zaal] = ((dag,tijdsblok))
-                        if capacity_vak > capaciteit_zaal:
+                        course_schedule_dict[vak_per_zaal] = ((dag,tijdsblok))
+                        if capacity_vak > capacity_classroom_list:
                             #print "vak past niet in de zaal"
-                            minpuntcapaciteit += (capacity_vak - capaciteit_zaal)
+                            lost_point_capacity += (capacity_vak - capacity_classroom_list)
 
                         # voeg toe welke plaats tot het rooster.
                     tijdsblok += 1
@@ -118,31 +130,31 @@ def scoringsfunctie(schedule, students):
                 dag = dag +1
             dag = 0
 
-        vakroosterhoorcolleges[vak] = tijdsblokkenhoorcollege
-        vakroosterpractica[vak] = tijdsblokkenpractica
-        vakroosterwerkcolleges[vak] = tijdsblokkenwerkgroep
+        course_schedule_lecture_dict[course] = timeslot_lectures_list
+        course_schedule_practicals_dict[course] = timeslot_practicals_list
+        course_schedule_seminars_dict[course] = timeslot_seminar_list
 
-        tijdsblokkenwerkgroep = []
-        tijdsblokkenpractica = []
-        tijdsblokkenhoorcollege = []
+        timeslot_seminar_list = []
+        timeslot_practicals_list = []
+        timeslot_lectures_list = []
 
-    #print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,minpuntcapaciteit
+    #print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,lost_point_capacity
 
-    #vakroosterpractica
-    #vakroosterhoorcolleges
-    #vakroosterwerkcolleges
-    #print " dit is het vakkenpakketrooster: ", vakkenpakketrooster
+    #course_schedule_practicals_dict
+    #course_schedule_lecture_dict
+    #course_schedule_seminars_dict
+    #print " dit is het course_schedule_dict: ", course_schedule_dict
 
 
     bonuspunten = 0
     minpunten = 0
-    for vak_activiteit in vakken_volledig:
+    for vak_activiteit in all_information_courses:
          number_of_activities = int(vak_activiteit[1]) + int(vak_activiteit[2]) + int(vak_activiteit[4])
 
           # de dagen van de colleges:
-         daghoorcollege = vakroosterhoorcolleges[vak_activiteit[0]]
-         dagwerkcollege = vakroosterwerkcolleges[vak_activiteit[0]]
-         dagpracticum = vakroosterpractica[vak_activiteit[0]]
+         daghoorcollege = course_schedule_lecture_dict[vak_activiteit[0]]
+         dagwerkcollege = course_schedule_seminars_dict[vak_activiteit[0]]
+         dagpracticum = course_schedule_practicals_dict[vak_activiteit[0]]
          daglijsthoor = []
          daglijstwerk = []
          daglijstprac = []
@@ -326,9 +338,9 @@ def scoringsfunctie(schedule, students):
     studentrooster = {}
     studierooster = student_import_list
     #print studierooster
-    #print vakkenpakketrooster
+    #print course_schedule_dict
 
-    for student in student_en_hun_vakken:
+    for student in Student_and_their_courses:
         studentenlijst = []
         studnumber = int(student[2])
 
@@ -347,7 +359,7 @@ def scoringsfunctie(schedule, students):
                                     #print vak
                                     #print vak1
 
-                                    studentenlijst.append( vakkenpakketrooster[vak1[0]])
+                                    studentenlijst.append( course_schedule_dict[vak1[0]])
 
         studentrooster[studnumber] = studentenlijst
     #print studentrooster
@@ -362,8 +374,13 @@ def scoringsfunctie(schedule, students):
     #print " het aantal conflicten bij studenten:" ,minpuntstudent
 
 
-    total = points + bonuspunten - minpuntcapaciteit - minpunten - minpuntstudent
+    total = points + bonuspunten - lost_point_capacity - minpunten - minpuntstudent
     #print "total points is:", total
     #print studentrooster
     #print total
     return total
+<<<<<<< HEAD
+=======
+
+print scoringsfunctie(roosterproef,student_import_list)
+>>>>>>> origin/master
