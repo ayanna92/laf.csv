@@ -13,7 +13,7 @@ tekst wat we hebben gedaan afgelopen weken
 
   - **Random Algorithm:**
    * open the file random_algorithm.py in atom 
-   * remove # from line 121
+   * remove # from line 121, 113 & 114
    * run the file 
    * the results of the random algorthm will be printed
    
