@@ -23,28 +23,30 @@ tekst wat we hebben gedaan afgelopen weken
         * insert in ''fill in classroom'' the classroom to visualize 
         * run the file 
    
+   
   - **Hill Cliber algortihm:**
    * open the file hill_cliber.py in atom 
+   * remove # from line 
    * run the file 
    * the results of the hillcliber algorthm will be printed
    
-      - *visualize a certain room of the random schedule:* 
+      - *extra setup to visualize a certain room of the random schedule:* 
         * make sure to install [python](https://www.python.org/downloads/) 
         * in random_algorithm remove # in line 119 
         * insert in ''fill in classroom'' the classroom to visualize 
         * run the file 
         
-   
-   
+  
    
   - **Simulated Annealing algortihm:**
    * open the file simulated_annealing.py in atom 
+   * remove # from line 87
    * run the file 
-   * the results of the hillcliber algorthm will be printed 
+   * the results of the simulated annealing algorithm will be printed 
    
-      - *visualize a certain room of the random schedule:* 
+      - *extra setup to visualize a certain room of the random schedule:* 
         * make sure to install [python](https://www.python.org/downloads/) 
-        * in random_algorithm remove # in line 119 
+        * in simulated_annealing remove # in line 88
         * insert in ''fill in classroom'' the classroom to visualize 
         * run the file 
         
