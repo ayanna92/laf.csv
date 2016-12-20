@@ -118,4 +118,4 @@ def hilclimbing():
 
     return starting_score, high_score, starting_schedule
 
-print hilclimbing()
+hilclimbing()
