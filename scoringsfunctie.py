@@ -4,7 +4,8 @@
 
 # functie die het aantal punten returned
 
-from Schedule_room import *
+#from random_algorithm import *
+import csv
 from class_rooms import *
 from class_courses import *
 
@@ -33,12 +34,6 @@ for row in file_vakken:
 
 for row in course_student_list:
     course_and_student.append(row)
-trial = main()
-
-
-roosterproef = trial[0]
-student_import_list = trial[1]
-
 
 
 def scoringsfunctie(schedule, students):
@@ -48,7 +43,7 @@ def scoringsfunctie(schedule, students):
     # en dan wordt score berekend
     # default is nu scoringsfunctie(0,0)
     rooster = schedule
-
+    student_import_list = students
 
     vakroosterhoorcolleges = {}
     vakroosterwerkcolleges = {}
@@ -372,5 +367,3 @@ def scoringsfunctie(schedule, students):
     #print studentrooster
     #print total
     return total
-
-scoringsfunctie(roosterproef,student_import_list)

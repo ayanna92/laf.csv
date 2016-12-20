@@ -9,12 +9,10 @@ from class_courses import *
 class Classrooms(object):
     """
     Object that will contain the classrooms and their capacity
+    And 4 functions to return room capacity and if empty timeslot is available, to create an empty week, to fill a week
     """
 
     def __init__(self, room, capacity):
-        """
-        Initialize classroom number and capacity of the classroom
-        """
 
         self.room = room
         self.capacity = capacity

@@ -3,12 +3,13 @@
 #
 # Ayanna, Lois, Femke
 #
-
 import csv
+import copy
 from class_rooms import *
 from class_courses import *
 from main import *
-
+from visualize import *
+from scoringsfunctie import *
 
 zaalrooster = {}
 course_activity_student = {}
@@ -27,7 +28,6 @@ def main ():
     course_and_activity = lists[0]
     random.shuffle(course_and_activity)
 
-
     class_rooms = []
     course_and_student = []
     student_list = []
@@ -36,12 +36,10 @@ def main ():
     for row in course_stud_num:
         course_and_student.append(row)
 
-
     # import classrooms and put them random in a list
     for row in class_rooms_list:
         class_rooms.append(row)
     random.shuffle(class_rooms)
-
 
     #pick a room
     for row in class_rooms:
@@ -59,6 +57,7 @@ def main ():
 
             for row in course_and_student:
 
+                # finding the students following the course and activity
                 if row[0] in course:
                     student_list = row[1:]
 
@@ -66,7 +65,7 @@ def main ():
                     amount_werkcolleges = object_course.werkcolleges(row[0])
                     amount_practica = object_course.practica(row[0])
 
-                        # if there are more than 1 activity per course (hoorcolleges excluded), devide the students, first half in activity 1, second half in activity 2
+                    # if there are more than 1 activity per course (hoorcolleges excluded), devide the students, first half in activity 1, second half in activity 2
                     if 'werkgroep 1' in course:
                         index = len(student_list)/int(amount_werkcolleges)
                         student_list = student_list[0:index]
@@ -98,22 +97,26 @@ def main ():
                     if 'practica 4' in course:
                         index = len(student_list)/int(amount_practica)
                         student_list = student_list[index+index+index:index+index+index+index]
-
-
                 if course == '':
                     student_list = []
-                #dictionary; key is the activity, value is the list of students for that specific activity
-            course_activity_student[course] = student_list
-            #print course_activity_student
 
-            # fill the schedule with the course
+            #dictionary; key is the activity, value is the list of students for that specific activity
+            course_activity_student[course] = student_list
+
             rooster = room.fillInWeek(course, week)
             zaalrooster[name] = rooster
-        #print rooster
 
-    #print course_activity_student
-    #print zaalrooster
-    #print course_activity_student
+    #print "The random schedule is:", zaalrooster
+    #print "The score of the random schedule is: ", scoringsfunctie(zaalrooster, course_activity_student)
+
+    #to visualize a schedule of a classroom of the random algorithm
+    key = ['A1.04', 'A1.06', 'A1.08', 'A1.10', 'B0.201', 'C0.110', 'C1.112']
+
+    for i in range(len(key)):
+        Visualization(key[i]).fillSchedule(zaalrooster)
+    Visualization(key).done()
+        #Visualization('fill in classroom').fillSchedule(zaalrooster)
+
     return (zaalrooster, course_activity_student)
 
-#main()
+main()

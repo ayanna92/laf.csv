@@ -55,26 +55,18 @@ def hoofd_main():
             for vak in vak_list:
 
                 # if vak name and vakken are the same, add student number to existing
-                # vak with append
                 if vak.name_course == vakken:
-                    #print vak.name_course
                     vak.students.append(stud_num)
-                    #print vak.students
-                    # vak.students is nu een lijst waar elke studenten nummer gelinkt is aan elk vak
-                    # dat ze volgen
                     exist_vak = True
 
 
             # if vakken doesn't exist yet, create a new course and add student
-            # number
             if exist_vak == False:
                 if vakken != '':
                     students = []
                     course = Courses(vakken, students)
                     vak_list.append(course)
-                    #print vak_list
                     course.students.append(stud_num)
-            #print course.students
 
     zalen = []
     classroom_list = []
@@ -98,18 +90,15 @@ def hoofd_main():
     courses_list = []
 
     # read csv file in variable courses
-
     for row in file_vakken:
         courses.append(row)
 
-        # put al the courses names in variable names
+    # put al the courses names in variable names
     for col in courses[0:]:
         name = col[0]
 
-
     ## CODE FOR READING IN COURSES AND ACTIVITY
     # for all the 29 courses
-
     for col in courses[0:]:
         name = col[0]
 
@@ -142,7 +131,6 @@ def hoofd_main():
                    course_and_activity.append(course + " hoorcollege 4")
 
 
-
             if float(courses.werkcolleges(course)) > 0:
                    course_and_activity.append(course + " werkgroep 1")
 
@@ -168,14 +156,10 @@ def hoofd_main():
             if int(courses.practica(course)) > 3:
                    course_and_activity.append(course + " practica 4")
 
-
-            #print course
-            #print courses.hoorcollege(course)
-
+        # our schedule exists of 140 timeslots to fill, we have 128 activities.
+        # filled in 12 "" strings to create empty timeslots in schedule
         for x in range(12):
             course_and_activity.append('')
 
-
         return course_and_activity, classroom_name
-
-#hoofd_main()
+hoofd_main()
