@@ -83,9 +83,9 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
     print "best made schedule is:"
     print starting_schedule
     print "score of the schedule is: ", high_score
-    
+
     #to visualize a schedule of a classroom of the random algorithm
     #Visualization('fill in classroom').fillSchedule(zaalrooster)
 
 #running the simulated annealing:
-#simulated_annealing(starting_schedule, courses, classroom_name)
+simulated_annealing(starting_schedule, courses, classroom_name)

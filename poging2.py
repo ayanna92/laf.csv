@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scoringsfunctie import *
-from Schedule_room import *
+from random_algorithm import *
 from main import *
 from matplotlib.pyplot import plot, title, xlabel, ylabel, savefig, legend
 
@@ -77,7 +77,6 @@ def hilclimbing():
                                     index_zero = 0
                                 new_schedule[key][day][hour] = course
                                 scoring_schedule_new = scoringsfunctie(new_schedule, courses)
-
 
                                 if high_score < scoring_schedule_new:
                                     high_score = scoring_schedule_new

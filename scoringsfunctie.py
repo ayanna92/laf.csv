@@ -35,28 +35,12 @@ for row in file_vakken:
 for row in course_student_list:
     course_and_student.append(row)
 
-<<<<<<< HEAD
-
-def scoringsfunctie(schedule, students):
-
-    # Nu nog omslachtige manier
-    # idee is dat als alles straks klopt, je het schedule en de bij behorende lijst met welke studenten welk volgen mee geeft
-    # en dan wordt score berekend
-    # default is nu scoringsfunctie(0,0)
-    rooster = schedule
-    student_import_list = students
-=======
-trial = main()
-roosterproef = trial[0]
-student_import_list = trial[1]
-
-# snap niet waarom students?
 
 def scoringsfunctie(schedule, students):
 
 
     schedule = schedule
->>>>>>> origin/master
+    student_import_list = students
 
     #dict
     course_schedule_lecture_dict = {}
@@ -379,8 +363,3 @@ def scoringsfunctie(schedule, students):
     #print studentrooster
     #print total
     return total
-<<<<<<< HEAD
-=======
-
-print scoringsfunctie(roosterproef,student_import_list)
->>>>>>> origin/master

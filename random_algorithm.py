@@ -110,13 +110,8 @@ def main ():
     #print "The score of the random schedule is: ", scoringsfunctie(zaalrooster, course_activity_student)
 
     #to visualize a schedule of a classroom of the random algorithm
-    key = ['A1.04', 'A1.06', 'A1.08', 'A1.10', 'B0.201', 'C0.110', 'C1.112']
-
-    for i in range(len(key)):
-        Visualization(key[i]).fillSchedule(zaalrooster)
-    Visualization(key).done()
-        #Visualization('fill in classroom').fillSchedule(zaalrooster)
+    #Visualization('fill in classroom').fillSchedule(zaalrooster)
 
     return (zaalrooster, course_activity_student)
 
-main()
+#main()
