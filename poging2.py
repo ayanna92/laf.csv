@@ -101,6 +101,7 @@ def hilclimbing():
                                         return starting_score, high_score, starting_schedule
 
                         hour = hour + 1
+                        print keep_track_new_course
                         course_and_activity.remove(keep_track_new_course)
                     hour = 0
                     day = day + 1

@@ -3,8 +3,7 @@
 # Ayanne, Femke en Lois
 
 # functie die het aantal punten returned
-
-from Schedule_room import *
+import csv
 from class_rooms import *
 from class_courses import *
 
@@ -21,6 +20,7 @@ Student_and_their_courses = []
 all_information_courses = []
 
 next(student_course_list)
+
 for row in student_course_list:
     Student_and_their_courses.append(row)
 
@@ -34,16 +34,11 @@ for row in file_vakken:
 for row in course_student_list:
     course_and_student.append(row)
 
-trial = main()
-roosterproef = trial[0]
-student_import_list = trial[1]
-
-# snap niet waarom students?
 
 def scoringsfunctie(schedule, students):
 
-
     schedule = schedule
+    student_import_list = students
 
     #dict
     course_schedule_lecture_dict = {}
@@ -51,97 +46,97 @@ def scoringsfunctie(schedule, students):
     course_schedule_practicals_dict = {}
     course_schedule_dict = {}
 
-    dag = 0
-    tijdsblok = 0
+    day = 0
+    timeslot = 0
 
     timeslot_seminar_list = []
     timeslot_practicals_list = []
     timeslot_lectures_list = []
     count  = 0
 
-    #capacity_classroom_list = []
     points = 1000
     lost_point_capacity = 0
 
     # Make for each course a schedule when they are present in the schedule.
-    # Lectures, seminars and practicals will be saved both seperately als together.
+    # Lectures, seminars and practicals will be saved both seperately and together.
     for course in courses:
-        capacity_vak = 0
+        capacity_course = 0
 
         # for each classroom in the schedule calculate the capactity of the classrooom
         for rooms, schedule_each_room in schedule.items():
             zaal = 0
-            capacity_classroom_list = 0
+            capacity_classroom = 0
             for multiple_classrooms in classrooms:
                 if rooms == multiple_classrooms[0]:
-                    capacity_classroom_list = int(multiple_classrooms[1])
+                    capacity_classroom = int(multiple_classrooms[1])
 
             # Check each timeslot if the course in timeslot equals the course that were looking for
-            for zaal_per_dag in schedule_each_room:
-                for vak_per_zaal in zaal_per_dag:
-                    if course in vak_per_zaal:
+            for day_in_room in schedule_each_room:
+                for course_timeslot in day_in_room:
+                    if course in course_timeslot:
 
-                        # check which kind of activity the course is
+                        # check which kind of activity the course is and append the times (days,timeslot) to their list.
                         # seminar:
-                        if "werkgroep" in vak_per_zaal:
+                        if "werkgroep" in course_timeslot:
                             for row in all_information_courses:
                                 if course == row[0]:
-                                    capacity_vak = float(row[3])
-                                    timeslot_seminar_list.append((dag,tijdsblok))
+                                    capacity_course = float(row[3])
+                                    timeslot_seminar_list.append((day,timeslot))
 
                         # lecture:
-                        if "hoorcollege" in vak_per_zaal:
+                        if "hoorcollege" in course_timeslot:
                             for students in course_and_student:
                                 if students[0] == course:
                                    student_list = students[1:]
                                    vak_name = Courses(course, student_list)
-                                   capacity_vak = vak_name.studNumber()
-                                   timeslot_lectures_list.append((dag,tijdsblok))
-                                   #print capacity_vak, "hoorcollege"
+                                   capacity_course = vak_name.studNumber()
+                                   timeslot_lectures_list.append((day,timeslot))
+                                   #print capacity_course, "hoorcollege"
 
                         # practicals:
-                        if "practica" in vak_per_zaal:
+                        if "practica" in course_timeslot:
                             for row in all_information_courses:
                                 if course== row[0]:
-                                    capacity_vak = float(row[5])
-                                    timeslot_practicals_list.append((dag,tijdsblok))
+                                    capacity_course = float(row[5])
+                                    timeslot_practicals_list.append((day,timeslot))
 
-                        course_schedule_dict[vak_per_zaal] = ((dag,tijdsblok))
-                        if capacity_vak > capacity_classroom_list:
-                            #print "vak past niet in de zaal"
-                            lost_point_capacity += (capacity_vak - capacity_classroom_list)
+                        # add time to the dictionay where each time is saved in.
+                        course_schedule_dict[course_timeslot] = ((day,timeslot))
 
-                        # voeg toe welke plaats tot het rooster.
-                    tijdsblok += 1
-                tijdsblok = 0
-                dag = dag +1
-            dag = 0
+                        # calculate how many students dont fit in the room if the
+                        # capacity is smaller than the amount of students
+                        if capacity_course > capacity_classroom:
+                            lost_point_capacity += (capacity_course - capacity_classroom)
 
+                    timeslot += 1
+                timeslot = 0
+                day = day +1
+            day = 0
+
+
+        # add the lists to their dictionaries.
         course_schedule_lecture_dict[course] = timeslot_lectures_list
         course_schedule_practicals_dict[course] = timeslot_practicals_list
         course_schedule_seminars_dict[course] = timeslot_seminar_list
 
+        # make the lists empty for the next course.
         timeslot_seminar_list = []
         timeslot_practicals_list = []
         timeslot_lectures_list = []
 
-    #print " Het aantal minpunten vanwege studenten die niet in de zaal passen:" ,lost_point_capacity
-
-    #course_schedule_practicals_dict
-    #course_schedule_lecture_dict
-    #course_schedule_seminars_dict
-    #print " dit is het course_schedule_dict: ", course_schedule_dict
 
 
-    bonuspunten = 0
-    minpunten = 0
-    for vak_activiteit in all_information_courses:
-         number_of_activities = int(vak_activiteit[1]) + int(vak_activiteit[2]) + int(vak_activiteit[4])
+    # next step is to calculate the bonuspoints and lost points that are caused
+    # when a course and their acivities are scheduled on the same day, or on different days.
+    bonuspoints = 0
+    lost_points_activity = 0
+    for course_activity in all_information_courses:
+         number_of_activities = int(course_activity[1]) + int(course_activity[2]) + int(course_activity[4])
 
           # de dagen van de colleges:
-         daghoorcollege = course_schedule_lecture_dict[vak_activiteit[0]]
-         dagwerkcollege = course_schedule_seminars_dict[vak_activiteit[0]]
-         dagpracticum = course_schedule_practicals_dict[vak_activiteit[0]]
+         daghoorcollege = course_schedule_lecture_dict[course_activity[0]]
+         dagwerkcollege = course_schedule_seminars_dict[course_activity[0]]
+         dagpracticum = course_schedule_practicals_dict[course_activity[0]]
          daglijsthoor = []
          daglijstwerk = []
          daglijstprac = []
@@ -157,17 +152,17 @@ def scoringsfunctie(schedule, students):
          # bij 1 activiteit hoeft er niks gedaan te worden.
          # bij twee activiteiten:
          #
-         #print vak_activiteit[0]
+         #print course_activity[0]
          if number_of_activities == 2:
              #print "    heeft twee activiteite"
              if len(daglijsthoor) == 2:
                  #print "           2 hoorcolleges"
                  verschil = abs(daglijsthoor[0]- daglijsthoor[1])
                  if verschil == 3:
-                     bonuspunten += 20
+                     bonuspoints += 20
                 #     print "                    goed ingeroosterd"
                  elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
-                     minpunten += 10
+                     lost_points_activity += 10
                 #     print "                    2 colleges op 1 dag"
 
             # als er 1 hoorcollege en 1 werkgroep per week is
@@ -178,10 +173,10 @@ def scoringsfunctie(schedule, students):
                     #print  daglijsthoor, dag
                     verschil = abs(daglijsthoor[0] - dag)
                     if verschil == 3:
-                        bonuspunten += 20
+                        bonuspoints += 20
                 #        print "             goed ingeroosterd"
                     elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
-                        minpunten += 10
+                        lost_points_activity += 10
                         #print "               2 colleges in 1 dag"
 
             # als er 1 hoorcollege en 1 practicum per week is:
@@ -192,10 +187,10 @@ def scoringsfunctie(schedule, students):
                   # print daglijsthoor, dag
                    verschil = abs(daglijsthoor[0] - dag)
                    if verschil == 3:
-                       bonuspunten += 20
+                       bonuspoints += 20
                     #   print    "           goed ingeroosterd"
                    elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
-                       minpunten += 10
+                       lost_points_activity += 10
                      #  print "             2 colleges in 1 dag ingeroosterd"
 
          if number_of_activities == 3:
@@ -211,13 +206,13 @@ def scoringsfunctie(schedule, students):
                     list.sort(lijst)
                     #print lijst
                     if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
-                        bonuspunten += 20
+                        bonuspoints += 20
                         #print "                 Goed ingeroosterd"
                     elif lijst[0] == lijst[1] == lijst[2]:
-                        minpunten += 20
+                        lost_points_activity += 20
                         #print "                     3 colleges in 1 dag"
                     elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
-                        minpunten += 10
+                        lost_points_activity += 10
                         #print "                     3 colleges in 2 dagen"
 
                     lijst = []
@@ -235,13 +230,13 @@ def scoringsfunctie(schedule, students):
                         list.sort(lijst)
                         #print lijst
                         if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
-                            bonuspunten += 20
+                            bonuspoints += 20
                         #    print "                     goed gedaan"
                         elif lijst[0] == lijst[1] == lijst[2]:
-                            minpunten += 20
+                            lost_points_activity += 20
                         #    print "                       3 colleges in 1 dag"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
-                            minpunten += 10
+                            lost_points_activity += 10
                     #        print "                     3 colleges in 2 dagen"
 
                         lijst = []
@@ -263,19 +258,19 @@ def scoringsfunctie(schedule, students):
                         list.sort(lijst)
                         #print lijst
                         if lijst[0] == 0 and lijst[1] == 1 and lijst[2] == 3 and lijst[3] == 4:
-                            bonuspunten += 20
+                            bonuspoints += 20
                             #print "                         extra goed "
                         elif lijst[0] == lijst[1] == lijst[2]==lijst[3]:
-                            minpunten += 30
+                            lost_points_activity += 30
                             #print "                            4 colleges in 1 dag"
                         elif lijst[0] == lijst[1] == lijst[2] or lijst[1] == lijst[2] == lijst[3]:
-                            minpunten += 20
+                            lost_points_activity += 20
                             #print "                           4 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] and lijst[2]== lijst[3]:
-                            minpunten += 20
+                            lost_points_activity += 20
                             #print "                             4 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2] or lijst[2] == lijst[3]:
-                            minpunten += 10
+                            lost_points_activity += 10
                             #print "                         4 colleges in 3 dagen"
                         lijst = []
          if number_of_activities == 5:
@@ -293,31 +288,31 @@ def scoringsfunctie(schedule, students):
                         list.sort(lijst)
                         #print lijst
                         if lijst[0] == 0 and lijst[1] == 1 and lijst[2] == 2 and lijst[3] == 3 and lijst[4] == 4:
-                            bonuspunten += 20
+                            bonuspoints += 20
                             #print  "                    goed ingeoorsterd"
                         elif lijst[0] == lijst[1] == lijst[2] == lijst[3] == lijst [4]:
-                            minpunten += 40
+                            lost_points_activity += 40
                             #print "                         5 colleges in 1 dag"
                         elif lijst[0] == lijst[1] == lijst[2] == lijst[3] or lijst[1] == lijst[2] == lijst[3] == lijst[4]:
-                            minpunten += 30
+                            lost_points_activity += 30
                             #print "                         5 colleges in 2 dagen"
                         elif (lijst[0]== lijst[1] and lijst[2]== lijst[3] == lijst[4]) or (lijst[0] == lijst[1] == lijst[2] and lijst[3] == lijst[4]):
-                            minpunten += 30
+                            lost_points_activity += 30
                             #print "                         5 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] == lijst[2]  or lijst[1] == lijst[2] == lijst[3] or lijst[2]== lijst[3] == lijst[4]:
-                            minpunten += 20
+                            lost_points_activity += 20
                             #print "                         5 colleges in 3 dagen"
                         elif (lijst[0]== lijst[1] and lijst[2]== lijst[3]) or (lijst[0] == lijst[1] and lijst[3] == lijst[4]) or (lijst[1] == lijst[2] and lijst[3] == lijst[4]):
-                            minpunten += 20
+                            lost_points_activity += 20
                             #print "                         5 colleges in 3 dagen"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2] or lijst[2] == lijst[3] or lijst[3] == lijst[4]:
-                            minpunten += 10
+                            lost_points_activity += 10
                             #print "                         5 colleges in 4 dagen"
 
                         lijst = []
 
-    #print " het aantal bonuspunten van dit rooster:", bonuspunten
-    #print " het aantal minpunten van dit rooster:", minpunten
+    #print " het aantal bonuspoints van dit rooster:", bonuspoints
+    #print " het aantal lost_points_activity van dit rooster:", lost_points_activity
 
 
     # conflicten van de studenten berekenen:
@@ -361,10 +356,8 @@ def scoringsfunctie(schedule, students):
     #print " het aantal conflicten bij studenten:" ,minpuntstudent
 
 
-    total = points + bonuspunten - lost_point_capacity - minpunten - minpuntstudent
+    total = points + bonuspoints - lost_point_capacity - lost_points_activity - minpuntstudent
     #print "total points is:", total
     #print studentrooster
     #print total
     return total
-
-print scoringsfunctie(roosterproef,student_import_list)
