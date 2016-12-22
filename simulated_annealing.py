@@ -5,6 +5,8 @@ from scoringsfunctie import *
 from random_algorithm import *
 from main import *
 from visualize import *
+from matplotlib.pyplot import plot, title, xlabel, ylabel, savefig
+
 
 import copy
 import random
@@ -20,11 +22,15 @@ classroom_name = lists[1]
 
 def simulated_annealing(starting_schedule, courses, classroom_name):
     print "starting Simulated annealing algorithm"
-    print "it may take around a hour till it's finished..."
+    print "it can take around an hour until it's finished..."
 
     # set initial temp
     temp = 1000
-    cooling_rate = 0.003
+
+    # probability 0.8
+    cooling_rate = 0.001
+
+    lijst_high_score = []
 
     high_score = scoringsfunctie(starting_schedule, courses)
     SA = True
@@ -57,7 +63,6 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
             # else: swap back
             new_score = scoringsfunctie(new_schedule, courses)
             acceptance = math.exp((new_score - high_score) / temp)
-
             if SA:
 
                 temp *= 1 - cooling_rate
@@ -75,14 +80,20 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
                     new_score = scoringsfunctie(starting_schedule, courses)
 
                 if steps > 5000:
+                    x = np.arange(0,len(lijst_high_score),1)
+                    plt.scatter(x,lijst_high_score)
+                    xlabel('Trials')
+                    ylabel('Score')
+                    plt.plot(x,lijst_high_score)
+                    plt.savefig('Simulated annealing')
+                    print "simulated annealing is done"
+                    print "best made schedule is:"
+                    print starting_schedule
+                    print "score of the schedule is: ", high_score
                     return [starting_schedule, high_score]
             if temp < 1:
                 SA = False
-
-    print "simulated annealing is done"
-    print "best made schedule is:"
-    print starting_schedule
-    print "score of the schedule is: ", high_score
+            lijst_high_score.append(high_score)
 
     #to visualize a schedule of a classroom of the random algorithm
     #Visualization('fill in classroom').fillSchedule(zaalrooster)
