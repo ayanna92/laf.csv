@@ -3,7 +3,9 @@
 
 Heuristieken UvA 
 
-tekst wat we hebben gedaan afgelopen weken
+Abstract
+This research looks at different algorithms to solve a class scheduling problem. Three different algorithms were used, a random, customized hill climber and simulated annealing algorithm. Results found that simulated annealing and hill climber had similar results, when using a random schedule as starting point. However when a high scoring schedule was used to start, we found that our customized hill climber returned better results. Concluding that customized hill climber was the more successful algorithm.
+
 
 ## Installation 
 * Download [Atom](https://atom.io/)
