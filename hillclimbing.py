@@ -27,8 +27,6 @@ def hilclimbing():
     schedule, courses = main()
     starting_score = scoringsfunctie(schedule,courses)
 
-
-
     starting_schedule = copy.deepcopy(schedule)
     scoring_schedule = scoringsfunctie(starting_schedule, courses)
 
@@ -116,10 +114,9 @@ def hilclimbing():
     #plt.plot(x, lijst_scores)
     #plt.savefig("hillclimbing2")
 
-
     return starting_score, high_score, starting_schedule
 
-print hilclimbing()
+#hilclimbing()
 
 # function to take 50 random schedule and find the best schedule.
 
@@ -164,5 +161,4 @@ def hilclimbing_plot():
     plt.show()
 
     return score_Best_overal, tuplescores,  zaalrooster_beste,
-
-print hilclimbing_plot
+#hilclimbing_plot

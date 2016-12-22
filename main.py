@@ -162,4 +162,4 @@ def hoofd_main():
             course_and_activity.append('')
 
         return course_and_activity, classroom_name
-hoofd_main()
+#hoofd_main()
