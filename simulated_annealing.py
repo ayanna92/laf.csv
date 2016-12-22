@@ -1,4 +1,16 @@
+# Ayanna, Femke en Lois
+#
+# heuristics
+# simulated annealing
+#
+# this file contains the simulated annealing algorithm. A random schedule is made
+# and changed to a better schedule
+# in simulated plot the simulated annealing algorithm is done 50 times and a plot is made.
+#
+#
+
 import numpy as np
+from numpy import array
 import matplotlib.pyplot as plt
 
 from scoringsfunctie import *
@@ -10,17 +22,18 @@ import copy
 import random
 import math
 
-# at this moment we start with a random schedule
-schedule, courses = main()
-starting_schedule = copy.deepcopy(schedule)
-scoring_schedule = scoringsfunctie(starting_schedule, courses)
-lists = hoofd_main()
-course_and_activity = lists[0]
-classroom_name = lists[1]
+
 
 def simulated_annealing(starting_schedule, courses, classroom_name):
     print "starting Simulated annealing algorithm"
     print "it may take around a hour till it's finished..."
+
+    schedule, courses = main()
+    starting_schedule = copy.deepcopy(schedule)
+    scoring_schedule = scoringsfunctie(starting_schedule, courses)
+    lists = hoofd_main()
+    course_and_activity = lists[0]
+    classroom_name = lists[1]
 
     # set initial temp
     temp = 1000
@@ -31,9 +44,7 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
     steps = 0
 
     while True:
-
         while True:
-
             steps = steps + 1
 
             # choose two random timeslots, swap the courses
@@ -89,3 +100,53 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
 
 #running the simulated annealing:
 #simulated_annealing(starting_schedule, courses, classroom_name)
+
+def simulated_plot:
+    lijst_rooster_maxscore = []
+    lijst_rooster_minscore = []
+    zaalrooster_beste = {}
+    score_Best_overal = 0
+
+
+    for i in range(0,50):
+        schedule, courses = main()
+        lists = hoofd_main()
+        course_and_activity = lists[0]
+        classroom_name = lists[1]
+
+        starting_schedule, high_score, starting_score = simulated_annealing(schedule, courses, classroom_name)
+
+        lijst_rooster_minscore.append(starting_score)
+        lijst_rooster_maxscore.append(high_score)
+
+
+        if score_Best_overal < high_score:
+            zaalrooster_beste = starting_schedule
+            score_Best_overal = high_score
+
+    days = array([1, 2])
+
+    samen = zip(lijst_rooster_minscore, lijst_rooster_maxscore)
+
+    for temp in (samen):
+        plt.plot(days, (temp),'-ro' )
+
+    plt.title('Comparison before and after simulated annealing')
+    plt.xlabel('Before and After')
+    plt.ylabel('Score')
+
+    #x = lijst_rooster_minscore
+    #y = lijst_rooster_maxscore
+    labels = ['before', 'after']
+    plt.xticks(lijst_rooster_minscore, labels, rotation='vertical')
+    # Pad margins so that markers don't get clipped by the axes
+
+    plt.margins(0.2)
+    # Tweak spacing to prevent clipping of tick-labels
+    plt.subplots_adjust(bottom=0.15)
+    plt.savefig("different roosters simulated")
+    plt.show()
+
+    return score_Best_overal, lijst_rooster_minscore, lijst_rooster_maxscore,  zaalrooster_beste,
+
+print simmulated_algoritme()
