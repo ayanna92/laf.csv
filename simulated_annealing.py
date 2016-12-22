@@ -39,17 +39,10 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
 
     # set initial temp
     temp = 1000
-<<<<<<< HEAD
+
     cooling_rate = 0.003
     starting_score =  scoringsfunctie(starting_schedule, courses)
-=======
-
-    # probability 0.8
-    cooling_rate = 0.001
-
     lijst_high_score = []
-
->>>>>>> origin/master
     high_score = scoringsfunctie(starting_schedule, courses)
     SA = True
     steps = 0
@@ -96,21 +89,19 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
                     new_score = scoringsfunctie(starting_schedule, courses)
 
                 if steps > 5000:
-<<<<<<< HEAD
-                    return starting_schedule, high_score, starting_score
-=======
-                    x = np.arange(0,len(lijst_high_score),1)
-                    plt.scatter(x,lijst_high_score)
-                    xlabel('Trials')
-                    ylabel('Score')
-                    plt.plot(x,lijst_high_score)
-                    plt.savefig('Simulated annealing')
-                    print "simulated annealing is done"
-                    print "best made schedule is:"
-                    print starting_schedule
-                    print "score of the schedule is: ", high_score
+
+                    #x = np.arange(0,len(lijst_high_score),1)
+                    #plt.scatter(x,lijst_high_score)
+                    #xlabel('Trials')
+                    #ylabel('Score')
+                    #plt.plot(x,lijst_high_score)
+                    #plt.savefig('Simulated annealing')
+                    #print "simulated annealing is done"
+                    #print "best made schedule is:"
+                    #print starting_schedule
+                    #print "score of the schedule is: ", high_score
                     return [starting_schedule, high_score]
->>>>>>> origin/master
+
             if temp < 1:
                 SA = False
             lijst_high_score.append(high_score)
@@ -121,7 +112,7 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
 #running the simulated annealing:
 #simulated_annealing(starting_schedule, courses, classroom_name)
 
-def simulated_plot:
+def simulated_plot():
     lijst_rooster_maxscore = []
     lijst_rooster_minscore = []
     zaalrooster_beste = {}
@@ -169,4 +160,4 @@ def simulated_plot:
 
     return score_Best_overal, lijst_rooster_minscore, lijst_rooster_maxscore,  zaalrooster_beste,
 
-print simmulated_algoritme()
+#print simmulated_algoritme()

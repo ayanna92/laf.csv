@@ -7,6 +7,7 @@
 import csv
 from class_rooms import *
 from class_courses import *
+from collections import Counter
 
 fil_2 = open('vakken2.csv')
 file_vakken = csv.reader(fil_2)
@@ -125,6 +126,7 @@ def scoringsfunctie(schedule, students):
         timeslot_practicals_list = []
         timeslot_lectures_list = []
 
+    # print "lost points due to capacity clasrooms:", lost_point_capacity
 
 
     # next step is to calculate the bonuspoints and lost points that are caused
@@ -134,231 +136,163 @@ def scoringsfunctie(schedule, students):
     for course_activity in all_information_courses:
          number_of_activities = int(course_activity[1]) + int(course_activity[2]) + int(course_activity[4])
 
-          # de dagen van de colleges:
-         daghoorcollege = course_schedule_lecture_dict[course_activity[0]]
-         dagwerkcollege = course_schedule_seminars_dict[course_activity[0]]
-         dagpracticum = course_schedule_practicals_dict[course_activity[0]]
-         daglijsthoor = []
-         daglijstwerk = []
-         daglijstprac = []
-         for tijd in daghoorcollege:
-            daglijsthoor.append(tijd[0])
-            #print daglijsthoor
-         for tijd in dagwerkcollege:
-            daglijstwerk.append(tijd[0])
-         for tijd in dagpracticum:
-            daglijstprac.append(tijd[0])
+         lecture_list_day = course_schedule_lecture_dict[course_activity[0]]
+         seminar_list_day = course_schedule_seminars_dict[course_activity[0]]
+         practicals_list_day = course_schedule_practicals_dict[course_activity[0]]
+         day_list_lectur = []
+         day_list_seminar = []
+         day_list_practicals = []
 
-         # alles uitschrijven op basis van het aantal activiteiten
-         # bij 1 activiteit hoeft er niks gedaan te worden.
-         # bij twee activiteiten:
-         #
-         #print course_activity[0]
+         # make lists of what times the activities are
+         for tijd in lecture_list_day:
+            day_list_lectur.append(tijd[0])
+         for tijd in seminar_list_day:
+            day_list_seminar.append(tijd[0])
+         for tijd in practicals_list_day:
+            day_list_practicals.append(tijd[0])
+
+         # for each number of activities there are different situations:
          if number_of_activities == 2:
-             #print "    heeft twee activiteite"
-             if len(daglijsthoor) == 2:
-                 #print "           2 hoorcolleges"
-                 verschil = abs(daglijsthoor[0]- daglijsthoor[1])
+             if len(day_list_lectur) == 2:
+                 verschil = abs(day_list_lectur[0]- day_list_lectur[1])
                  if verschil == 3:
                      bonuspoints += 20
-                #     print "                    goed ingeroosterd"
-                 elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
+                 elif verschil == 0 :
                      lost_points_activity += 10
-                #     print "                    2 colleges op 1 dag"
 
-            # als er 1 hoorcollege en 1 werkgroep per week is
-             if len(daglijsthoor) == 1 and daglijstwerk != []:
-                #print "        1 hoorcollege en 1 werkcollege"
-                #print "             verschillende werkgroepen:",len(daglijstwerk)
-                for dag in daglijstwerk:
-                    #print  daglijsthoor, dag
-                    verschil = abs(daglijsthoor[0] - dag)
+             if len(day_list_lectur) == 1 and day_list_seminar != []:
+                for dag in day_list_seminar:
+
+                    verschil = abs(day_list_lectur[0] - dag)
                     if verschil == 3:
                         bonuspoints += 20
-                #        print "             goed ingeroosterd"
-                    elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
-                        lost_points_activity += 10
-                        #print "               2 colleges in 1 dag"
 
-            # als er 1 hoorcollege en 1 practicum per week is:
-             if len(daglijsthoor) == 1 and daglijstprac != []:
-                 #print "        1 hoorcollege en 1 practica"
-                 #print "                verschillende werkgroepen:",len(daglijstprac)
-                 for dag in daglijstprac:
-                  # print daglijsthoor, dag
-                   verschil = abs(daglijsthoor[0] - dag)
+                    elif verschil == 0 :
+                        lost_points_activity += 10
+
+
+             if len(day_list_lectur) == 1 and day_list_practicals != []:
+                 for dag in day_list_practicals:
+                   verschil = abs(day_list_lectur[0] - dag)
                    if verschil == 3:
                        bonuspoints += 20
-                    #   print    "           goed ingeroosterd"
-                   elif verschil == 0 :  # dan zijn ze op 1 dag ingeroosterd
+
+                   elif verschil == 0 :
                        lost_points_activity += 10
-                     #  print "             2 colleges in 1 dag ingeroosterd"
 
          if number_of_activities == 3:
-            #print "   er zijn 3 colleges"
-            if len(daglijsthoor) == 2 and daglijstwerk != []:
-                #print "         2 hoocolleges en 1 werkcollges"
-                #print "             verschillende werkgroepen:",len(daglijstwerk)
+            if len(day_list_lectur) == 2 and day_list_seminar != []:
                 lijst = []
-                for dag in daglijstwerk:
-                    for dagen in daglijsthoor:
+                for dag in day_list_seminar:
+                    for dagen in day_list_lectur:
                         lijst.append(dagen)
                     lijst.append(dag)
                     list.sort(lijst)
-                    #print lijst
                     if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
                         bonuspoints += 20
-                        #print "                 Goed ingeroosterd"
                     elif lijst[0] == lijst[1] == lijst[2]:
                         lost_points_activity += 20
-                        #print "                     3 colleges in 1 dag"
                     elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
                         lost_points_activity += 10
-                        #print "                     3 colleges in 2 dagen"
 
                     lijst = []
 
-            if len(daglijsthoor) == 1 and daglijstwerk != [] and daglijstprac != []:
-                #print "             van alles 1 college "
+            if len(day_list_lectur) == 1 and day_list_seminar != [] and day_list_practicals != []:
                 lijst = []
-                #print "         verschillende werkgroepen:",len(daglijstwerk)
-                #print "         verschillende practica:",len(daglijstprac)
-                for dag in daglijstwerk:
-                    for dagen in daglijstprac:
-                        lijst.append(daglijsthoor[0])
+                for dag in day_list_seminar:
+                    for dagen in day_list_practicals:
+                        lijst.append(day_list_lectur[0])
                         lijst.append(dag)
                         lijst.append(dagen)
                         list.sort(lijst)
-                        #print lijst
                         if lijst[0] == 0 and lijst[1] == 2 and lijst[2] == 4:
                             bonuspoints += 20
-                        #    print "                     goed gedaan"
                         elif lijst[0] == lijst[1] == lijst[2]:
                             lost_points_activity += 20
-                        #    print "                       3 colleges in 1 dag"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2]:
                             lost_points_activity += 10
-                    #        print "                     3 colleges in 2 dagen"
 
                         lijst = []
 
 
          if number_of_activities == 4:
-            #print "     er zijn vier activiteiten "
-            if len(daglijsthoor) == 2 and daglijstwerk != [] and daglijstprac != []:
-                #print  "        2 hoorcolleges, 1 werkcollege and 1 practica"
+            if len(day_list_lectur) == 2 and day_list_seminar != [] and day_list_practicals != []:
                 lijst = []
-                #print "verschillende werkgroepen:",len(daglijstwerk)
-                #print "verschillende practica:",len(daglijstprac)
-                for dag in daglijstwerk:
-                    for dagen in daglijstprac:
-                        for hoor in daglijsthoor:
+                for dag in day_list_seminar:
+                    for dagen in day_list_practicals:
+                        for hoor in day_list_lectur:
                             lijst.append(hoor)
                         lijst.append(dag)
                         lijst.append(dagen)
                         list.sort(lijst)
-                        #print lijst
                         if lijst[0] == 0 and lijst[1] == 1 and lijst[2] == 3 and lijst[3] == 4:
                             bonuspoints += 20
-                            #print "                         extra goed "
                         elif lijst[0] == lijst[1] == lijst[2]==lijst[3]:
                             lost_points_activity += 30
-                            #print "                            4 colleges in 1 dag"
                         elif lijst[0] == lijst[1] == lijst[2] or lijst[1] == lijst[2] == lijst[3]:
                             lost_points_activity += 20
-                            #print "                           4 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] and lijst[2]== lijst[3]:
                             lost_points_activity += 20
-                            #print "                             4 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2] or lijst[2] == lijst[3]:
                             lost_points_activity += 10
-                            #print "                         4 colleges in 3 dagen"
                         lijst = []
          if number_of_activities == 5:
-            #print "     er zijn 5 acitviteiten"
-            if len(daglijsthoor) == 3 and daglijstwerk != [] and daglijstprac != []:
-                #print "            3 hoorcolleges, 1 werkcollege and 1 practica"
-                #print "         verschillende werkgroepen:",len(daglijstwerk)
-                #print "         verschillende practica:",len(daglijstprac)
-                for dag in daglijstwerk:
-                    for dagen in daglijstprac:
-                        for hoor in daglijsthoor:
+            if len(day_list_lectur) == 3 and day_list_seminar != [] and day_list_practicals != []:
+                for dag in day_list_seminar:
+                    for dagen in day_list_practicals:
+                        for hoor in day_list_lectur:
                             lijst.append(hoor)
                         lijst.append(dag)
                         lijst.append(dagen)
                         list.sort(lijst)
-                        #print lijst
                         if lijst[0] == 0 and lijst[1] == 1 and lijst[2] == 2 and lijst[3] == 3 and lijst[4] == 4:
                             bonuspoints += 20
-                            #print  "                    goed ingeoorsterd"
                         elif lijst[0] == lijst[1] == lijst[2] == lijst[3] == lijst [4]:
                             lost_points_activity += 40
-                            #print "                         5 colleges in 1 dag"
                         elif lijst[0] == lijst[1] == lijst[2] == lijst[3] or lijst[1] == lijst[2] == lijst[3] == lijst[4]:
                             lost_points_activity += 30
-                            #print "                         5 colleges in 2 dagen"
                         elif (lijst[0]== lijst[1] and lijst[2]== lijst[3] == lijst[4]) or (lijst[0] == lijst[1] == lijst[2] and lijst[3] == lijst[4]):
                             lost_points_activity += 30
-                            #print "                         5 colleges in 2 dagen"
                         elif lijst[0] == lijst[1] == lijst[2]  or lijst[1] == lijst[2] == lijst[3] or lijst[2]== lijst[3] == lijst[4]:
                             lost_points_activity += 20
-                            #print "                         5 colleges in 3 dagen"
                         elif (lijst[0]== lijst[1] and lijst[2]== lijst[3]) or (lijst[0] == lijst[1] and lijst[3] == lijst[4]) or (lijst[1] == lijst[2] and lijst[3] == lijst[4]):
                             lost_points_activity += 20
-                            #print "                         5 colleges in 3 dagen"
                         elif lijst[0] == lijst[1] or lijst[1] == lijst[2] or lijst[2] == lijst[3] or lijst[3] == lijst[4]:
                             lost_points_activity += 10
-                            #print "                         5 colleges in 4 dagen"
 
                         lijst = []
 
-    #print " het aantal bonuspoints van dit rooster:", bonuspoints
-    #print " het aantal lost_points_activity van dit rooster:", lost_points_activity
+    # print "number of bonuspoints due to good spread of the course:", bonuspoints
+    # print "number of lostpoints due to bad spread of the course:", lost_points_activity
+    student_schedules = {}
+    student_and_courses_schedule = student_import_list
 
 
-    # conflicten van de studenten berekenen:
-    #print "iets"
-    studentrooster = {}
-    studierooster = student_import_list
-    #print studierooster
-    #print course_schedule_dict
-
+    # in this section, lost points are calculated that are caused by conflicten timeslots for student.
+    # first make for each student a schedule with day and time slots
     for student in Student_and_their_courses:
         studentenlijst = []
         studnumber = int(student[2])
 
-        #print student
-        for vak in student[3:7]:
-            if vak != "":
-                for vak1 in studierooster.items():
-
-                    if vak in vak1[0]:
-                        #print "hij zit er in"
-                        #print vak
-                        for studenten in vak1[1:]:
+        for course in student[3:7]:
+            if course != "":
+                for course_and_its_students in student_and_courses_schedule.items():
+                    if course in course_and_its_students[0]:
+                        for studenten in course_and_its_students[1:]:
                             for stud in studenten:
                                 if studnumber == int(stud):
-                                    #print "true"
-                                    #print vak
-                                    #print vak1
+                                    studentenlijst.append( course_schedule_dict[course_and_its_students[0]])
 
-                                    studentenlijst.append( course_schedule_dict[vak1[0]])
+        student_schedules[studnumber] = studentenlijst
 
-        studentrooster[studnumber] = studentenlijst
-    #print studentrooster
-    from collections import Counter
-    #print studentrooster
-    minpuntstudent = 0
-    for student in studentrooster.values():
-          waarde = Counter(student).values()
-          #print waarde
-          if len(waarde)!= len(student):
-              minpuntstudent += (len(student) - len(waarde))
-    #print " het aantal conflicten bij studenten:" ,minpuntstudent
+    loss_points_student = 0
+    for student in student_schedules.values():
+          unique_values = Counter(student).values()
+          if len(unique_values)!= len(student):
+              loss_points_student += (len(student) - len(unique_values))
 
-
-    total = points + bonuspoints - lost_point_capacity - lost_points_activity - minpuntstudent
-    #print "total points is:", total
-    #print studentrooster
+    total = points + bonuspoints - lost_point_capacity - lost_points_activity - loss_points_student
+    #print"total points is:", total
+    #print student_schedules
     #print total
     return total

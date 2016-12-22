@@ -13,7 +13,6 @@ import math
 
 def simmulated_algoritme():
 
-
     lijst_rooster_maxscore = []
     lijst_rooster_minscore = []
     zaalrooster_beste = {}
