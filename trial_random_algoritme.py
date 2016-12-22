@@ -7,11 +7,11 @@ from matplotlib.pyplot import plot, title, xlabel, ylabel, savefig, legend
 
 lijst_rooster_score = []
 zaalrooster_beste = {}
-print "laten we starten"
+print "printing the plot in verschillende roosters..."
 plt.ion()
 def random_algoritme():
     score_beste_rooster = -20000
-    for i in range(0,50):
+    for i in range(0,1000):
         rooster, courses = main()
         score_rooster = scoringsfunctie(rooster,courses)
 
@@ -21,19 +21,17 @@ def random_algoritme():
             #print "hij is beter"
 
         lijst_rooster_score.append(score_rooster)
-    print "hij werkt"
-    print len(lijst_rooster_score)
-    print lijst_rooster_score
+
 
     x = np.arange(0,len(lijst_rooster_score),1)
 
-    plt.scatter(x, lijst_rooster_score)
+    #plt.scatter(x, lijst_rooster_score)
+    plt.hist(lijst_rooster_score)
     xlabel('Trials')
     ylabel('Score')
     plt.show()
     plt.savefig("verschillende roosters")
 
-    print lijst_rooster_score
     return score_beste_rooster, zaalrooster_beste
 
 print random_algoritme()
