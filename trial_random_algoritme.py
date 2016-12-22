@@ -1,6 +1,6 @@
 
 from scoringsfunctie import *
-from Schedule_room import *
+from random_algorithm import *
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import plot, title, xlabel, ylabel, savefig, legend

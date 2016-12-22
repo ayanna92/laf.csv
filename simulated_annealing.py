@@ -25,7 +25,7 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
     # set initial temp
     temp = 1000
     cooling_rate = 0.003
-
+    starting_score =  scoringsfunctie(starting_schedule, courses)
     high_score = scoringsfunctie(starting_schedule, courses)
     SA = True
     steps = 0
@@ -75,7 +75,7 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
                     new_score = scoringsfunctie(starting_schedule, courses)
 
                 if steps > 5000:
-                    return [starting_schedule, high_score]
+                    return starting_schedule, high_score, starting_score
             if temp < 1:
                 SA = False
 
@@ -88,4 +88,4 @@ def simulated_annealing(starting_schedule, courses, classroom_name):
     #Visualization('fill in classroom').fillSchedule(zaalrooster)
 
 #running the simulated annealing:
-simulated_annealing(starting_schedule, courses, classroom_name)
+#simulated_annealing(starting_schedule, courses, classroom_name)

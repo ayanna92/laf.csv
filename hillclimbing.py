@@ -10,14 +10,19 @@ from matplotlib.pyplot import plot, title, xlabel, ylabel, savefig, legend
 import copy
 import random
 
+
+
 # at this moment we start with a random schedule
 def hilclimbing():
     lijst_scores = []
     schedule, courses = main()
+
+    #print schedule
     amount_of_hiscores = 0
 
     # sla het allereerste aantal punten van het rooster op.
     starting_score = scoringsfunctie(schedule,courses)
+    print starting_score
     # starting schedule is het rooster die we kunnen aanpassen.
     starting_schedule = copy.deepcopy(schedule)
     scoring_schedule = scoringsfunctie(starting_schedule, courses)
@@ -48,7 +53,7 @@ def hilclimbing():
             hour = 0
             #print schedule
             for key, week in list(starting_schedule.items()):
-                print key
+                #print key
                 for days in week:
                     #print days
                     for hours in days:
@@ -88,18 +93,16 @@ def hilclimbing():
                                     lijst_scores.append(high_score)
                                     amount_of_hiscores += 1
                                     #print amount_of_hiscores
-                                    if amount_of_hiscores == 1000:
-                                        #x = np.arange(0,len(lijst_scores),1)
-                                        #plt.scatter(x, lijst_scores)
-                                        #plt.plot(x,lijst_scores)
-                                        #xlabel('Trials')
-                                        #ylabel('Score')
-                                        #plt.savefig("hillclimbing2")
+                                    #if amount_of_hiscores == 8000:
 
-                                        return starting_score, high_score, starting_schedule
+
+                                        #return starting_score, high_score, starting_schedule
 
                         hour = hour + 1
-                        course_and_activity.remove(keep_track_new_course)
+                        #print keep_track_new_course
+                        if keep_track_new_course in course_and_activity:
+                            #print "true"
+                            course_and_activity.remove(keep_track_new_course)
                     hour = 0
                     day = day + 1
                 hour = 0
@@ -109,11 +112,11 @@ def hilclimbing():
 
     #plt.scatter(x, lijst_scores)
 
-    #xlabel('Trials')
+    #xlabel('Iterations')
     #ylabel('Score')
     #plt.plot(x, lijst_scores)
     #plt.savefig("hillclimbing2")
 
     return starting_score, high_score, starting_schedule
 
-hilclimbing()
+#hilclimbing()
